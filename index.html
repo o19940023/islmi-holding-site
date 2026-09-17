@@ -174,6 +174,16 @@ section,#act1{position:relative;height:100vh;min-height:100vh;overflow:hidden}
 #discover .d-ring svg{width:14px;animation:dip 2s ease-in-out infinite}
 #discover:hover .d-ring{background:rgba(94,198,230,.14);box-shadow:0 0 30px rgba(94,198,230,.3)}
 #discover small{font-size:8px;letter-spacing:.3em;color:var(--mut)}
+/* ---- launch notice (pre-opening band) ---- */
+#launch{position:absolute;left:0;right:0;bottom:clamp(52px,10.5vh,116px);display:grid;justify-items:center;gap:clamp(8px,1.4vh,16px);text-align:center;z-index:7;pointer-events:none;transform-origin:50% 100%;will-change:transform,opacity,filter;animation:lxFloat 7s ease-in-out infinite}
+@keyframes lxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.lx-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.42em;margin-left:.42em;color:var(--acc2);text-transform:uppercase}
+.lx-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc);animation:lxPulse 2.4s ease-in-out infinite}
+@keyframes lxPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.lx-big{font-family:var(--sans);font-weight:300;font-size:clamp(26px,5.4vw,78px);line-height:1;letter-spacing:.1em;margin-left:.1em;text-transform:uppercase;color:#f2fbfe;white-space:nowrap;text-shadow:0 0 26px rgba(94,198,230,.35),0 0 80px rgba(94,198,230,.15)}
+.lx-big .ch{animation:lxRise .9s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i) * .045s)}
+@keyframes lxRise{from{opacity:0;transform:translateY(26px);filter:blur(10px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.lx-note{font-size:clamp(9px,1.05vw,12px);letter-spacing:.24em;text-transform:uppercase;color:var(--mut);max-width:min(70ch,86vw);line-height:2}
 #heroMeta{position:absolute;left:6vw;right:6vw;bottom:clamp(16px,4vh,34px);display:flex;align-items:center;gap:18px;font-size:9px;letter-spacing:.26em;color:var(--mut);z-index:6}
 #heroMeta .prog{flex:0 0 clamp(80px,10vw,130px);height:1px;background:rgba(165,225,242,.16);position:relative}
 #heroMeta .prog i{position:absolute;left:0;top:0;height:100%;width:26%;background:var(--acc2);animation:progSlide 5s ease-in-out infinite}
@@ -329,27 +339,6 @@ section,#act1{position:relative;height:100vh;min-height:100vh;overflow:hidden}
 .stat-desc{font-size:12px;color:var(--mut);line-height:1.6;font-weight:300}
 .stat-note{font-size:10px;letter-spacing:.22em;color:rgba(143,169,182,.65);text-transform:uppercase;opacity:0}
 
-/* ---- LEADERSHIP (CEO) ---- */
-#leader .pin-wrap{align-items:center;gap:6vw}
-.ld-visual{flex:0 0 clamp(280px,28vw,380px);position:relative;perspective:1000px;display:grid;place-items:center;will-change:transform,opacity,filter}
-.ld-aura{position:absolute;width:78%;height:78%;border-radius:50%;background:radial-gradient(circle,rgba(14,148,170,.30),rgba(7,95,114,.10) 50%,transparent 72%);filter:blur(30px);pointer-events:none}
-.ld-frame{position:relative;width:min(300px,22.5vw);aspect-ratio:2/3.35;overflow:hidden;border:1px solid rgba(140,210,235,.32);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(60,170,210,.14);will-change:transform,clip-path}
-.ld-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;filter:contrast(1.05) saturate(.9);will-change:transform}
-.ld-frame-line{position:absolute;width:26px;height:26px;border-color:var(--acc2);border-style:solid;border-width:0;pointer-events:none}
-.ld-frame-line.tl{left:10px;top:10px;border-left-width:1.5px;border-top-width:1.5px}
-.ld-frame-line.tr{right:10px;top:10px;border-right-width:1.5px;border-top-width:1.5px}
-.ld-frame-line.bl{left:10px;bottom:10px;border-left-width:1.5px;border-bottom-width:1.5px}
-.ld-frame-line.br{right:10px;bottom:10px;border-right-width:1.5px;border-bottom-width:1.5px}
-.ld-badge{position:absolute;bottom:6%;right:calc(50% - min(160px,12vw));font-size:10px;letter-spacing:.4em;padding:10px 12px 10px calc(12px + .4em);background:rgba(7,24,38,.92);border:1px solid rgba(140,210,235,.45);color:var(--acc2);box-shadow:0 0 30px rgba(94,198,230,.25);backdrop-filter:blur(6px);opacity:0}
-.ld-copy{flex:1;max-width:620px}
-.ld-name{font-weight:300;font-size:clamp(38px,4.6vw,66px);letter-spacing:.05em;line-height:1.05;margin:18px 0 12px;text-transform:uppercase}
-.ld-copy .body{margin:24px 0 6px;max-width:48ch}
-.ld-nodes{margin-top:26px;display:grid}
-.ld-node{position:relative;display:grid;gap:4px;padding:14px 0 14px 30px;border-left:1px solid rgba(140,210,235,.16)}
-.ld-node::before{content:'';position:absolute;left:-4.5px;top:19px;width:8px;height:8px;transform:rotate(45deg);background:linear-gradient(135deg,#a5e1f2,#2b8bab);box-shadow:0 0 14px rgba(94,198,230,.7)}
-.ld-node b{font-weight:500;font-size:13.5px;letter-spacing:.14em;color:#eafafd;text-transform:uppercase}
-.ld-node i{font-style:normal;font-size:11.5px;letter-spacing:.08em;color:var(--mut);line-height:1.6;font-weight:300}
-
 /* ---- MISSION / VISION ---- */
 #mv .pin-wrap{flex-direction:column;align-items:center;justify-content:center;gap:5vh}
 .mv-stage{position:relative;width:min(880px,90vw);height:44vh}
@@ -394,12 +383,6 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
 }
 @media(max-width:860px){
   #nav{height:72px;padding:0 20px}
-  #leader .pin-wrap{flex-direction:column;justify-content:center;gap:3.5vh;padding-top:10vh}
-  .ld-visual{flex:none;width:100%}
-  .ld-frame{width:min(230px,52vw)}
-  .ld-badge{right:calc(50% - min(115px,26vw));bottom:2%}
-  .ld-copy{max-width:100%}
-  .ld-node{padding:11px 0 11px 24px}
   #construction .pin-wrap,#food .pin-wrap{flex-direction:column;justify-content:center;gap:4vh;padding-top:12vh}
   .con-copy,.f-copy{flex:none;width:100%}
   .con-stage{width:100%;height:36vh}
@@ -420,6 +403,8 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
   #heroSub{white-space:normal;text-align:center;width:86vw}
   #discover{right:20px;top:auto;bottom:12vh}
   #heroMeta{left:20px;right:20px}
+  .lx-big{white-space:normal;max-width:90vw;letter-spacing:.06em}
+  .lx-note{letter-spacing:.18em;line-height:1.9}
   .story-cap{bottom:10vh}
   .mv p{max-width:92%}
   .mv-stage{height:52vh}
@@ -436,8 +421,7 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
 }
 /* lib fallback: static readable page */
 .no-lib #world{opacity:.9}
-.no-lib .rv,.no-lib .eco-core,.no-lib .eco-node,.no-lib .pnode,.no-lib .sw,.no-lib .story-cap,.no-lib .story-label,.no-lib .eco-head,.no-lib .stats-head,.no-lib .stat-grid,.no-lib .stat,.no-lib .stat-note,.no-lib .ld-visual,.no-lib .ld-aura,.no-lib .ld-badge,.no-lib .ld-frame-line{opacity:1!important;filter:none!important}
-.no-lib .ld-frame{clip-path:none}
+.no-lib .rv,.no-lib .eco-core,.no-lib .eco-node,.no-lib .pnode,.no-lib .sw,.no-lib .story-cap,.no-lib .story-label,.no-lib .eco-head,.no-lib .stats-head,.no-lib .stat-grid,.no-lib .stat,.no-lib .stat-note{opacity:1!important;filter:none!important}
 .no-lib .a-typo{display:none}
 .no-lib .motif-wrap{opacity:.9}
 
@@ -774,8 +758,7 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
     <a class="menu-link" data-go="portfolio"><i>05</i><span id="mLink4" data-t="PORTFOLİO">PORTFOLİO</span></a>
     <a class="menu-link" data-go="partners"><i>06</i><span id="mLink5" data-t="TƏRƏFDAŞLAR">TƏRƏFDAŞLAR</span></a>
     <a class="menu-link" data-go="stats"><i>07</i><span id="mLink6" data-t="MİQYAS &amp; TƏSİR">MİQYAS &amp; TƏSİR</span></a>
-    <a class="menu-link" data-go="leader"><i>08</i><span id="mLink7" data-t="RƏHBƏRLİK">RƏHBƏRLİK</span></a>
-    <a class="menu-link" data-go="contact"><i>09</i><span id="mLink8" data-t="ƏLAQƏ">ƏLAQƏ</span></a>
+    <a class="menu-link" data-go="contact"><i>08</i><span id="mLink7" data-t="ƏLAQƏ">ƏLAQƏ</span></a>
   </nav>
   <div class="menu-foot">
     <span id="menuFootCity">CASPIORA — Bakı, Azərbaycan</span>
@@ -798,6 +781,11 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
           <span class="d-lab" id="dLab">DISCOVER</span>
           <span class="d-ring"><svg viewBox="0 0 14 16" fill="none"><path d="M7 1v13M2 9.5 7 14.5 12 9.5" stroke="#a5e1f2" stroke-width="1.2"/></svg></span>
           <small id="dSmall">SCROLL TO EXPLORE</small>
+        </div>
+        <div id="launch">
+          <span class="lx-eyebrow" id="lxEyebrow">HAZIRLIQ MƏRHƏLƏSİ</span>
+          <div class="lx-big sweep" id="lxBig">TEZLİKLƏ XİDMƏTİNİZDƏ</div>
+          <p class="lx-note" id="lxNote">Hal-hazırda xidmət göstərmirik — platformamız hazırlanır və rəsmi açılışa az qalıb.</p>
         </div>
         <div id="heroMeta"><span>01</span><div class="prog"><i></i></div><span>07</span><span class="scr" id="metaScr">SCROLL</span></div>
       </div>
@@ -1131,36 +1119,10 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
     </div>
   </section>
 
-  <!-- ================= LEADERSHIP (CEO) ================= -->
-  <section id="leader">
-    <div class="pin-wrap">
-      <div class="ld-visual">
-        <div class="ld-aura"></div>
-        <div class="ld-frame" id="ldFrame">
-          <img class="ld-photo" id="ldPhoto" src="assets/ceo.png" alt="İdris Alışov"/>
-          <div class="ld-frame-line tl"></div><div class="ld-frame-line tr"></div>
-          <div class="ld-frame-line bl"></div><div class="ld-frame-line br"></div>
-        </div>
-        <div class="ld-badge" id="ldBadge">CEO</div>
-      </div>
-      <div class="ld-copy">
-        <div class="sec-label rv" id="ldLabel">05 — Leadership</div>
-        <h2 class="ld-name rv" id="ldName">İDRİS ALIŞOV</h2>
-        <p class="h-sub rv" id="ldRole">Baş Direktor — Chief Executive Officer</p>
-        <p class="body rv" id="ldBio">UNEC məzunu iqtisadçı; İqtisadiyyat Nazirliyində monitorinq və icra istiqamətində uzunmüddətli dövlət təcrübəsi. Holdinqin strateji inkişafını tikinti, ticarət və təhsil sahələrində vahid vizyonla idarə edir.</p>
-        <div class="ld-nodes" id="ldNodes">
-          <div class="ld-node rv"><b id="ldN1T">UNEC — Dövlət İqtisad Universiteti</b><i id="ldN1S">İqtisadiyyat üzrə ali təhsil</i></div>
-          <div class="ld-node rv"><b id="ldN2T">İqtisadiyyat Nazirliyi</b><i id="ldN2S">Monitorinq və icra istiqamətində rəhbər vəzifələr</i></div>
-          <div class="ld-node rv"><b id="ldN4T">Sumqayıt Tikinti-2 ASC</b><i id="ldN4S">İdarə Heyətinin Sədri</i></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= MISSION / VISION ================= -->
   <section id="mv">
     <div class="pin-wrap">
-      <div class="sec-label rv" id="mvLabel">06 — About</div>
+      <div class="sec-label rv" id="mvLabel">05 — About</div>
       <h2 class="h-big rv" id="mvTitle" style="text-align:center">ONE VISION. MANY DIRECTIONS.</h2>
       <div class="mv-stage">
         <div class="mv m1" id="mv1"><span id="mv1Badge">MISSION</span><p id="mv1Text">Connect traditional and natural products to broader markets — building a trusted bridge between local producers and global opportunity.</p></div>
@@ -1173,7 +1135,7 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
   <!-- ================= FUTURE ================= -->
   <section id="future">
     <div class="pin-wrap">
-      <div class="sec-label rv" id="futLabel">07 — The Future</div>
+      <div class="sec-label rv" id="futLabel">06 — The Future</div>
       <h2 class="h-big rv" id="futTitle">THE NEXT CHAPTER.</h2>
       <p class="h-sub rv glow-w" id="futSub">IS ALREADY UNDER CONSTRUCTION.</p>
       <p class="body rv" id="futBody">A new generation of projects is taking shape on the horizon — designed to carry the ecosystem into its next decade.</p>
@@ -1228,6 +1190,9 @@ const DICT = {
     discover: 'KƏŞF EDİN',
     discoverSmall: 'KƏŞF ETMƏK ÜÇÜN SÜRÜŞDÜRÜN',
     metaScr: 'SÜRÜŞDÜRÜN',
+    lxEyebrow: 'HAZIRLIQ MƏRHƏLƏSİ',
+    lxBig: 'TEZLİKLƏ XİDMƏTİNİZDƏ',
+    lxNote: 'Hal-hazırda xidmət göstərmirik — platformamız hazırlanır və rəsmi açılışa az qalıb.',
     tw1: 'BİR',
     tw2: 'ŞİRKƏTDƏN',
     tw3: 'DAHA ARTIQ',
@@ -1279,21 +1244,14 @@ const DICT = {
     stName2: 'Strateji<br>Tərəfdaş', stDesc2: 'Regionu birləşdirən beynəlxalq əlaqələr',
     stName3: 'Aktiv<br>Bazar', stDesc3: 'Avrasiya miqyasında genişlənən fəaliyyət',
     statNote: '* Demo göstəricilər — rəsmi hesabatlar dərc edildikdə yenilənəcəkdir.',
-    ldLabel: '05 — Rəhbərlik',
-    ldName: 'İDRİS ALIŞOV',
-    ldRole: 'Baş Direktor — Chief Executive Officer',
-    ldBio: 'UNEC məzunu iqtisadçı; İqtisadiyyat Nazirliyində monitorinq və icra istiqamətində uzunmüddətli dövlət təcrübəsi. Holdinqin strateji inkişafını tikinti, ticarət və təhsil sahələrində vahid vizyonla idarə edir.',
-    ldN1T: 'UNEC — Dövlət İqtisad Universiteti', ldN1S: 'İqtisadiyyat üzrə ali təhsil',
-    ldN2T: 'İqtisadiyyat Nazirliyi', ldN2S: 'Monitorinq və icra istiqamətində rəhbər vəzifələr',
-    ldN4T: 'Sumqayıt Tikinti-2 ASC', ldN4S: 'İdarə Heyətinin Sədri',
-    mvLabel: '06 — Haqqımızda',
+    mvLabel: '05 — Haqqımızda',
     mvTitle: 'TƏK BİR VİZYON. ÇOXŞAXƏLİ İSTİQAMƏT.',
     mv1Badge: 'MİSSİYA',
     mv1Text: 'Ənənəvi və təbii məhsulları qlobal bazarlara çıxarmaq — yerli istehsalçılarla beynəlxalq imkanlar arasında etibarlı körpü qurmaq.',
     mv2Badge: 'VİZYON',
     mv2Text: 'Azərbaycan və Türkiyədən başlayaraq uzunmüddətli tərəfdaşlıqları və dayanıqlı biznesləri birləşdirən aparıcı regional holdinq ekosisteminə çevrilmək.',
     mvIdxM: '01 MİSSİYA', mvIdxV: '02 VİZYON',
-    futLabel: '07 — Gələcək',
+    futLabel: '06 — Gələcək',
     futTitle: 'YENİ MƏRHƏLƏ.',
     futSub: 'ARTIQ İNŞA EDİLİR.',
     futBody: 'Üfüqdə holdinq ekosistemini növbəti onilliyə daşıyacaq yeni nəsil layihələr formalaşır.',
@@ -1304,7 +1262,7 @@ const DICT = {
     cLabelFollow: 'Bizi izləyin',
     footCopy: '© 2026 CASPIORA — Construction • Development',
     menuFootCity: 'CASPIORA — Bakı, Azərbaycan',
-    menuLinks: ['ANA SƏHİFƏ', 'TİKİNTİ', 'QİDA VƏ TİCARƏT', 'BREND', 'PORTFOLİO', 'TƏRƏFDAŞLAR', 'MİQYAS &amp; TƏSİR', 'RƏHBƏRLİK', 'ƏLAQƏ'],
+    menuLinks: ['ANA SƏHİFƏ', 'TİKİNTİ', 'QİDA VƏ TİCARƏT', 'BREND', 'PORTFOLİO', 'TƏRƏFDAŞLAR', 'MİQYAS &amp; TƏSİR', 'ƏLAQƏ'],
     soundOn: 'SƏS AÇIQ',
     soundOff: 'SƏS BAĞLI',
     pmBtnNet: 'TƏRƏFDAŞLIQ ŞƏBƏKƏSİ',
@@ -1324,6 +1282,9 @@ const DICT = {
     discover: 'DISCOVER',
     discoverSmall: 'SCROLL TO EXPLORE',
     metaScr: 'SCROLL',
+    lxEyebrow: 'IN PREPARATION',
+    lxBig: 'SOON AT YOUR SERVICE',
+    lxNote: 'We are not open for service yet — our platform is being finalised and the official launch is close.',
     tw1: 'MORE',
     tw2: 'THAN',
     tw3: 'A COMPANY',
@@ -1375,21 +1336,14 @@ const DICT = {
     stName2: 'Strategic<br>Alliances', stDesc2: 'Cross-border network connecting the region',
     stName3: 'Active<br>Markets', stDesc3: 'Expanding operational footprint across Eurasia',
     statNote: '* Demo values — official holding figures will replace these upon formal release.',
-    ldLabel: '05 — Leadership',
-    ldName: 'İDRIS ALISHOV',
-    ldRole: 'Chief Executive Officer',
-    ldBio: 'UNEC-educated economist with long-standing public-sector experience at the Ministry of Economy. He leads the holding\'s strategic growth across construction, trade and education under a single vision.',
-    ldN1T: 'UNEC — State University of Economics', ldN1S: 'Degree in Economics',
-    ldN2T: 'Ministry of Economy', ldN2S: 'Leadership roles in monitoring & execution',
-    ldN4T: 'Sumgait Tikinti-2 CJSC', ldN4S: 'Chairman of the Board',
-    mvLabel: '06 — About',
+    mvLabel: '05 — About',
     mvTitle: 'ONE VISION. MANY DIRECTIONS.',
     mv1Badge: 'MISSION',
     mv1Text: 'Connect traditional and natural products to broader markets — building a trusted bridge between local producers and global opportunity.',
     mv2Badge: 'VISION',
     mv2Text: 'Become a recognized regional holding ecosystem — connecting long-term partnerships and sustainable businesses from Azerbaijan and Türkiye outward.',
     mvIdxM: '01 MISSION', mvIdxV: '02 VISION',
-    futLabel: '07 — The Future',
+    futLabel: '06 — The Future',
     futTitle: 'THE NEXT CHAPTER.',
     futSub: 'IS ALREADY UNDER CONSTRUCTION.',
     futBody: 'A new generation of projects is taking shape on the horizon — designed to carry the ecosystem into its next decade.',
@@ -1400,7 +1354,7 @@ const DICT = {
     cLabelFollow: 'Follow',
     footCopy: '© 2026 CASPIORA — Construction • Development',
     menuFootCity: 'CASPIORA — Baku, Azerbaijan',
-    menuLinks: ['HOME', 'CONSTRUCTION', 'FOOD & TRADE', 'THE BRAND', 'PORTFOLIO', 'PARTNERS', 'SCALE & IMPACT', 'LEADERSHIP', 'CONTACT'],
+    menuLinks: ['HOME', 'CONSTRUCTION', 'FOOD & TRADE', 'THE BRAND', 'PORTFOLIO', 'PARTNERS', 'SCALE & IMPACT', 'CONTACT'],
     soundOn: 'SOUND ON',
     soundOff: 'SOUND OFF',
     pmBtnNet: 'PARTNERSHIP NETWORK',
@@ -1479,14 +1433,6 @@ function applyLang(lang){
   $('#statsLabel').textContent = d.statsLabel;
   $('#statSub').textContent = d.statSub;
 
-  $('#ldLabel').textContent = d.ldLabel;
-  $('#ldName').textContent = d.ldName;
-  $('#ldRole').textContent = d.ldRole;
-  $('#ldBio').textContent = d.ldBio;
-  $('#ldN1T').textContent = d.ldN1T; $('#ldN1S').textContent = d.ldN1S;
-  $('#ldN2T').textContent = d.ldN2T; $('#ldN2S').textContent = d.ldN2S;
-  $('#ldN4T').textContent = d.ldN4T; $('#ldN4S').textContent = d.ldN4S;
-
   $('#stName0').innerHTML = d.stName0; $('#stDesc0').textContent = d.stDesc0;
   $('#stName1').innerHTML = d.stName1; $('#stDesc1').textContent = d.stDesc1;
   $('#stName2').innerHTML = d.stName2; $('#stDesc2').textContent = d.stDesc2;
@@ -1509,6 +1455,9 @@ function applyLang(lang){
   $('#footCopy').textContent = d.footCopy;
   $('#menuFootCity').textContent = d.menuFootCity;
 
+  $('#lxEyebrow').textContent = d.lxEyebrow;
+  $('#lxNote').textContent = d.lxNote;
+
   // Menu items
   d.menuLinks.forEach((txt, idx)=>{
     const el = $(`#mLink${idx}`);
@@ -1523,6 +1472,7 @@ function applyLang(lang){
   split('#mvTitle', d.mvTitle);
   split('#futTitle', d.futTitle);
   split('#cTitle', d.cTitle);
+  split('#lxBig', d.lxBig);
 
   // Sound toggle label
   if($('#soundLabel')) {
@@ -1575,9 +1525,10 @@ function split(sel, txt){
   const t = txt || el.textContent;
   el.setAttribute('aria-label', t);
   el.textContent = '';
-  [...t].forEach(c=>{
+  [...t].forEach((c, i)=>{
     const s = document.createElement('span');
     s.className = 'ch';
+    s.style.setProperty('--i', i);
     s.innerHTML = c === ' ' ? '&nbsp;' : c;
     el.appendChild(s);
   });
@@ -1769,6 +1720,8 @@ function applyCam(){
 /* ================= ACT 1 ================= */
 const tl1=gsap.timeline({defaults:{ease:'power1.inOut'},scrollTrigger:{trigger:'#act1',start:'top top',end:'+=520%',pin:true,scrub:1,anticipatePin:1}});
 tl1
+ .to('#launch',{scale:1.22,y:-26,duration:1.35,ease:'none'},0)
+ .to('#launch',{opacity:0,filter:'blur(8px)',duration:.75},.75)
  .to('#heroUI',{opacity:0,y:-46,filter:'blur(9px)',duration:1.3},.35)
  .set('#aTypo',{visibility:'visible'},3.3)
  .fromTo('.a-typo .tw:nth-child(1)',{opacity:0,filter:'blur(18px)',y:20},{opacity:1,filter:'blur(0px)',y:0,duration:.8},3.35)
@@ -1907,22 +1860,6 @@ tlStats
  }},.7)
  .fromTo('#statNote',{opacity:0,y:16},{opacity:1,y:0,duration:.7},1.6);
 
-/* ================= LEADERSHIP (CEO) ================= */
-const tlLeader=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#leader',start:'top top',end:'+=190%',pin:true,scrub:1,anticipatePin:1}});
-tlLeader
- .fromTo('.ld-visual',{opacity:0,x:-60,filter:'blur(12px)'},{opacity:1,x:0,filter:'blur(0px)',duration:1.1},.15)
- .fromTo('.ld-aura',{opacity:0,scale:.7},{opacity:1,scale:1,duration:1.6},.3)
- .fromTo('#ldFrame',{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',duration:1.4,ease:'power2.inOut'},.25)
- .fromTo('#ldLabel',{opacity:0,x:-24},{opacity:1,x:0,duration:.5},.4)
- .fromTo('#ldName',{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.9},.55)
- .fromTo('#ldRole',{opacity:0,y:22},{opacity:1,y:0,duration:.6},.85)
- .fromTo('#ldBio',{opacity:0,y:22},{opacity:1,y:0,duration:.6},1.05)
- .fromTo('.ld-frame-line',{opacity:0,scale:0},{opacity:1,scale:1,stagger:.1,duration:.5},1.1)
- .fromTo('#ldBadge',{opacity:0,y:16},{opacity:1,y:0,duration:.6},1.4)
- .fromTo('.ld-node',{opacity:0,x:34,filter:'blur(6px)'},{opacity:1,x:0,filter:'blur(0px)',stagger:.22,duration:.7},1.25)
- .to('.ld-visual',{y:-20,duration:1.4,ease:'none'},2.3)
- .to('.ld-copy',{y:-12,duration:1.4,ease:'none'},2.3);
-
 /* ================= MISSION / VISION ================= */
 gsap.set('#mv2',{opacity:0});
 const tl7=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#mv',start:'top top',end:'+=190%',pin:true,scrub:1,anticipatePin:1,
@@ -1979,7 +1916,6 @@ const GO={
   portfolio:'#portfolio',
   partners:'#partners',
   stats:'#stats',
-  leader:'#leader',
   contact:'#contact'
 };
 
@@ -2109,11 +2045,6 @@ function renderCursorAndTilt() {
   // Authentic Motif 2.5D orbit tilt
   const motifImg = $('#motifImg');
   if (motifImg) motifImg.style.transform = `perspective(900px) rotateX(${-curTiltY * 5}deg) rotateY(${curTiltX * 5}deg) translate3d(${curTiltX * 12}px, ${curTiltY * 8}px, 0)`;
-
-  // CEO portrait 2.5D tilt (frame rotates, photo drifts slightly deeper)
-  const ldFrame = $('#ldFrame'), ldPhoto = $('#ldPhoto');
-  if (ldFrame) ldFrame.style.transform = `perspective(900px) rotateX(${-curTiltY * 4}deg) rotateY(${curTiltX * 5}deg)`;
-  if (ldPhoto) ldPhoto.style.transform = `scale(1.08) translate3d(${-curTiltX * 10}px, ${-curTiltY * 7}px, 0)`;
 
   requestAnimationFrame(renderCursorAndTilt);
 }
