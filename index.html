@@ -175,7 +175,8 @@ section,#act1{position:relative;height:100vh;min-height:100vh;overflow:hidden}
 #discover:hover .d-ring{background:rgba(94,198,230,.14);box-shadow:0 0 30px rgba(94,198,230,.3)}
 #discover small{font-size:8px;letter-spacing:.3em;color:var(--mut)}
 /* ---- launch notice (pre-opening band) ---- */
-#launch{position:absolute;left:0;right:0;bottom:clamp(52px,10.5vh,116px);display:grid;justify-items:center;gap:clamp(8px,1.4vh,16px);text-align:center;z-index:7;pointer-events:none;transform-origin:50% 100%;will-change:transform,opacity,filter;animation:lxFloat 7s ease-in-out infinite}
+#launch{position:absolute;left:0;right:0;bottom:clamp(52px,10.5vh,116px);text-align:center;z-index:7;pointer-events:none;transform-origin:50% 100%;will-change:transform,opacity,filter}
+.lx-inner{display:grid;justify-items:center;gap:clamp(8px,1.4vh,16px);animation:lxFloat 7s ease-in-out infinite}
 @keyframes lxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 .lx-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.42em;margin-left:.42em;color:var(--acc2);text-transform:uppercase}
 .lx-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc);animation:lxPulse 2.4s ease-in-out infinite}
@@ -783,9 +784,11 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
           <small id="dSmall">SCROLL TO EXPLORE</small>
         </div>
         <div id="launch">
-          <span class="lx-eyebrow" id="lxEyebrow">HAZIRLIQ MƏRHƏLƏSİ</span>
-          <div class="lx-big sweep" id="lxBig">TEZLİKLƏ XİDMƏTİNİZDƏ</div>
-          <p class="lx-note" id="lxNote">Hal-hazırda xidmət göstərmirik — platformamız hazırlanır və rəsmi açılışa az qalıb.</p>
+          <div class="lx-inner">
+            <span class="lx-eyebrow" id="lxEyebrow">HAZIRLIQ MƏRHƏLƏSİ</span>
+            <div class="lx-big sweep" id="lxBig">TEZLİKLƏ XİDMƏTİNİZDƏ</div>
+            <p class="lx-note" id="lxNote">Hal-hazırda xidmət göstərmirik — platformamız hazırlanır və rəsmi açılışa az qalıb.</p>
+          </div>
         </div>
         <div id="heroMeta"><span>01</span><div class="prog"><i></i></div><span>07</span><span class="scr" id="metaScr">SCROLL</span></div>
       </div>
