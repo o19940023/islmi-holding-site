@@ -1,0 +1,2370 @@
+﻿<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#02060b"/>
+<meta name="description" content="CASPIORA — Construction & Development. Building excellence across the Caspian region. Bakı, Azərbaycan."/>
+<meta property="og:title" content="CASPIORA"/>
+<meta property="og:description" content="Construction • Development"/>
+<title>CASPIORA — Construction • Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+<style>
+/* ============ ALMAZ font ============ */
+@font-face {
+  font-family: 'ALMAZ';
+  src: url('assets/fonts/Almaz_demo.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============ tokens & base ============ */
+:root{
+  --bg0:#02060b;--bg1:#04101c;--bg2:#07182a;
+  --tx:#eaf4f8;--mut:#8fa9b6;
+  --acc:#5ec6e6;--acc2:#a5e1f2;--acc-dim:rgba(94,198,230,.35);
+  --warm:#d99a55;
+  --line:rgba(140,210,235,.14);
+  --sans:'DM Sans',system-ui,sans-serif;
+  --serif:'Marcellus',serif;
+  --riccione:'ALMAZ',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scrollbar-width:thin;scrollbar-color:#12354a #02060b}
+::-webkit-scrollbar{width:9px}::-webkit-scrollbar-thumb{background:#12354a;border-radius:9px}::-webkit-scrollbar-track{background:#02060b}
+::selection{background:rgba(94,198,230,.35);color:#fff}
+body{background:var(--bg0);color:var(--tx);font-family:var(--sans);overflow-x:hidden;overscroll-behavior:none}
+body.locked{overflow:hidden}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+
+/* typography helpers */
+.h-big{font-family:var(--sans);font-weight:300;font-size:clamp(40px,6.8vw,104px);line-height:1.02;letter-spacing:.02em;text-transform:uppercase}
+.h-sub{font-size:clamp(13px,1.4vw,19px);letter-spacing:.34em;text-transform:uppercase;color:var(--acc2)}
+.sec-label{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--acc);display:flex;align-items:center;gap:14px}
+.sec-label::before{content:'';width:34px;height:1px;background:linear-gradient(90deg,var(--acc),transparent)}
+.body{font-size:clamp(15px,1.25vw,18px);line-height:1.8;color:var(--mut);font-weight:300;max-width:52ch}
+.glow-w{text-shadow:0 0 18px rgba(94,198,230,.55),0 0 60px rgba(94,198,230,.22)}
+.ch{display:inline-block;will-change:transform,filter,opacity}
+.sweep{position:relative;overflow:hidden}
+.sweep::after{content:'';position:absolute;inset:-40% -60%;background:linear-gradient(105deg,transparent 40%,rgba(165,225,242,.26) 50%,transparent 60%);background-size:200% 100%;animation:sheenSweep 6s ease-in-out infinite;pointer-events:none}
+@keyframes sheenSweep{0%{transform:translateX(-100%)}30%,100%{transform:translateX(140%)}}
+
+/* ============ fixed world ============ */
+#world{position:fixed;inset:0;z-index:0;perspective:1200px;overflow:hidden;opacity:0;background:linear-gradient(180deg,#010409 0%,#04101c 46%,#0a1c2a 70%,#0b2430 100%)}
+.sky-stars{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;top:0;left:0;opacity:.8;animation:twinkle 6s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.75}50%{opacity:.3}}
+.horizon{position:absolute;left:6%;right:-16%;top:53vh;height:16vh;pointer-events:none;
+  background:radial-gradient(58% 100% at 76% 100%,rgba(217,154,85,.32),rgba(217,154,85,.10) 42%,transparent 68%),
+             radial-gradient(40% 90% at 30% 100%,rgba(94,198,230,.12),transparent 70%);
+  filter:blur(8px)}
+.sil{position:absolute;left:0;right:0;pointer-events:none}
+.sil-far{top:44vh;height:22vh;opacity:.5}
+.sil-mid{top:47vh;height:20vh;opacity:.75}
+.sea{position:absolute;left:0;right:0;top:66vh;bottom:0;background:linear-gradient(180deg,#081a26 0%,#050f19 34%,#030a12 100%)}
+.sea::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(30% 42% at 50% 0%,rgba(94,198,230,.10),transparent 70%),
+  radial-gradient(22% 30% at 78% 2%,rgba(217,154,85,.14),transparent 70%)}
+.sea-shimmer{position:absolute;left:20%;right:20%;top:8%;height:60%;
+  background:repeating-linear-gradient(180deg,transparent 0 14px,rgba(140,210,235,.05) 14px 15px);
+  transform:skewX(-6deg);animation:shimmer 7s ease-in-out infinite}
+@keyframes shimmer{0%,100%{opacity:.5;transform:skewX(-6deg) translateX(0)}50%{opacity:.9;transform:skewX(-5deg) translateX(8px)}}
+.island{position:absolute;left:50%;top:calc(100% - 35.2vh);width:60vw;height:11vh;transform:translateX(-50%);
+  background:radial-gradient(52% 62% at 50% 34%,#122c3c 0%,#0a1e2b 46%,rgba(6,16,24,0) 74%);
+  border-radius:50%;filter:blur(2px)}
+.island::after{content:'';position:absolute;inset:22% 8%;border-radius:50%;
+  background:radial-gradient(60% 60% at 50% 30%,rgba(217,170,110,.18),transparent 60%)}
+.fog{position:absolute;left:-12%;right:-12%;top:42vh;height:34vh;pointer-events:none;
+  background:radial-gradient(52% 58% at 50% 58%,rgba(120,190,215,.12),transparent 72%);filter:blur(26px);opacity:.55}
+#cityStage{position:absolute;left:0;right:0;top:15vh;bottom:19vh;transform-style:preserve-3d;will-change:transform,filter}
+.bld{position:absolute;bottom:0;transform:translateX(-50%) rotateY(var(--ry));transform-style:preserve-3d;will-change:transform,opacity}
+.b-core{position:absolute;inset:0;transform-style:preserve-3d}
+.b-front{position:absolute;inset:0;overflow:hidden;
+  background:linear-gradient(165deg,rgba(120,200,225,.20),rgba(8,22,34,.94) 40%,rgba(9,28,42,.97) 78%);
+  border:1px solid rgba(130,210,235,.24);box-shadow:inset 0 0 46px rgba(0,0,0,.55),0 0 34px rgba(60,160,200,.08)}
+.b-front::before{content:'';position:absolute;inset:4% 8%;
+  background:repeating-linear-gradient(to bottom,rgba(140,215,240,.075) 0 2px,transparent 2px 11px),
+             repeating-linear-gradient(to right,transparent 0 13px,rgba(2,8,14,.5) 13px 15px)}
+.b-front::after{content:'';position:absolute;inset:-40% -60%;background:linear-gradient(115deg,transparent 42%,rgba(190,235,250,.14) 50%,transparent 58%);animation:sheen 8s linear infinite}
+@keyframes sheen{from{transform:translateX(-55%)}to{transform:translateX(55%)}}
+.b-side{position:absolute;top:0;bottom:0;left:100%;width:var(--d);transform:rotateY(76deg);transform-origin:left center;
+  background:linear-gradient(180deg,#0b2333,#050e17);border:1px solid rgba(130,210,235,.10)}
+.b-lights{position:absolute;inset:3% 5%}
+.b-lights i{position:absolute;width:5px;height:7px;border-radius:1px;opacity:0;animation:flick var(--fd,4s) ease-in-out infinite;animation-delay:var(--fdl,0s);filter:blur(.3px)}
+@keyframes flick{0%,100%{opacity:var(--o,.7)}45%{opacity:calc(var(--o,.7)*.25)}70%{opacity:calc(var(--o,.7)*.9)}}
+.b-crown{position:absolute;left:12%;right:12%;top:-3px;height:2px;background:linear-gradient(90deg,transparent,rgba(165,225,242,.9),transparent);box-shadow:0 0 18px rgba(120,210,240,.8);opacity:.85}
+.b-base{position:absolute;bottom:-1.6vh;left:-18%;right:-18%;height:1.8vh;background:linear-gradient(180deg,#0e2836,#06131d);box-shadow:0 0 30px rgba(90,180,210,.16)}
+/* future building on the horizon */
+.nb{position:absolute;right:13%;top:37vh;width:74px;height:30vh;opacity:0;pointer-events:none}
+.nb-core{position:absolute;inset:0;overflow:hidden;background:linear-gradient(170deg,rgba(120,205,230,.28),rgba(7,20,32,.96) 46%);border:1px solid rgba(140,220,245,.35);box-shadow:0 0 60px rgba(94,198,230,.22)}
+.nb-core::before{content:'';position:absolute;inset:5% 10%;background:repeating-linear-gradient(to bottom,rgba(150,225,245,.16) 0 2px,transparent 2px 10px),repeating-linear-gradient(to right,transparent 0 9px,rgba(2,8,14,.5) 9px 11px)}
+.nb-beacon{position:absolute;left:50%;top:-14px;width:10px;height:10px;transform:translateX(-50%);border-radius:50%;background:#cfeffb;box-shadow:0 0 22px 6px rgba(140,220,250,.65);animation:beacon 2.4s ease-in-out infinite}
+@keyframes beacon{0%,100%{opacity:.9;transform:translateX(-50%) scale(1)}50%{opacity:.4;transform:translateX(-50%) scale(.72)}}
+.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 42%,transparent 55%,rgba(1,4,8,.66) 100%)}
+.grain{position:fixed;inset:-40px;z-index:40;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  animation:grain 1.2s steps(3) infinite}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-14px,9px)}66%{transform:translate(10px,-12px)}100%{transform:translate(0,0)}}
+#fx{position:fixed;inset:0;z-index:3;pointer-events:none}
+
+/* ============ preloader ============ */
+#preloader{position:fixed;inset:0;z-index:200;background:radial-gradient(80% 80% at 50% 42%,#061524 0%,#02070d 70%);display:grid;place-items:center;cursor:pointer}
+.pl-center{position:relative;display:grid;justify-items:center;gap:26px;opacity:0}
+#plFx{position:absolute;width:560px;height:560px;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+.pl-mark{width:68px;height:auto;max-height:130px;object-fit:contain;filter:drop-shadow(0 0 28px rgba(94,198,230,.6))}
+.pl-name{display:flex;font-family:var(--riccione);font-size:clamp(38px,6vw,58px);letter-spacing:.28em;margin-left:.28em;color:#f2fafc}
+.pl-holdwrap{width:min(320px,70vw)}
+.pl-bar{height:1px;background:linear-gradient(90deg,transparent,rgba(165,225,242,.75),transparent);transform:scaleX(0)}
+.pl-hold{margin-top:14px;text-align:center;font-size:11px;letter-spacing:.42em;margin-left:.42em;color:rgba(234,244,248,.75);text-transform:uppercase;opacity:0}
+.pl-skip-hint{position:absolute;bottom:24px;font-size:9px;letter-spacing:.3em;color:rgba(143,169,182,.4);text-transform:uppercase;animation:pulseSkip 2s ease-in-out infinite}
+@keyframes pulseSkip{0%,100%{opacity:.3}50%{opacity:.7}}
+
+/* ============ nav & menu ============ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:90;height:86px;padding:0 4.4vw;display:flex;align-items:center;justify-content:space-between;opacity:0;
+  background:linear-gradient(to bottom,rgba(2,7,12,.82) 0%,rgba(2,7,12,.3) 65%,transparent 100%);pointer-events:none}
+#nav>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:13px}
+.brand-logo{height:36px;width:auto;object-fit:contain;filter:drop-shadow(0 0 10px rgba(94,198,230,.35));transition:transform .3s ease,filter .3s ease}
+.brand:hover .brand-logo{transform:scale(1.08);filter:drop-shadow(0 0 16px rgba(94,198,230,.65))}
+.brand b{font-family:var(--riccione);font-weight:400;font-size:15px;letter-spacing:.3em;text-transform:uppercase}
+.nav-actions{display:flex;align-items:center;gap:22px}
+.lang-toggle{display:inline-flex;align-items:center;background:rgba(7,24,38,.65);border:1px solid rgba(140,210,235,.22);border-radius:24px;padding:3px;backdrop-filter:blur(8px);transition:.3s}
+.lang-toggle:hover{border-color:rgba(165,225,242,.45);box-shadow:0 0 16px rgba(94,198,230,.18)}
+.lang-btn{font-size:10px;font-weight:500;letter-spacing:.16em;padding:5px 11px;border-radius:18px;color:var(--mut);transition:color .25s,background .25s,box-shadow .25s}
+.lang-btn.active{color:#fff;background:rgba(94,198,230,.22);box-shadow:0 0 12px rgba(94,198,230,.4);font-weight:600}
+#menuBtn{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--tx);padding:10px 2px;position:relative}
+#menuBtn::after{content:'';position:absolute;left:0;bottom:4px;width:100%;height:1px;background:linear-gradient(90deg,var(--acc2),transparent);transform:scaleX(.35);transform-origin:left;transition:.4s}
+#menuBtn:hover::after{transform:scaleX(1)}
+#menu{position:fixed;inset:0;z-index:120;background:rgba(2,8,14,.65);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);display:grid;place-items:center;visibility:hidden;opacity:0}
+#menu nav{display:grid;gap:6px;justify-items:start}
+.menu-link{position:relative;display:flex;align-items:baseline;gap:22px;font-weight:300;font-size:clamp(32px,5.6vw,70px);letter-spacing:.06em;text-transform:uppercase;color:var(--tx);opacity:0;overflow:hidden;line-height:1.28;cursor:pointer}
+.menu-link i{font-style:normal;font-size:11px;letter-spacing:.3em;color:var(--acc);position:relative;top:-14px}
+.menu-link span{position:relative;transition:color .3s}
+.menu-link span::after{content:attr(data-t);position:absolute;inset:0;background:linear-gradient(100deg,#fff 30%,var(--acc2) 50%,#fff 70%);background-size:220% 100%;background-clip:text;-webkit-background-clip:text;color:transparent;background-position:130% 0;transition:background-position .9s ease}
+.menu-link:hover span{color:transparent}
+.menu-link:hover span::after{background-position:0% 0}
+.menu-close{position:absolute;top:30px;right:4.4vw;font-size:11px;letter-spacing:.34em;color:var(--mut)}
+.menu-foot{position:absolute;bottom:34px;left:4.4vw;right:4.4vw;display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.22em;color:var(--mut);text-transform:uppercase}
+
+/* ============ layout / sections ============ */
+main{position:relative;z-index:5}
+section,#act1{position:relative;height:100vh;min-height:100vh;overflow:hidden}
+.pin-wrap{position:absolute;inset:0;padding:0 6vw;display:flex}
+
+/* ---- ACT 1 overlays ---- */
+#act1 .pin-wrap{display:block}
+#heroUI{position:absolute;inset:0;z-index:6;pointer-events:none;will-change:transform,opacity,filter}
+#heroUI>*{pointer-events:auto}
+#heroTitle{position:absolute;left:50%;top:clamp(80px,16vh,140px);transform:translateX(-50%);display:grid;justify-items:center;gap:clamp(10px,2vh,20px);text-align:center;z-index:6;will-change:transform,opacity,filter}
+#heroTitle .mark{width:clamp(44px,4.4vw,60px);filter:drop-shadow(0 0 22px rgba(94,198,230,.5)) drop-shadow(0 0 60px rgba(12,117,135,.35))}
+.ht-name{display:flex;font-family:var(--riccione);font-size:clamp(32px,5vw,64px);letter-spacing:.26em;margin-left:.26em;color:#f4fbfd}
+.ht-hold{font-size:clamp(9px,1vw,13px);letter-spacing:.62em;margin-left:.62em;color:var(--acc2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 6px 8px calc(6px + .62em)}
+#heroSub{position:absolute;left:50%;top:clamp(230px,51vh,415px);transform:translateX(-50%);font-size:clamp(10px,1.15vw,14px);letter-spacing:.45em;margin-left:.45em;color:rgba(234,244,248,.85);text-transform:uppercase;white-space:nowrap;z-index:6}
+#heroTag{position:absolute;left:6vw;top:clamp(180px,48vh,360px);display:flex;gap:18px;z-index:6}
+#heroTag .tl{width:1px;height:clamp(50px,10vh,96px);background:linear-gradient(180deg,var(--acc),transparent)}
+#heroTag p{font-size:10px;letter-spacing:.34em;line-height:2.4;color:var(--mut);text-transform:uppercase}
+#discover{position:absolute;right:6vw;top:clamp(180px,46vh,350px);display:grid;justify-items:center;gap:12px;z-index:6;cursor:pointer}
+#discover .d-lab{font-size:10px;letter-spacing:.4em;margin-left:.4em;color:var(--tx)}
+#discover .d-ring{width:clamp(44px,4.5vw,58px);height:clamp(44px,4.5vw,58px);border:1px solid rgba(165,225,242,.4);border-radius:50%;display:grid;place-items:center;transition:.35s}
+#discover .d-ring svg{width:14px;animation:dip 2s ease-in-out infinite}
+#discover:hover .d-ring{background:rgba(94,198,230,.14);box-shadow:0 0 30px rgba(94,198,230,.3)}
+#discover small{font-size:8px;letter-spacing:.3em;color:var(--mut)}
+#heroMeta{position:absolute;left:6vw;right:6vw;bottom:clamp(16px,4vh,34px);display:flex;align-items:center;gap:18px;font-size:9px;letter-spacing:.26em;color:var(--mut);z-index:6}
+#heroMeta .prog{flex:0 0 clamp(80px,10vw,130px);height:1px;background:rgba(165,225,242,.16);position:relative}
+#heroMeta .prog i{position:absolute;left:0;top:0;height:100%;width:26%;background:var(--acc2);animation:progSlide 5s ease-in-out infinite}
+#heroMeta .scr{margin:0 auto;letter-spacing:.5em;margin-left:.5em}
+
+/* typographic moment */
+.a-typo{position:absolute;left:0;right:0;top:86px;bottom:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,1.5vh,20px);z-index:7;pointer-events:none;visibility:hidden}
+.a-typo .tw{font-weight:300;font-size:clamp(28px,5.8vmin,74px);line-height:1.1;letter-spacing:.06em;text-transform:uppercase;text-align:center;opacity:0;filter:blur(18px);will-change:transform,filter,opacity}
+.a-typo .tw.glow{color:#eefafd}
+
+/* ecosystem */
+.a-eco{position:absolute;inset:0;z-index:7;visibility:hidden}
+.eco-head{position:absolute;left:6vw;top:16vh;max-width:440px;opacity:0}
+.eco-head h3{font-weight:300;font-size:clamp(26px,3vw,42px);letter-spacing:.04em;text-transform:uppercase;margin:16px 0 12px;line-height:1.2}
+.eco-head p{font-size:14px;line-height:1.8;color:var(--mut);font-weight:300}
+.eco-stage{position:absolute;left:50%;top:52%;width:min(1000px,92vw);height:min(620px,64vh);transform:translate(-50%,-50%)}
+.eco-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.eco-lines .ln{stroke:rgba(140,210,235,.4);stroke-width:1;stroke-dasharray:1;stroke-dashoffset:1}
+.eco-lines .ring{fill:none;stroke:rgba(140,210,235,.14);stroke-dasharray:3 6;transform-origin:500px 310px;animation:ringSpin 60s linear infinite}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+.eco-lines .pk{fill:#cfeffb;opacity:0;filter:drop-shadow(0 0 6px rgba(140,220,250,.9))}
+.eco-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:168px;height:168px;border-radius:50%;
+  display:grid;place-items:center;align-content:center;gap:8px;z-index:3;
+  background:radial-gradient(circle,rgba(12,42,58,.92),rgba(4,14,22,.65) 70%);border:1px solid rgba(140,220,245,.35);
+  box-shadow:0 0 90px rgba(60,170,210,.25),inset 0 0 34px rgba(94,198,230,.12);opacity:0}
+.eco-core svg{width:34px}
+.eco-core span{font-size:8px;letter-spacing:.4em;margin-left:.4em;color:var(--acc2);text-align:center;line-height:1.9}
+.eco-node{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:3;padding:14px 18px;text-align:center;
+  background:rgba(4,16,26,.72);border:1px solid rgba(140,220,245,.22);backdrop-filter:blur(6px);
+  opacity:0;animation:floaty 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
+@keyframes floaty{0%,100%{margin-top:0}50%{margin-top:-10px}}
+.eco-node b{display:block;font-weight:500;font-size:11px;letter-spacing:.3em;color:#eafafd}
+.eco-node i{display:block;font-style:normal;font-size:8px;letter-spacing:.26em;color:var(--mut);margin-top:7px}
+
+/* ---- CONSTRUCTION ---- */
+#construction .pin-wrap{align-items:center;gap:5vw}
+.con-copy{flex:0 1 480px;z-index:4}
+.con-copy h2{margin:20px 0 14px}
+.con-copy .body{margin-bottom:30px}
+.chips{display:flex;gap:10px;list-style:none;flex-wrap:wrap}
+.chips li{font-size:9px;letter-spacing:.28em;padding:9px 14px;border:1px solid var(--line);color:var(--acc2)}
+.con-stage{flex:1;height:78vh;perspective:1100px;display:grid;place-items:end center;position:relative}
+.con-bld{position:relative;width:min(250px,26vw);height:56vh;transform-style:preserve-3d;will-change:transform}
+.con-bld>div{position:absolute}
+.p-base{left:-14%;right:-14%;bottom:0;height:16px;background:linear-gradient(180deg,#14303f,#081824);box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.p-col{bottom:16px;width:12px;height:100%;background:linear-gradient(180deg,#1a3d4e,#0a1c28);box-shadow:inset -2px 0 4px rgba(0,0,0,.5)}
+.c1{left:0}.c2{left:33%}.c3{right:33%}.c4{right:0}
+.p-floor{left:-6%;right:-6%;height:10px;background:linear-gradient(180deg,#20485a,#0c2130);box-shadow:0 6px 14px rgba(0,0,0,.4)}
+.p-floor.f1{bottom:16px}.p-floor.f2{bottom:calc(16px + 20%)}.p-floor.f3{bottom:calc(16px + 40%)}.p-floor.f4{bottom:calc(16px + 60%)}.p-floor.f5{bottom:calc(16px + 80%)}
+.p-glass{inset:16px 4% 16px;background:linear-gradient(165deg,rgba(120,205,230,.22),rgba(7,22,34,.9) 46%,rgba(9,30,44,.94));border:1px solid rgba(140,220,245,.3)}
+.p-glass::after{content:'';position:absolute;inset:-40% -60%;background:linear-gradient(115deg,transparent 42%,rgba(190,235,250,.13) 50%,transparent 58%);animation:sheen 7s linear infinite}
+.p-lights{inset:5% 8%}
+.p-lights i{position:absolute;width:6px;height:8px;background:#ffd9a1;border-radius:1px;opacity:0;animation:flick var(--fd,4s) ease-in-out infinite;animation-delay:var(--fdl,0s)}
+.p-crown{left:10%;right:10%;top:-2px;height:2px;background:linear-gradient(90deg,transparent,rgba(165,225,242,.95),transparent);box-shadow:0 0 22px rgba(120,210,240,.9)}
+.con-shadow{position:absolute;bottom:2vh;left:50%;width:130%;height:40px;transform:translateX(-50%);background:radial-gradient(50% 100% at 50% 50%,rgba(0,0,0,.6),transparent 70%);filter:blur(8px)}
+
+/* ---- FOOD & TRADE ---- */
+#food .pin-wrap{align-items:center;gap:4vw}
+.f-visual{flex:1.05;height:80vh;position:relative;perspective:1000px;display:grid;place-items:center}
+.f-glow{position:absolute;width:46vmin;height:46vmin;border-radius:50%;background:radial-gradient(circle,rgba(217,154,85,.20),rgba(217,154,85,.05) 46%,transparent 70%);filter:blur(10px)}
+.fspin{position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.fslide{position:absolute;inset:0;display:grid;place-items:center;place-content:center;gap:26px;justify-items:center;will-change:transform,opacity,filter}
+.fslide svg{width:min(300px,30vw);filter:drop-shadow(0 30px 60px rgba(0,0,0,.55))}
+.f-cap{text-align:center}
+.f-cap b{display:block;font-size:12px;letter-spacing:.4em;margin-left:.4em;color:#f4e3c8}
+.f-cap i{display:block;font-style:normal;font-size:9px;letter-spacing:.3em;color:var(--mut);margin-top:8px}
+.f-copy{flex:1;z-index:4}
+.f-copy h2{margin:20px 0 14px}
+.f-items{list-style:none;margin:34px 0 30px;display:grid;gap:0}
+.f-items li{display:flex;align-items:center;gap:18px;padding:16px 4px;border-bottom:1px solid rgba(217,154,85,.14);font-size:12px;letter-spacing:.32em;color:var(--tx);text-transform:uppercase}
+.f-items li::before{content:'';width:7px;height:7px;transform:rotate(45deg);background:linear-gradient(135deg,#e8b06a,#a3642a);box-shadow:0 0 12px rgba(217,154,85,.6)}
+.f-warm{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 50% at 26% 55%,rgba(217,154,85,.07),transparent 70%)}
+.f-grainy{position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)'/%3E%3C/svg%3E")}
+
+/* ---- STORY (THE NAME / İSLİMİ MOTİF) ---- */
+#story{background:#010409}
+#story .pin-wrap{display:block}
+.story-black{position:absolute;inset:0;background:#010409;opacity:0}
+.motif-wrap{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:min(280px,36vw);max-height:56vh;display:grid;place-items:center;opacity:0;will-change:transform,opacity,filter}
+.motif-aura{position:absolute;width:130%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(14,148,170,.35) 0%,rgba(7,95,114,.12) 48%,transparent 70%);filter:blur(32px);pointer-events:none}
+.motif-img{position:relative;width:100%;height:auto;max-height:54vh;object-fit:contain;filter:drop-shadow(0 0 28px rgba(94,198,230,.55)) drop-shadow(0 0 70px rgba(12,117,135,.4));display:block}
+.story-word{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:20px;z-index:4;pointer-events:none}
+.sw{font-family:var(--riccione);font-size:clamp(44px,6vw,74px);letter-spacing:.3em;margin-left:.3em;color:#f4fbfd;opacity:0;filter:blur(10px)}
+.story-bar{width:min(300px,60vw);height:1px;background:linear-gradient(90deg,transparent,rgba(165,225,242,.75),transparent);transform:scaleX(0)}
+.story-shold{font-size:10px;letter-spacing:.5em;margin-left:.5em;color:var(--acc2);text-transform:uppercase;opacity:0}
+.story-cap{position:absolute;left:50%;bottom:16vh;transform:translateX(-50%);width:min(600px,86vw);text-align:center;font-size:13px;letter-spacing:.14em;line-height:2;color:var(--mut);font-weight:300;opacity:0}
+.story-label{position:absolute;left:6vw;top:12vh;opacity:0}
+
+/* ---- PORTFOLIO ---- */
+#portfolio .pin-wrap{padding:0}
+.pslide{position:absolute;inset:0;overflow:hidden;will-change:transform;visibility:hidden}
+.pslide .p-inner{position:absolute;inset:0;will-change:transform}
+.p-art{position:absolute;inset:0;overflow:hidden}
+.p-info{position:absolute;left:6vw;bottom:9vh;z-index:3;max-width:640px}
+.p-num{font-size:12px;letter-spacing:.4em;color:var(--acc)}
+.p-info h3{font-weight:300;font-size:clamp(40px,6vw,84px);letter-spacing:.03em;text-transform:uppercase;margin:14px 0 10px;line-height:1.02}
+.p-info p{font-size:14px;letter-spacing:.08em;color:var(--mut);font-weight:300;max-width:44ch;line-height:1.8}
+.p-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,7,12,.88) 0%,rgba(2,7,12,.25) 38%,transparent 62%)}
+/* p1 blueprint tower art */
+.p1 .p-art{background:radial-gradient(90% 90% at 50% 10%,#08283a 0%,#04121e 55%,#020a12 100%)}
+.bp-grid{position:absolute;inset:0;background:linear-gradient(rgba(94,198,230,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(94,198,230,.07) 1px,transparent 1px);background-size:64px 64px;transform:perspective(900px) rotateX(56deg) translateY(18%) scale(1.6);transform-origin:center bottom;opacity:.8}
+.bp-tower{position:absolute;left:50%;bottom:16vh;width:min(300px,30vw);height:58vh;transform:translateX(-50%);
+  background:linear-gradient(165deg,rgba(120,205,230,.24),rgba(6,20,32,.95) 48%);
+  border:1px solid rgba(140,220,245,.5);box-shadow:0 0 90px rgba(60,170,210,.22),inset 0 0 60px rgba(0,0,0,.5)}
+.bp-tower::before{content:'';position:absolute;inset:4% 9%;background:repeating-linear-gradient(to bottom,rgba(150,225,245,.14) 0 3px,transparent 3px 16px),repeating-linear-gradient(to right,transparent 0 20px,rgba(2,8,14,.55) 20px 23px)}
+.bp-tower::after{content:'';position:absolute;left:-30%;right:-30%;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,rgba(165,225,242,.8),transparent);box-shadow:0 0 24px rgba(120,210,240,.7)}
+.bp-side{position:absolute;left:100%;top:0;bottom:0;width:52px;transform:rotateY(74deg);transform-origin:left center;background:linear-gradient(180deg,#0d2c3f,#04101b);border:1px solid rgba(140,220,245,.16)}
+/* p2 warm still art */
+.p2 .p-art{background:radial-gradient(80% 80% at 70% 30%,#3a2210 0%,#1c1008 46%,#0d0704 100%)}
+.p2 .warmring{position:absolute;right:8vw;top:50%;width:56vmin;height:56vmin;transform:translateY(-50%);border-radius:50%;border:1px solid rgba(217,154,85,.25)}
+.p2 .warmring::after{content:'';position:absolute;inset:9%;border-radius:50%;border:1px dashed rgba(217,154,85,.2)}
+.p2 svg{position:absolute;right:14vw;top:50%;width:min(240px,22vw);transform:translateY(-52%);filter:drop-shadow(0 40px 70px rgba(0,0,0,.6))}
+/* p3 constellation art */
+.p3 .p-art{background:radial-gradient(90% 90% at 50% 100%,#062332 0%,#03101a 55%,#02080e 100%)}
+.p3 svg{position:absolute;inset:0;width:100%;height:100%}
+.p3 .cn-dot{fill:#cfeffb;filter:drop-shadow(0 0 6px rgba(140,220,250,.9))}
+.p3 .cn-ln{stroke:rgba(140,215,240,.35);stroke-width:1}
+.p-wm{position:absolute;right:4vw;top:6vh;font-weight:300;font-size:clamp(120px,24vw,340px);line-height:1;color:rgba(165,225,242,.05);letter-spacing:-.02em;pointer-events:none}
+
+/* ---- PARTNERS ---- */
+#partners .pin-wrap{flex-direction:column;justify-content:center;align-items:center;gap:4vh;padding-top:10vh}
+.net-title{text-align:center}
+.net-stage{position:relative;width:min(1060px,92vw);height:min(520px,54vh)}
+.net-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.net-svg .nl{fill:none;stroke:rgba(140,210,235,.34);stroke-width:1;stroke-dasharray:1;stroke-dashoffset:1}
+.net-svg .nd{fill:#cfeffb;opacity:0;filter:drop-shadow(0 0 6px rgba(140,220,250,.9))}
+.pnode{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);padding:14px 20px;text-align:center;cursor:default;
+  background:rgba(4,16,26,.82);border:1px solid rgba(140,220,245,.24);backdrop-filter:blur(6px);
+  font-size:11px;letter-spacing:.26em;color:#eafafd;text-transform:uppercase;white-space:nowrap;
+  opacity:0;transition:transform .35s,box-shadow .35s,opacity .35s,filter .35s;will-change:transform,opacity,filter}
+.pnode.center{font-family:var(--riccione);font-size:14px;letter-spacing:.34em;padding:22px 28px;border-color:rgba(140,220,245,.55);box-shadow:0 0 50px rgba(60,170,210,.25)}
+.pnode.ghost{border-style:dashed;color:var(--mut)}
+.net-stage.hovering .pnode{opacity:.16;filter:blur(1px)}
+.net-stage.hovering .pnode.hot{opacity:1;filter:none;transform:translate(-50%,-50%) scale(1.12);box-shadow:0 0 44px rgba(94,198,230,.4);z-index:3}
+.net-info{min-height:24px;font-size:11px;letter-spacing:.22em;color:var(--mut);text-transform:uppercase;text-align:center;transition:.3s;max-width:68ch}
+
+/* ---- STATS (SCALE & IMPACT) ---- */
+#stats{position:relative;height:100vh;overflow:hidden}
+#stats .pin-wrap{position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:4.5vh;padding:0 6vw;text-align:center}
+.stats-head{display:grid;justify-items:center;gap:12px;opacity:0;will-change:transform,opacity,filter}
+.stats-head .sec-label{justify-content:center}
+.stats-head .sec-label::before{display:none}
+.stats-head .s-title{font-size:clamp(34px,5vw,68px)}
+.stats-head .s-sub{font-size:clamp(11px,1.2vw,14px);letter-spacing:.42em;color:var(--acc2)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;width:min(1140px,92vw);opacity:0;will-change:transform,opacity,filter}
+.stat{background:linear-gradient(170deg,rgba(7,24,38,.86),rgba(3,11,18,.94));padding:36px 26px;border:1px solid rgba(140,210,235,.20);border-radius:2px;display:grid;gap:14px;position:relative;overflow:hidden;text-align:left;backdrop-filter:blur(10px);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.stat:hover{transform:translateY(-6px);border-color:rgba(165,225,242,.45);box-shadow:0 18px 45px rgba(6,22,34,.8),0 0 30px rgba(94,198,230,.2)}
+.stat-top-line{position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--acc2),var(--acc),transparent);transform:scaleX(0);transform-origin:left;transition:transform 1s ease}
+.stat.lit .stat-top-line{transform:scaleX(1)}
+.stat-num{font-weight:300;font-size:clamp(46px,4.5vw,72px);color:#f2fafd;line-height:1;display:flex;align-items:baseline;text-shadow:0 0 26px rgba(94,198,230,.35)}
+.stat-num em{font-style:normal;font-size:.55em;color:var(--acc);margin-left:2px}
+.stat-name{font-size:11px;letter-spacing:.26em;color:var(--acc2);text-transform:uppercase;line-height:1.6;font-weight:500}
+.stat-desc{font-size:12px;color:var(--mut);line-height:1.6;font-weight:300}
+.stat-note{font-size:10px;letter-spacing:.22em;color:rgba(143,169,182,.65);text-transform:uppercase;opacity:0}
+
+/* ---- LEADERSHIP (CEO) ---- */
+#leader .pin-wrap{align-items:center;gap:6vw}
+.ld-visual{flex:0 0 clamp(280px,28vw,380px);position:relative;perspective:1000px;display:grid;place-items:center;will-change:transform,opacity,filter}
+.ld-aura{position:absolute;width:78%;height:78%;border-radius:50%;background:radial-gradient(circle,rgba(14,148,170,.30),rgba(7,95,114,.10) 50%,transparent 72%);filter:blur(30px);pointer-events:none}
+.ld-frame{position:relative;width:min(300px,22.5vw);aspect-ratio:2/3.35;overflow:hidden;border:1px solid rgba(140,210,235,.32);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(60,170,210,.14);will-change:transform,clip-path}
+.ld-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;filter:contrast(1.05) saturate(.9);will-change:transform}
+.ld-frame-line{position:absolute;width:26px;height:26px;border-color:var(--acc2);border-style:solid;border-width:0;pointer-events:none}
+.ld-frame-line.tl{left:10px;top:10px;border-left-width:1.5px;border-top-width:1.5px}
+.ld-frame-line.tr{right:10px;top:10px;border-right-width:1.5px;border-top-width:1.5px}
+.ld-frame-line.bl{left:10px;bottom:10px;border-left-width:1.5px;border-bottom-width:1.5px}
+.ld-frame-line.br{right:10px;bottom:10px;border-right-width:1.5px;border-bottom-width:1.5px}
+.ld-badge{position:absolute;bottom:6%;right:calc(50% - min(160px,12vw));font-size:10px;letter-spacing:.4em;padding:10px 12px 10px calc(12px + .4em);background:rgba(7,24,38,.92);border:1px solid rgba(140,210,235,.45);color:var(--acc2);box-shadow:0 0 30px rgba(94,198,230,.25);backdrop-filter:blur(6px);opacity:0}
+.ld-copy{flex:1;max-width:620px}
+.ld-name{font-weight:300;font-size:clamp(38px,4.6vw,66px);letter-spacing:.05em;line-height:1.05;margin:18px 0 12px;text-transform:uppercase}
+.ld-copy .body{margin:24px 0 6px;max-width:48ch}
+.ld-nodes{margin-top:26px;display:grid}
+.ld-node{position:relative;display:grid;gap:4px;padding:14px 0 14px 30px;border-left:1px solid rgba(140,210,235,.16)}
+.ld-node::before{content:'';position:absolute;left:-4.5px;top:19px;width:8px;height:8px;transform:rotate(45deg);background:linear-gradient(135deg,#a5e1f2,#2b8bab);box-shadow:0 0 14px rgba(94,198,230,.7)}
+.ld-node b{font-weight:500;font-size:13.5px;letter-spacing:.14em;color:#eafafd;text-transform:uppercase}
+.ld-node i{font-style:normal;font-size:11.5px;letter-spacing:.08em;color:var(--mut);line-height:1.6;font-weight:300}
+
+/* ---- MISSION / VISION ---- */
+#mv .pin-wrap{flex-direction:column;align-items:center;justify-content:center;gap:5vh}
+.mv-stage{position:relative;width:min(880px,90vw);height:44vh}
+.mv{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:22px;text-align:center;will-change:transform,opacity,filter}
+.mv span{font-size:11px;letter-spacing:.5em;margin-left:.5em;color:var(--acc)}
+.mv p{font-weight:300;font-size:clamp(19px,2.5vw,33px);line-height:1.6;letter-spacing:.01em;color:#eef7fa;max-width:28ch}
+.mv-idx{display:flex;gap:26px;align-items:center;font-size:9px;letter-spacing:.3em;color:var(--mut);text-transform:uppercase}
+.mv-idx i{width:40px;height:1px;background:rgba(165,225,242,.2);position:relative;overflow:hidden}
+.mv-idx i b{position:absolute;inset:0;background:var(--acc2);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.mv-idx i.on b{transform:scaleX(1)}
+
+/* ---- FUTURE ---- */
+#future .pin-wrap{flex-direction:column;align-items:center;justify-content:center;gap:3.4vh;text-align:center}
+#future .body{max-width:56ch;text-align:center}
+.fut-line{width:min(420px,60vw);height:1px;background:linear-gradient(90deg,transparent,rgba(165,225,242,.7),transparent);transform:scaleX(0)}
+
+/* ---- CONTACT ---- */
+#contact{height:auto;min-height:100vh;display:flex;flex-direction:column}
+.c-wrap{flex:1;display:grid;justify-items:center;align-content:center;gap:4.5vh;padding:18vh 6vw 10vh;text-align:center;position:relative}
+.c-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(2,6,11,0),rgba(2,6,11,.85) 70%,#02060b);pointer-events:none}
+.c-wrap>*{position:relative}
+.c-logo{width:190px;filter:brightness(0) invert(1);opacity:.94}
+.c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);width:min(920px,100%);margin-top:2vh}
+.c-item{background:rgba(3,10,17,.85);padding:30px 24px;display:grid;gap:10px}
+.c-item span{font-size:9px;letter-spacing:.32em;color:var(--acc);text-transform:uppercase}
+.c-item strong{font-weight:400;font-size:15px;letter-spacing:.06em;color:#eef7fa}
+.c-item a:hover{color:var(--acc2)}
+footer{display:flex;align-items:center;gap:22px;padding:26px 4.4vw;border-top:1px solid rgba(140,210,235,.1)}
+footer img{width:120px;filter:brightness(0) invert(1);opacity:.85}
+footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:uppercase;margin-left:auto}
+#toTop{width:38px;height:38px;border:1px solid rgba(165,225,242,.3);border-radius:50%;display:grid;place-items:center;transition:.3s}
+#toTop:hover{background:rgba(94,198,230,.14);box-shadow:0 0 24px rgba(94,198,230,.3)}
+
+/* ---- reveal helpers (JS-driven sections) ---- */
+.rv{opacity:0;will-change:transform,opacity,filter}
+
+/* ============ responsive ============ */
+@media(max-width:1060px){
+  .con-copy{flex:0 1 380px}
+  #heroTag{display:none}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+}
+@media(max-width:860px){
+  #nav{height:72px;padding:0 20px}
+  #leader .pin-wrap{flex-direction:column;justify-content:center;gap:3.5vh;padding-top:10vh}
+  .ld-visual{flex:none;width:100%}
+  .ld-frame{width:min(230px,52vw)}
+  .ld-badge{right:calc(50% - min(115px,26vw));bottom:2%}
+  .ld-copy{max-width:100%}
+  .ld-node{padding:11px 0 11px 24px}
+  #construction .pin-wrap,#food .pin-wrap{flex-direction:column;justify-content:center;gap:4vh;padding-top:12vh}
+  .con-copy,.f-copy{flex:none;width:100%}
+  .con-stage{width:100%;height:36vh}
+  .con-bld{width:190px;height:34vh}
+  .f-visual{width:100%;height:36vh;flex:none}
+  .fslide svg{width:min(190px,44vw)}
+  .f-items li{padding:11px 2px;font-size:10px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat{padding:22px 18px}
+  .c-grid{grid-template-columns:1fr}
+  .eco-stage{height:52vh}
+  .eco-node{padding:10px 12px}.eco-node b{font-size:9px}.eco-node i{display:none}
+  .pnode{padding:10px 12px;font-size:9px;letter-spacing:.2em}
+  .pnode.center{font-size:11px;padding:16px}
+  .net-stage{height:60vh}
+  .p2 svg{right:6vw;width:34vw}
+  .ht-name{font-size:34px}
+  #heroSub{white-space:normal;text-align:center;width:86vw}
+  #discover{right:20px;top:auto;bottom:12vh}
+  #heroMeta{left:20px;right:20px}
+  .story-cap{bottom:10vh}
+  .mv p{max-width:92%}
+  .mv-stage{height:52vh}
+}
+@media(max-width:560px){
+  .stat-grid{grid-template-columns:1fr;max-height:56vh;overflow-y:auto;gap:8px}
+  .stat{padding:16px 14px}
+  .stats-head .s-title{font-size:26px}
+  .motif-wrap{width:min(220px,50vw)}
+}
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .grain,.sky-stars,.b-lights i,.p-lights i,.b-front::after,.p-glass::after,.sweep::after{animation:none!important}
+}
+/* lib fallback: static readable page */
+.no-lib #world{opacity:.9}
+.no-lib .rv,.no-lib .eco-core,.no-lib .eco-node,.no-lib .pnode,.no-lib .sw,.no-lib .story-cap,.no-lib .story-label,.no-lib .eco-head,.no-lib .stats-head,.no-lib .stat-grid,.no-lib .stat,.no-lib .stat-note,.no-lib .ld-visual,.no-lib .ld-aura,.no-lib .ld-badge,.no-lib .ld-frame-line{opacity:1!important;filter:none!important}
+.no-lib .ld-frame{clip-path:none}
+.no-lib .a-typo{display:none}
+.no-lib .motif-wrap{opacity:.9}
+
+/* ============ SOUND TOGGLE ============ */
+.sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(7, 24, 38, 0.7);
+  border: 1px solid rgba(140, 210, 235, 0.25);
+  border-radius: 24px;
+  padding: 5px 13px;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s, background 0.3s;
+  color: var(--mut);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  font-family: inherit;
+}
+.sound-toggle:hover {
+  border-color: rgba(165, 225, 242, 0.5);
+  color: var(--tx);
+  box-shadow: 0 0 16px rgba(94, 198, 230, 0.25);
+}
+.sound-toggle.playing {
+  border-color: rgba(94, 198, 230, 0.7);
+  color: #cfeffb;
+  box-shadow: 0 0 18px rgba(94, 198, 230, 0.35);
+  background: rgba(9, 34, 52, 0.85);
+}
+.sound-wave {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 10px;
+}
+.sound-wave i {
+  width: 2px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: height 0.25s;
+}
+.sound-toggle.playing .sound-wave i:nth-child(1) { animation: soundBar 1.0s ease-in-out infinite; }
+.sound-toggle.playing .sound-wave i:nth-child(2) { animation: soundBar 1.3s ease-in-out infinite 0.25s; }
+.sound-toggle.playing .sound-wave i:nth-child(3) { animation: soundBar 0.85s ease-in-out infinite 0.45s; }
+@keyframes soundBar {
+  0%, 100% { height: 3px; }
+  50% { height: 10px; }
+}
+
+/* ============ CUSTOM MAGNETIC CURSOR ============ */
+@media (hover: hover) and (pointer: fine) {
+  /* Keep standard sleek pointer on buttons/links so user NEVER loses their mouse */
+  button, a, [data-go], .pnode, .cnode, .stat, .chips li, .lang-btn, .pm-btn, #discover, #toTop {
+    cursor: pointer;
+  }
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 7px;
+    height: 7px;
+    background: #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 0 10px rgba(94, 198, 230, 1), 0 0 20px rgba(94, 198, 230, 0.7);
+    transition: opacity 0.3s, transform 0.08s ease-out, background 0.25s;
+    will-change: transform;
+    opacity: 0;
+  }
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(165, 225, 242, 0.65);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s,
+                background 0.25s,
+                box-shadow 0.25s,
+                opacity 0.3s;
+    backdrop-filter: blur(0.5px);
+    box-shadow: 0 0 16px rgba(94, 198, 230, 0.3);
+    will-change: transform;
+    opacity: 0;
+  }
+  .cursor-visible {
+    opacity: 1 !important;
+  }
+  .cursor-ring.active {
+    width: 58px;
+    height: 58px;
+    border-color: rgba(94, 198, 230, 0.95);
+    background: rgba(94, 198, 230, 0.18);
+    box-shadow: 0 0 30px rgba(94, 198, 230, 0.55);
+  }
+  .cursor-dot.active {
+    transform: scale(1.8);
+    background: #ffffff;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 1);
+  }
+}
+
+/* ============ PARTNER MODES & CORRIDOR MAP ============ */
+.partner-modes {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(4, 20, 32, 0.9);
+  border: 1.5px solid rgba(140, 210, 235, 0.4);
+  padding: 6px 14px;
+  border-radius: 28px;
+  backdrop-filter: blur(12px);
+  margin: 12px auto 18px;
+  box-shadow: 0 0 25px rgba(94, 198, 230, 0.2);
+  z-index: 15;
+  position: relative;
+}
+.pm-btn {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--mut);
+  padding: 6px 14px;
+  border-radius: 18px;
+  text-transform: uppercase;
+  transition: color 0.3s, background 0.3s, box-shadow 0.3s;
+  font-family: inherit;
+}
+.pm-btn:hover {
+  color: var(--tx);
+}
+.pm-btn.active {
+  color: #fff;
+  background: rgba(94, 198, 230, 0.24);
+  box-shadow: 0 0 16px rgba(94, 198, 230, 0.38);
+  font-weight: 600;
+}
+.pm-sep {
+  color: rgba(140, 210, 235, 0.3);
+  font-size: 11px;
+}
+
+.corridor-stage {
+  position: relative;
+  width: min(1080px, 92vw);
+  height: min(530px, 55vh);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.corridor-stage.active {
+  display: block;
+}
+.corr-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.main-arc {
+  stroke-dasharray: 12 6;
+  animation: beamFlow 24s linear infinite;
+}
+@keyframes beamFlow {
+  to { stroke-dashoffset: -360; }
+}
+
+.cnode {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  padding: 14px 20px;
+  text-align: center;
+  background: rgba(4, 16, 26, 0.88);
+  border: 1px solid rgba(140, 220, 245, 0.3);
+  backdrop-filter: blur(8px);
+  color: #eafafd;
+  white-space: nowrap;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s,
+              border-color 0.35s,
+              opacity 0.35s,
+              filter 0.35s;
+  cursor: pointer;
+  user-select: none;
+}
+.cnode b {
+  display: block;
+  font-size: 11.5px;
+  letter-spacing: 0.28em;
+  color: #fff;
+}
+.cnode i {
+  display: block;
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--acc2);
+  margin-top: 5px;
+}
+.cnode small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--mut);
+  margin-top: 3px;
+  font-family: monospace;
+}
+.cnode-beacon {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #5ec6e6;
+  box-shadow: 0 0 18px rgba(94, 198, 230, 0.95);
+  animation: beaconPulse 2s ease-in-out infinite;
+}
+@keyframes beaconPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+  50% { transform: translateX(-50%) scale(1.4); opacity: 1; }
+}
+.cnode.hub-baku {
+  border-color: rgba(94, 198, 230, 0.65);
+  box-shadow: 0 0 35px rgba(94, 198, 230, 0.28);
+}
+.cnode.hub-ist {
+  border-color: rgba(217, 154, 85, 0.6);
+  box-shadow: 0 0 35px rgba(217, 154, 85, 0.22);
+}
+.cnode.hub-ist b { color: #fae8d2; }
+.cnode.hub-ist i { color: var(--warm); }
+.cnode:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 0 45px rgba(94, 198, 230, 0.55);
+  z-index: 10;
+}
+.corridor-stage.hovering .cnode {
+  opacity: 0.25;
+  filter: blur(1px);
+}
+.corridor-stage.hovering .cnode.hot {
+  opacity: 1;
+  filter: none;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 44px rgba(94, 198, 230, 0.55);
+  z-index: 10;
+}
+
+</style>
+</head>
+<body class="locked">
+
+<!-- ================= PRELOADER ================= -->
+<div id="preloader" title="Click or press any key to enter">
+  <div class="pl-center" id="plCenter">
+    <canvas id="plFx" width="560" height="560"></canvas>
+    <img class="pl-mark" id="plMark" src="assets/logo4k.png" alt="CASPIORA"/>
+    <div class="pl-name" id="plName"></div>
+    <div class="pl-holdwrap"><div class="pl-bar" id="plBar"></div><div class="pl-hold" id="plHold">CONSTRUCTION • DEVELOPMENT</div></div>
+  </div>
+  <div class="pl-skip-hint">CLICK TO EXPLORE</div>
+</div>
+
+<!-- ================= FIXED WORLD ================= -->
+<div id="world">
+  <div class="sky-stars" id="stars"></div>
+  <div class="horizon"></div>
+  <svg class="sil sil-far" viewBox="0 0 1440 220" preserveAspectRatio="xMidYMax slice">
+    <g fill="#071b29">
+      <rect x="40" y="120" width="52" height="100"/><rect x="120" y="96" width="34" height="124"/>
+      <rect x="250" y="130" width="70" height="90"/><rect x="360" y="110" width="26" height="110"/>
+      <rect x="960" y="120" width="60" height="100"/><rect x="1120" y="100" width="40" height="120"/>
+      <path d="M1290 220 L1300 70 L1306 70 L1310 130 L1316 130 L1320 220 Z"/>
+      <circle cx="1305" cy="96" r="7"/>
+    </g>
+    <g fill="#0a2233">
+      <path d="M1370 220 C1366 150 1372 110 1382 84 C1392 110 1398 150 1394 220 Z"/>
+      <path d="M1400 220 C1398 160 1402 126 1410 106 C1418 126 1422 160 1420 220 Z"/>
+      <rect x="520" y="140" width="120" height="80"/><rect x="700" y="126" width="90" height="94"/><rect x="830" y="146" width="110" height="74"/>
+    </g>
+  </svg>
+  <svg class="sil sil-mid" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMax slice">
+    <g fill="#08202f">
+      <rect x="180" y="90" width="90" height="110"/><rect x="300" y="120" width="60" height="80"/>
+      <rect x="420" y="70" width="46" height="130"/><rect x="1040" y="100" width="80" height="100"/>
+      <rect x="1180" y="120" width="70" height="80"/><rect x="560" y="110" width="120" height="90"/>
+    </g>
+  </svg>
+  <div class="sea"><div class="sea-shimmer"></div></div>
+  <div class="island"></div>
+  <div id="cityStage"></div>
+  <div class="nb" id="newBld"><div class="nb-core"></div><div class="nb-beacon"></div></div>
+  <div class="fog"></div>
+  <div class="horizon" style="top:auto;bottom:-4vh;height:22vh;background:radial-gradient(60% 100% at 74% 0%,rgba(217,154,85,.16),transparent 70%)"></div>
+  <div class="vignette"></div>
+</div>
+<canvas id="fx"></canvas>
+<div class="grain"></div>
+
+<!-- ================= NAV & MENU ================= -->
+<header id="nav">
+  <a class="brand" href="#top" data-go="top" id="brandHome"></a>
+  <div class="nav-actions">
+    <button class="sound-toggle" id="soundToggle" aria-label="Toggle ambient sound">
+      <span class="sound-wave"><i></i><i></i><i></i></span>
+      <span id="soundLabel">SƏS BAĞLI</span>
+    </button>
+    <div class="lang-toggle" aria-label="Language switch">
+      <button class="lang-btn active" data-set-lang="az">AZ</button>
+      <button class="lang-btn" data-set-lang="en">EN</button>
+    </div>
+    <button id="menuBtn">MENU</button>
+  </div>
+</header>
+<div id="menu">
+  <button class="menu-close" id="menuClose">CLOSE</button>
+  <nav>
+    <a class="menu-link" data-go="top"><i>01</i><span id="mLink0" data-t="ANA SƏHİFƏ">ANA SƏHİFƏ</span></a>
+    <a class="menu-link" data-go="construction"><i>02</i><span id="mLink1" data-t="TİKİNTİ">TİKİNTİ</span></a>
+    <a class="menu-link" data-go="food"><i>03</i><span id="mLink2" data-t="QİDA VƏ TİCARƏT">QİDA VƏ TİCARƏT</span></a>
+    <a class="menu-link" data-go="story"><i>04</i><span id="mLink3" data-t="THE BRAND">THE BRAND</span></a>
+    <a class="menu-link" data-go="portfolio"><i>05</i><span id="mLink4" data-t="PORTFOLİO">PORTFOLİO</span></a>
+    <a class="menu-link" data-go="partners"><i>06</i><span id="mLink5" data-t="TƏRƏFDAŞLAR">TƏRƏFDAŞLAR</span></a>
+    <a class="menu-link" data-go="stats"><i>07</i><span id="mLink6" data-t="MİQYAS &amp; TƏSİR">MİQYAS &amp; TƏSİR</span></a>
+    <a class="menu-link" data-go="leader"><i>08</i><span id="mLink7" data-t="RƏHBƏRLİK">RƏHBƏRLİK</span></a>
+    <a class="menu-link" data-go="contact"><i>09</i><span id="mLink8" data-t="ƏLAQƏ">ƏLAQƏ</span></a>
+  </nav>
+  <div class="menu-foot">
+    <span id="menuFootCity">CASPIORA — Bakı, Azərbaycan</span>
+    <div class="lang-toggle in-menu">
+      <button class="lang-btn active" data-set-lang="az">AZ</button>
+      <button class="lang-btn" data-set-lang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+  <!-- ================= ACT 1 : HERO → TYPO → ECOSYSTEM ================= -->
+  <div id="act1">
+    <div class="pin-wrap">
+      <div id="heroUI">
+        <div id="heroTitle"></div>
+        <div id="heroSub" class="sweep">Building a Stronger Tomorrow</div>
+        <div id="heroTag"><div class="tl"></div><p id="heroTagP">Investing in people,<br>ideas and<br>the future.</p></div>
+        <div id="discover">
+          <span class="d-lab" id="dLab">DISCOVER</span>
+          <span class="d-ring"><svg viewBox="0 0 14 16" fill="none"><path d="M7 1v13M2 9.5 7 14.5 12 9.5" stroke="#a5e1f2" stroke-width="1.2"/></svg></span>
+          <small id="dSmall">SCROLL TO EXPLORE</small>
+        </div>
+        <div id="heroMeta"><span>01</span><div class="prog"><i></i></div><span>07</span><span class="scr" id="metaScr">SCROLL</span></div>
+      </div>
+
+      <div class="a-typo" id="aTypo">
+        <div class="tw" id="tw1">MORE</div>
+        <div class="tw" id="tw2">THAN</div>
+        <div class="tw glow" id="tw3">A COMPANY</div>
+      </div>
+
+      <div class="a-eco" id="aEco">
+        <div class="eco-head" id="ecoHead">
+          <div class="sec-label" id="ecoLabel">The Ecosystem</div>
+          <h3 id="ecoTitle">Different directions.<br>One vision.</h3>
+          <p id="ecoDesc">Construction, food &amp; trade, education and partnerships — separate fields connected by a single way of building.</p>
+        </div>
+        <div class="eco-stage">
+          <svg class="eco-lines" viewBox="0 0 1000 620" preserveAspectRatio="none">
+            <ellipse class="ring" cx="500" cy="310" rx="440" ry="252"/>
+            <line class="ln" x1="500" y1="310" x2="500" y2="66" pathLength="1"/>
+            <line class="ln" x1="500" y1="310" x2="150" y2="182" pathLength="1"/>
+            <line class="ln" x1="500" y1="310" x2="850" y2="182" pathLength="1"/>
+            <line class="ln" x1="500" y1="310" x2="500" y2="554" pathLength="1"/>
+            <circle class="pk pk1" r="3"/>
+            <circle class="pk pk2" r="3"/>
+            <circle class="pk pk3" r="3"/>
+          </svg>
+          <div class="eco-core" id="ecoCore"><span>CASPIORA</span></div>
+          <div class="eco-node" style="--x:50%;--y:10.6%;--fd:0s"><b id="ecoNodeStrategy">STRATEGIC PROJECTS</b><i id="ecoSubStrategy">Development</i></div>
+          <div class="eco-node" style="--x:15%;--y:29.3%;--fd:1.2s"><b id="ecoNodeCon">CONSTRUCTION</b><i id="ecoSubCon">Development</i></div>
+          <div class="eco-node" style="--x:85%;--y:29.3%;--fd:2.1s"><b id="ecoNodeFood">PROJECTS</b><i id="ecoSubFood">Excellence</i></div>
+          <div class="eco-node" style="--x:50%;--y:89.3%;--fd:3s"><b id="ecoNodeNet">PARTNERSHIPS</b><i id="ecoSubNet">Network</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CONSTRUCTION ================= -->
+  <section id="construction">
+    <div class="pin-wrap">
+      <div class="con-copy">
+        <div class="sec-label rv c-label" id="conLabel">01 — Construction</div>
+        <h2 class="h-big rv c-h" id="conH">CONSTRUCTION</h2>
+        <p class="h-sub rv c-sub" id="conSub">Building spaces for the future.</p>
+        <p class="body rv c-body" id="conBody" style="margin-top:22px">From concept to completion, we develop residential, commercial and mixed-use spaces designed for long-term value — places where people live, work and grow.</p>
+        <ul class="chips rv c-chips" id="conChips"><li>RESIDENTIAL</li><li>COMMERCIAL</li><li>MIXED-USE</li></ul>
+      </div>
+      <div class="con-stage">
+        <div class="con-shadow"></div>
+        <div class="con-bld" id="conBld">
+          <div class="p-base"></div>
+          <div class="p-col c1"></div><div class="p-col c2"></div><div class="p-col c3"></div><div class="p-col c4"></div>
+          <div class="p-floor f1"></div><div class="p-floor f2"></div><div class="p-floor f3"></div><div class="p-floor f4"></div><div class="p-floor f5"></div>
+          <div class="p-glass"></div>
+          <div class="p-lights" id="pLights"></div>
+          <div class="p-crown"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOD & TRADE ================= -->
+  <section id="food">
+    <div class="f-warm"></div>
+    <div class="pin-wrap">
+      <div class="f-visual">
+        <div class="f-glow"></div>
+        <div class="fspin" id="fSpin">
+          <div class="fslide s1">
+            <svg viewBox="0 0 200 300" fill="none">
+              <defs><linearGradient id="bottA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0b869"/><stop offset=".55" stop-color="#b06a24"/><stop offset="1" stop-color="#5c300e"/></linearGradient></defs>
+              <rect x="86" y="8" width="28" height="22" rx="3" fill="#2a1a0c" stroke="#8a5a28" stroke-width="1.4"/>
+              <path d="M88 30 h24 v26 c14 10 22 24 22 44 v168 c0 14 -9 22 -22 22 H88 c-13 0 -22 -8 -22 -22 V100 c0 -20 8 -34 22 -44 Z" fill="url(#bottA)" stroke="#f4d9a8" stroke-width="1.6"/>
+              <path d="M78 60 c-7 9 -10 20 -10 34 v160" stroke="rgba(255,240,210,.55)" stroke-width="3" stroke-linecap="round"/>
+              <rect x="66" y="140" width="68" height="52" rx="3" fill="rgba(8,10,8,.55)" stroke="#f0d9a8" stroke-width="1.2"/>
+              <path d="M80 166 h40 M84 158 h32" stroke="#f0d9a8" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="f-cap"><b id="fCap1Title">SPICES</b><i id="fCap1Sub">Sun-dried · stone-ground</i></div>
+          </div>
+          <div class="fslide s2">
+            <svg viewBox="0 0 200 300" fill="none">
+              <defs><linearGradient id="jarA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ec96a"/><stop offset=".55" stop-color="#4f7a2a"/><stop offset="1" stop-color="#26400f"/></linearGradient></defs>
+              <rect x="52" y="26" width="96" height="26" rx="6" fill="#3a2a16" stroke="#c9a35f" stroke-width="1.6"/>
+              <path d="M58 52 h84 v190 c0 18 -12 30 -30 30 H88 c-18 0 -30 -12 -30 -30 Z" fill="url(#jarA)" stroke="#e8f0c8" stroke-width="1.6"/>
+              <ellipse cx="100" cy="52" rx="42" ry="8" fill="rgba(240,248,220,.35)"/>
+              <circle cx="82" cy="120" r="13" fill="rgba(230,244,200,.5)"/><circle cx="116" cy="164" r="15" fill="rgba(230,244,200,.42)"/><circle cx="90" cy="212" r="12" fill="rgba(230,244,200,.38)"/>
+              <path d="M70 80 c-4 40 -4 120 0 160" stroke="rgba(255,255,240,.4)" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="f-cap"><b id="fCap2Title">NATURAL PICKLES</b><i id="fCap2Sub">Barrel-fermented</i></div>
+          </div>
+          <div class="fslide s3">
+            <svg viewBox="0 0 200 300" fill="none">
+              <defs><radialGradient id="spiceA" cx=".5" cy=".38" r=".75"><stop offset="0" stop-color="#f4c078"/><stop offset=".6" stop-color="#c47a2e"/><stop offset="1" stop-color="#703c10"/></radialGradient></defs>
+              <path d="M40 190 c0 34 27 56 60 56 s60 -22 60 -56 Z" fill="#241608" stroke="#c9a35f" stroke-width="1.6"/>
+              <ellipse cx="100" cy="190" rx="60" ry="17" fill="#3a2410"/>
+              <path d="M52 186 c6 -22 26 -36 48 -36 s42 14 48 36 c-14 8 -34 12 -48 12 s-34 -4 -48 -12 Z" fill="url(#spiceA)"/>
+              <path d="M84 132 c2 -12 10 -20 18 -24 M108 130 c0 -10 6 -18 12 -22" stroke="rgba(255,220,160,.5)" stroke-width="2.4" stroke-linecap="round"/>
+              <rect x="88" y="246" width="24" height="26" rx="3" fill="#1a1006" stroke="#c9a35f" stroke-width="1.4"/>
+            </svg>
+            <div class="f-cap"><b id="fCap3Title">SHERBETS &amp; LEMONADE</b><i id="fCap3Sub">Bottled heritage</i></div>
+          </div>
+        </div>
+        <div class="f-grainy"></div>
+      </div>
+      <div class="f-copy">
+        <div class="sec-label rv f-label" id="foodLabel">02 — Food &amp; Trade</div>
+        <h2 class="h-big rv f-h" id="foodH">FOOD &amp; TRADE</h2>
+        <p class="h-sub rv f-sub" id="foodSub">From tradition to the modern world.</p>
+        <ul class="f-items rv f-list" id="foodList">
+          <li>Spices</li>
+          <li>Pickles &amp; Natural</li>
+          <li>Sherbets &amp; Lemonade</li>
+          <li>Confectionery</li>
+        </ul>
+        <p class="body rv f-body" id="foodBody">Traditional tastes carried from local heritage to modern markets — natural products and selected brands across the Türkiye–Azerbaijan corridor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STORY (AUTHENTIC MOTIF) ================= -->
+  <section id="story">
+    <div class="pin-wrap">
+      <div class="story-black"></div>
+      <div class="sec-label story-label" id="storyLabel">03 — The Name</div>
+      <div class="motif-wrap" id="motifWrap">
+        <div class="motif-aura"></div>
+        <img class="motif-img" id="motifImg" src="assets/logo4k.png" alt="İslimi Motif"/>
+      </div>
+      <div class="story-word">
+        <div id="swName"></div>
+        <div class="story-bar" id="storyBar"></div>
+        <div class="story-shold" id="storyHold">HOLDİNG</div>
+      </div>
+      <p class="story-cap" id="storyCap">CASPIORA � where the Caspian meets vision. The name echoes our geographic foundation and our forward movement. Every structure we build is a commitment to durability, precision, and the future of this region.</p>
+    </div>
+  </section>
+
+  <!-- ================= PORTFOLIO ================= -->
+  <section id="portfolio">
+    <div class="pin-wrap">
+      <div class="pslide p1" id="ps1">
+        <div class="p-inner">
+          <div class="p-art">
+            <div class="bp-grid"></div>
+            <div class="bp-tower"><div class="bp-side"></div></div>
+            <div class="p-wm">01</div>
+            <div class="p-scrim"></div>
+          </div>
+          <div class="p-info rv pi1">
+            <span class="p-num">01 / PROJECT</span>
+            <h3 id="p1Title">CONSTRUCTION</h3>
+            <p id="p1Desc">Concept-to-completion development — residential, commercial and mixed-use landmarks built for the next decades.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pslide p2" id="ps2">
+        <div class="p-inner">
+          <div class="p-art">
+            <div class="warmring"></div>
+            <svg viewBox="0 0 200 300" fill="none">
+              <defs><linearGradient id="bottB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0b869"/><stop offset=".55" stop-color="#b06a24"/><stop offset="1" stop-color="#5c300e"/></linearGradient></defs>
+              <rect x="86" y="8" width="28" height="22" rx="3" fill="#2a1a0c" stroke="#8a5a28" stroke-width="1.4"/>
+              <path d="M88 30 h24 v26 c14 10 22 24 22 44 v168 c0 14 -9 22 -22 22 H88 c-13 0 -22 -8 -22 -22 V100 c0 -20 8 -34 22 -44 Z" fill="url(#bottB)" stroke="#f4d9a8" stroke-width="1.6"/>
+              <path d="M78 60 c-7 9 -10 20 -10 34 v160" stroke="rgba(255,240,210,.55)" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="p-wm" style="color:rgba(240,190,120,.06)">02</div>
+            <div class="p-scrim"></div>
+          </div>
+          <div class="p-info rv pi2">
+            <span class="p-num" style="color:#e0aa62">02 / PROJECT</span>
+            <h3 id="p2Title">FOOD &amp; TRADE</h3>
+            <p id="p2Desc">Heritage tastes, natural products and selected brands — carried from tradition into modern retail.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pslide p3" id="ps3">
+        <div class="p-inner">
+          <div class="p-art">
+            <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+              <g class="cn-conn">
+                <path class="cn-ln" d="M300 620 L560 430 L820 560 L1080 340 L1240 470"/>
+                <path class="cn-ln" d="M560 430 L700 240 L1080 340"/>
+                <path class="cn-ln" d="M300 620 L460 760 L820 560"/>
+              </g>
+              <g class="cn-dotg">
+                <circle class="cn-dot" cx="300" cy="620" r="5"/><circle class="cn-dot" cx="560" cy="430" r="7"/>
+                <circle class="cn-dot" cx="820" cy="560" r="5"/><circle class="cn-dot" cx="1080" cy="340" r="8"/>
+                <circle class="cn-dot" cx="1240" cy="470" r="4"/><circle class="cn-dot" cx="700" cy="240" r="5"/>
+                <circle class="cn-dot" cx="460" cy="760" r="4"/>
+              </g>
+            </svg>
+            <div class="p-wm">03</div>
+            <div class="p-scrim"></div>
+          </div>
+          <div class="p-info rv pi3">
+            <span class="p-num">03 / PROJECT</span>
+            <h3 id="p3Title">EDUCATION — İDRAK</h3>
+            <p id="p3Desc">An open knowledge ecosystem within the holding — learning programs that invest in people first.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARTNERS ================= -->
+  <section id="partners">
+    <div class="pin-wrap">
+      <h2 class="h-big net-title rv" id="netTitle">BUILT TOGETHER</h2>
+      <div class="partner-modes" id="partnerModes">
+        <button class="pm-btn active" id="pmBtnNet" data-pmode="net">TƏRƏFDAŞLIQ ŞƏBƏKƏSİ</button>
+        <span class="pm-sep">/</span>
+        <button class="pm-btn" id="pmBtnCorr" data-pmode="corr">STRATEJİ DƏHLİZ (BAKI — İSTANBUL)</button>
+      </div>
+      <div class="net-stage" id="netStage">
+        <svg class="net-svg" viewBox="0 0 1000 520" preserveAspectRatio="none">
+          <path class="nl" d="M500 260 L160 114" pathLength="1"/>
+          <path class="nl" d="M500 260 L830 114" pathLength="1"/>
+          <path class="nl" d="M500 260 L840 385" pathLength="1"/>
+          <path class="nl" d="M500 260 L150 395" pathLength="1"/>
+          <path class="nl" d="M500 260 L500 62" pathLength="1"/>
+          <path class="nl" d="M160 114 C340 40 660 40 830 114" pathLength="1"/>
+          <path class="nl" d="M150 395 C340 470 660 470 840 385" pathLength="1"/>
+          <circle class="nd" cx="330" cy="187" r="3.4"/>
+          <circle class="nd" cx="665" cy="187" r="3.4"/>
+          <circle class="nd" cx="670" cy="322" r="3.4"/>
+          <circle class="nd" cx="325" cy="327" r="3.4"/>
+          <circle class="nd" cx="500" cy="161" r="3.4"/>
+          <circle class="nd" cx="500" cy="62" r="3.4"/>
+        </svg>
+        <div class="pnode center" style="--x:50%;--y:50%" id="pnCenter" data-info="Construction & Development company.">CASPIORA</div>
+        <div class="pnode" style="--x:16%;--y:22%" id="pnRegional" data-info="Regional development initiatives.">REGIONAL NETWORK</div>
+        <div class="pnode" style="--x:83%;--y:22%" id="pnTrade" data-info="Strategic partners and alliances.">PARTNERS</div>
+        <div class="pnode" style="--x:84%;--y:74%" id="pnInfra" data-info="Engineering and infrastructure consortium.">INFRASTRUCTURE</div>
+        <div class="pnode ghost" style="--x:15%;--y:76%" id="pnGhost1" data-info="New strategic partnership — announcing soon.">+ Strategic Partner</div>
+        <div class="pnode ghost" style="--x:50%;--y:12%" id="pnGhost2" data-info="Expanding alliances across Azerbaijan, Türkiye and Eurasia.">+ Regional Network</div>
+      </div>
+      <!-- ================= STRATEGIC CORRIDOR STAGE ================= -->
+      <div class="corridor-stage" id="corridorStage">
+        <svg class="corr-svg" viewBox="0 0 1000 520" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="corrBeam" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#5ec6e6" stop-opacity="0.35"/>
+              <stop offset="50%" stop-color="#cfeffb" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#d99a55" stop-opacity="0.45"/>
+            </linearGradient>
+            <filter id="corrGlow">
+              <feGaussianBlur stdDeviation="4" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <line x1="80" y1="260" x2="920" y2="260" stroke="rgba(140,210,235,0.08)" stroke-width="1" stroke-dasharray="4 6"/>
+          <line x1="500" y1="60" x2="500" y2="460" stroke="rgba(140,210,235,0.08)" stroke-width="1" stroke-dasharray="4 6"/>
+          <!-- Great Geodesic Arcs -->
+          <path id="corrPathMain" class="main-arc" d="M360 250 C440 130, 600 130, 680 250" stroke="url(#corrBeam)" stroke-width="2.8" fill="none" filter="url(#corrGlow)"/>
+          <path class="sub-arc" d="M680 250 C760 190, 830 190, 870 210" stroke="rgba(140,210,235,0.45)" stroke-width="1.2" stroke-dasharray="3 4" fill="none"/>
+          <path class="sub-arc" d="M360 250 C280 190, 210 190, 150 210" stroke="rgba(217,154,85,0.45)" stroke-width="1.2" stroke-dasharray="3 4" fill="none"/>
+          <!-- Flowing Pulse Particles -->
+          <circle id="laserPulse1" r="4.5" fill="#cfeffb" filter="url(#corrGlow)"/>
+          <circle id="laserPulse2" r="3.5" fill="#ffd9a1" filter="url(#corrGlow)"/>
+        </svg>
+
+        <!-- HUB 1: BAKU -->
+        <div class="cnode hub-baku" id="cnBaku" style="--x:68%;--y:48%">
+          <div class="cnode-beacon"></div>
+          <b>BAKI · BAKU</b>
+          <i id="cnBakuRole">HQ &amp; Caspian Gateway</i>
+          <small>40.4093° N · 49.8671° E</small>
+        </div>
+
+        <!-- HUB 2: ISTANBUL -->
+        <div class="cnode hub-ist" id="cnIst" style="--x:36%;--y:48%">
+          <div class="cnode-beacon" style="background:#d99a55;box-shadow:0 0 18px rgba(217,154,85,.95)"></div>
+          <b>İSTANBUL · ISTANBUL</b>
+          <i id="cnIstRole">Commercial &amp; Build Bridge</i>
+          <small>41.0082° N · 28.9784° E</small>
+        </div>
+
+        <!-- HUB 3: EURASIA -->
+        <div class="cnode hub-asia" id="cnAsia" style="--x:87%;--y:40%">
+          <b>EURASIA</b>
+          <i id="cnAsiaRole">Trade &amp; Commodity Hub</i>
+          <small>SILK ROAD CORRIDOR</small>
+        </div>
+
+        <!-- HUB 4: GLOBAL REACH -->
+        <div class="cnode hub-eu" id="cnGlobal" style="--x:15%;--y:40%">
+          <b>GLOBAL REACH</b>
+          <i id="cnGlobalRole">Export &amp; Capital Markets</i>
+          <small>WESTERN EXPANSION</small>
+        </div>
+      </div>
+      <div class="net-info rv" id="netInfo">Hover a partner to learn more — the network keeps growing.</div>
+    </div>
+  </section>
+
+  <!-- ================= STATS (SCALE & IMPACT) ================= -->
+  <section id="stats">
+    <div class="pin-wrap">
+      <div class="stats-head" id="statsHead">
+        <div class="sec-label" id="statsLabel">04 — Scale &amp; Impact</div>
+        <h2 class="h-big s-title" id="statTitle">MEASURED IN DECADES.</h2>
+        <p class="h-sub s-sub glow-w" id="statSub">BUILT FOR GENERATIONS.</p>
+      </div>
+      <div class="stat-grid" id="statGrid">
+        <div class="stat" data-idx="0">
+          <div class="stat-top-line"></div>
+          <b class="stat-num" data-n="12">0</b>
+          <span class="stat-name" id="stName0">Years of<br>Experience</span>
+          <p class="stat-desc" id="stDesc0">Rooted in sustainable execution &amp; regional presence</p>
+        </div>
+        <div class="stat" data-idx="1">
+          <div class="stat-top-line"></div>
+          <b class="stat-num" data-n="25">0</b>
+          <span class="stat-name" id="stName1">Completed<br>Projects</span>
+          <p class="stat-desc" id="stDesc1">Landmark residential, commercial &amp; trade assets</p>
+        </div>
+        <div class="stat" data-idx="2">
+          <div class="stat-top-line"></div>
+          <b class="stat-num" data-n="15">0</b>
+          <span class="stat-name" id="stName2">Strategic<br>Alliances</span>
+          <p class="stat-desc" id="stDesc2">Cross-border network connecting the region</p>
+        </div>
+        <div class="stat" data-idx="3">
+          <div class="stat-top-line"></div>
+          <b class="stat-num" data-n="4">0</b>
+          <span class="stat-name" id="stName3">Active<br>Markets</span>
+          <p class="stat-desc" id="stDesc3">Expanding operational footprint across Eurasia</p>
+        </div>
+      </div>
+      <p class="stat-note" id="statNote">* Demo values — official holding figures will replace these upon formal release.</p>
+    </div>
+  </section>
+
+  <!-- ================= LEADERSHIP (CEO) ================= -->
+  <section id="leader">
+    <div class="pin-wrap">
+      <div class="ld-visual">
+        <div class="ld-aura"></div>
+        <div class="ld-frame" id="ldFrame">
+          <img class="ld-photo" id="ldPhoto" src="assets/ceo.png" alt="İdris Alışov"/>
+          <div class="ld-frame-line tl"></div><div class="ld-frame-line tr"></div>
+          <div class="ld-frame-line bl"></div><div class="ld-frame-line br"></div>
+        </div>
+        <div class="ld-badge" id="ldBadge">CEO</div>
+      </div>
+      <div class="ld-copy">
+        <div class="sec-label rv" id="ldLabel">05 — Leadership</div>
+        <h2 class="ld-name rv" id="ldName">İDRİS ALIŞOV</h2>
+        <p class="h-sub rv" id="ldRole">Baş Direktor — Chief Executive Officer</p>
+        <p class="body rv" id="ldBio">UNEC məzunu iqtisadçı; İqtisadiyyat Nazirliyində monitorinq və icra istiqamətində uzunmüddətli dövlət təcrübəsi. Holdinqin strateji inkişafını tikinti, ticarət və təhsil sahələrində vahid vizyonla idarə edir.</p>
+        <div class="ld-nodes" id="ldNodes">
+          <div class="ld-node rv"><b id="ldN1T">UNEC — Dövlət İqtisad Universiteti</b><i id="ldN1S">İqtisadiyyat üzrə ali təhsil</i></div>
+          <div class="ld-node rv"><b id="ldN2T">İqtisadiyyat Nazirliyi</b><i id="ldN2S">Monitorinq və icra istiqamətində rəhbər vəzifələr</i></div>
+          <div class="ld-node rv"><b id="ldN4T">Sumqayıt Tikinti-2 ASC</b><i id="ldN4S">İdarə Heyətinin Sədri</i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MISSION / VISION ================= -->
+  <section id="mv">
+    <div class="pin-wrap">
+      <div class="sec-label rv" id="mvLabel">06 — About</div>
+      <h2 class="h-big rv" id="mvTitle" style="text-align:center">ONE VISION. MANY DIRECTIONS.</h2>
+      <div class="mv-stage">
+        <div class="mv m1" id="mv1"><span id="mv1Badge">MISSION</span><p id="mv1Text">Connect traditional and natural products to broader markets — building a trusted bridge between local producers and global opportunity.</p></div>
+        <div class="mv m2" id="mv2"><span id="mv2Badge">VISION</span><p id="mv2Text">Become a recognized regional holding ecosystem — connecting long-term partnerships and sustainable businesses from Azerbaijan and Türkiye outward.</p></div>
+      </div>
+      <div class="mv-idx"><b id="mvIdxM">01 MISSION</b><i id="idxM"><b></b></i><i id="idxV"><b></b></i><b id="mvIdxV">02 VISION</b></div>
+    </div>
+  </section>
+
+  <!-- ================= FUTURE ================= -->
+  <section id="future">
+    <div class="pin-wrap">
+      <div class="sec-label rv" id="futLabel">07 — The Future</div>
+      <h2 class="h-big rv" id="futTitle">THE NEXT CHAPTER.</h2>
+      <p class="h-sub rv glow-w" id="futSub">IS ALREADY UNDER CONSTRUCTION.</p>
+      <p class="body rv" id="futBody">A new generation of projects is taking shape on the horizon — designed to carry the ecosystem into its next decade.</p>
+      <div class="fut-line"></div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="c-wrap">
+      <img class="c-logo rv" src="assets/logo4k.png" alt="İSLİMİ HOLDİNG"/>
+      <h2 class="h-big rv" id="cTitle">LET'S BUILD WHAT'S NEXT.</h2>
+      <p class="h-sub rv" id="cSubLoc">Baku, Azerbaijan</p>
+      <div class="c-grid">
+        <div class="c-item rv"><span id="cLabelPhone">Contact us</span><strong id="cValPhone"><a href="tel:+994120000000">+994 12 000 00 00</a></strong></div>
+        <div class="c-item rv"><span id="cLabelMail">Email</span><strong><a href="mailto:info@islimiholding.com">info@islimiholding.com</a></strong></div>
+        <div class="c-item rv"><span id="cLabelFollow">Follow</span><strong><a href="#" rel="noopener">LinkedIn</a> · <a href="#" rel="noopener">Facebook</a> · <a href="#" rel="noopener">Instagram</a></strong></div>
+      </div>
+    </div>
+    <footer>
+      <img src="assets/logo4k.png" alt="İslimi"/>
+      <span id="footCopy">© 2026 İSLİMİ HOLDİNG — Building a stronger tomorrow.</span>
+      <button id="toTop" aria-label="Back to top">↑</button>
+    </footer>
+  </section>
+</main>
+
+<!-- Custom Magnetic Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const NAME='CASPIORA';
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasLib=!!(window.gsap&&window.ScrollTrigger);
+
+/* ============ MULTI-LANGUAGE SYSTEM (AZ / EN) ============ */
+let curLang = localStorage.getItem('islimi_lang') || 'az';
+let isSoundActive = false;
+let activePartnerMode = 'net';
+
+const DICT = {
+  az: {
+    heroSub: 'Daha Güclü Gələcəyi Birlikdə Qururuq',
+    heroTag: 'İnsanlara, ideyalara<br>və gələcəyə<br>yatırım edirik.',
+    discover: 'KƏŞF EDİN',
+    discoverSmall: 'KƏŞF ETMƏK ÜÇÜN SÜRÜŞDÜRÜN',
+    metaScr: 'SÜRÜŞDÜRÜN',
+    tw1: 'BİR',
+    tw2: 'ŞİRKƏTDƏN',
+    tw3: 'DAHA ARTIQ',
+    ecoLabel: 'Holdinq Ekosistemi',
+    ecoTitle: 'Fərqli istiqamətlər.<br>Tək bir vizyon.',
+    ecoDesc: 'Tikinti, strateji layihələr və tərəfdaşlıqlar — keyfiyyətlə birləşən sahələr.',
+    ecoNodeStrategy: 'STRATEJİ LAYIHƏLƏR', ecoSubStrategy: 'İnkişaf',
+    ecoNodeCon: 'TİKİNTİ', ecoSubCon: 'İnkişaf',
+    ecoNodeFood: 'QİDA VƏ TİCARƏT', ecoSubFood: 'Ənənəvi brendlər',
+    ecoNodeNet: 'TƏRƏFDAŞLIQ', ecoSubNet: 'Şəbəkə',
+    conLabel: '01 — Tikinti',
+    conH: 'TİKİNTİ',
+    conSub: 'Gələcəyin məkanlarını inşa edirik.',
+    conBody: 'Konsepsiyadan tam təhvilə qədər — uzunmüddətli dəyər yaradan yaşayış, kommersiya və qarışıq təyinatlı müasir komplekslər inşa edirik.',
+    conChips: ['YAŞAYIŞ', 'KOMMERSİYA', 'QARIŞIQ TƏYİNATLI'],
+    foodLabel: '02 — Qida və Ticarət',
+    foodH: 'QİDA VƏ TİCARƏT',
+    foodSub: 'Ənənədən müasir dünyaya.',
+    foodList: ['Ədviyyatlar', 'Turşular və Təbii Məhsullar', 'Şərbətlər və Limonadlar', 'Şirniyyatlar'],
+    foodBody: 'Yerli irsdən müasir bazarlara daşınan ənənəvi təamlar — Azərbaycan və Türkiyə xəttində təbii məhsullar və seçilmiş brendlər.',
+    fCap1Title: 'ƏDVİYYATLAR', fCap1Sub: 'Təbii günəşdə qurudulmuş',
+    fCap2Title: 'TƏBİİ TURŞULAR', fCap2Sub: 'Palıd çəlləkdə fermentasiya',
+    fCap3Title: 'ŞƏRBƏTLƏR &amp; LİMONAD', fCap3Sub: 'Tarixi reseptlər',
+    storyLabel: '03 — Brend',
+    storyCap: 'CASPIORA — Xəzər dənizi bölgəsində tikinti və inkişafın simvolu. Ad həm coğrafi mövqeyimizi, həm də gələcəyə doğru böyük addımlarla irəliləməyimizi əks etdirir. Hər layihə dayanıqlığa və keyfiyyətə sadiqlik bəyannaməsidir.',
+    p1Title: 'TİKİNTİ',
+    p1Desc: 'Konsepsiyadan tam təhvilə qədər — gələcək onilliklər üçün inşa edilən premium yaşayış və kommersiya layihələri.',
+    p2Title: 'STRATEJİ LAYIHƏLƏR',
+    p2Desc: 'Regional inkişaf təşəbbüsləri və beynəlxalq tərəfdaşlıq proqramları.',
+    p3Title: 'STRATEJİ DƏHLİZ',
+    p3Desc: 'Bakı-İstanbul: regional inkişaf və beynəlxalq ticarət körpüsü.',
+    netTitle: 'BİRLİKDƏ QURURUQ',
+    netInfoDefault: 'Daha ətraflı məlumat üçün tərəfdaşın üzərinə gəlin — şəbəkəmiz böyüməkdə davam edir.',
+    pnCenter: 'Tikinti və inkişaf şirkəti.',
+    pnRegional: 'Regional inkişaf şəbəkəsi və tərəfdaşlıqlar.',
+    pnTrade: 'Strateji tərəfdaşlar və regional ittifaqlar.',
+    pnInfra: 'Mühəndislik, inşaat və birgə investisiya konsorsiumu.',
+    pnGhost1: 'Yeni strateji tərəfdaşlıq — tezliklə elan olunacaq.',
+    pnGhost2: 'Azərbaycan, Türkiyə və Avrasiya üzrə genişlənən əməkdaşlıq.',
+    pnTradeText: 'Qlobal Ticarət',
+    pnInfraText: 'İnfrastruktur',
+    pnGhost1Text: '+ Strateji Tərəfdaş',
+    pnGhost2Text: '+ Regional Şəbəkə',
+    statsLabel: '04 — Miqyas və Təsir',
+    statTitle: 'ONİLLİKLƏRLƏ ÖLÇÜLƏN TƏCRÜBƏ.',
+    statSub: 'NƏSİLLƏR ÜÇÜN QURULUR.',
+    stName0: 'İllik<br>Təcrübə', stDesc0: 'Davamlı inkişaf və möhkəm təcrübə',
+    stName1: 'Tamamlanmış<br>Layihə', stDesc1: 'Yaşayış, kommersiya və ticarət aktivləri',
+    stName2: 'Strateji<br>Tərəfdaş', stDesc2: 'Regionu birləşdirən beynəlxalq əlaqələr',
+    stName3: 'Aktiv<br>Bazar', stDesc3: 'Avrasiya miqyasında genişlənən fəaliyyət',
+    statNote: '* Demo göstəricilər — rəsmi hesabatlar dərc edildikdə yenilənəcəkdir.',
+    ldLabel: '05 — Rəhbərlik',
+    ldName: 'İDRİS ALIŞOV',
+    ldRole: 'Baş Direktor — Chief Executive Officer',
+    ldBio: 'UNEC məzunu iqtisadçı; İqtisadiyyat Nazirliyində monitorinq və icra istiqamətində uzunmüddətli dövlət təcrübəsi. Holdinqin strateji inkişafını tikinti, ticarət və təhsil sahələrində vahid vizyonla idarə edir.',
+    ldN1T: 'UNEC — Dövlət İqtisad Universiteti', ldN1S: 'İqtisadiyyat üzrə ali təhsil',
+    ldN2T: 'İqtisadiyyat Nazirliyi', ldN2S: 'Monitorinq və icra istiqamətində rəhbər vəzifələr',
+    ldN4T: 'Sumqayıt Tikinti-2 ASC', ldN4S: 'İdarə Heyətinin Sədri',
+    mvLabel: '06 — Haqqımızda',
+    mvTitle: 'TƏK BİR VİZYON. ÇOXŞAXƏLİ İSTİQAMƏT.',
+    mv1Badge: 'MİSSİYA',
+    mv1Text: 'Ənənəvi və təbii məhsulları qlobal bazarlara çıxarmaq — yerli istehsalçılarla beynəlxalq imkanlar arasında etibarlı körpü qurmaq.',
+    mv2Badge: 'VİZYON',
+    mv2Text: 'Azərbaycan və Türkiyədən başlayaraq uzunmüddətli tərəfdaşlıqları və dayanıqlı biznesləri birləşdirən aparıcı regional holdinq ekosisteminə çevrilmək.',
+    mvIdxM: '01 MİSSİYA', mvIdxV: '02 VİZYON',
+    futLabel: '07 — Gələcək',
+    futTitle: 'YENİ MƏRHƏLƏ.',
+    futSub: 'ARTIQ İNŞA EDİLİR.',
+    futBody: 'Üfüqdə holdinq ekosistemini növbəti onilliyə daşıyacaq yeni nəsil layihələr formalaşır.',
+    cTitle: 'GƏLƏCƏYİ BİRLİKDƏ İNŞA EDƏK.',
+    cSubLoc: 'Bakı, Azərbaycan',
+    cLabelPhone: 'Əlaqə nömrəsi',
+    cLabelMail: 'E-poçt',
+    cLabelFollow: 'Bizi izləyin',
+    footCopy: '© 2026 CASPIORA — Construction • Development',
+    menuFootCity: 'CASPIORA — Bakı, Azərbaycan',
+    menuLinks: ['ANA SƏHİFƏ', 'TİKİNTİ', 'QİDA VƏ TİCARƏT', 'BREND', 'PORTFOLİO', 'TƏRƏFDAŞLAR', 'MİQYAS &amp; TƏSİR', 'RƏHBƏRLİK', 'ƏLAQƏ'],
+    soundOn: 'SƏS AÇIQ',
+    soundOff: 'SƏS BAĞLI',
+    pmBtnNet: 'TƏRƏFDAŞLIQ ŞƏBƏKƏSİ',
+    pmBtnCorr: 'STRATEJİ DƏHLİZ (BAKI — İSTANBUL)',
+    cnBakuRole: 'Baş Qərargah & Xəzər Qapısı',
+    cnBakuInfo: 'BAKI — Holdinqin Baş Qərargahı, Enerji, Logistika və Xəzər Qapısı. (40.4093° N, 49.8671° E)',
+    cnIstRole: 'Ticarət & İnşaat Körpüsü',
+    cnIstInfo: 'İSTANBUL — Avropa və Asiya Qovşağı, İnşaat və Kommersiya Körpüsü. (41.0082° N, 28.9784° E)',
+    cnAsiaRole: 'Ticarət & Əmtəə Dəhlizi',
+    cnAsiaInfo: 'MƏRKƏZİ ASİYA — Aqrar Ticarət, Təbii Məhsullar və Tarixi İpək Yolu Dəhlizi.',
+    cnGlobalRole: 'İxrac & Qlobal Bazarlar',
+    cnGlobalInfo: 'QƏRBİ AVROPA VƏ QLOBAL BAZARLAR — Beynəlxalq İxrac və İnvestisiya Şəbəkəsi.'
+  },
+  en: {
+    heroSub: 'Building a Stronger Tomorrow',
+    heroTag: 'Investing in people,<br>ideas and<br>the future.',
+    discover: 'DISCOVER',
+    discoverSmall: 'SCROLL TO EXPLORE',
+    metaScr: 'SCROLL',
+    tw1: 'MORE',
+    tw2: 'THAN',
+    tw3: 'A COMPANY',
+    ecoLabel: 'The Ecosystem',
+    ecoTitle: 'Different directions.<br>One vision.',
+    ecoDesc: 'Construction, strategic projects and partnerships — different fields united by excellence.',
+    ecoNodeStrategy: 'STRATEGIC PROJECTS', ecoSubStrategy: 'Development',
+    ecoNodeCon: 'CONSTRUCTION', ecoSubCon: 'Development',
+    ecoNodeFood: 'FOOD & TRADE', ecoSubFood: 'Heritage brands',
+    ecoNodeNet: 'PARTNERSHIPS', ecoSubNet: 'Network',
+    conLabel: '01 — Construction',
+    conH: 'CONSTRUCTION',
+    conSub: 'Building spaces for the future.',
+    conBody: 'From concept to completion, we develop residential, commercial and mixed-use spaces designed for long-term value — places where people live, work and grow.',
+    conChips: ['RESIDENTIAL', 'COMMERCIAL', 'MIXED-USE'],
+    foodLabel: '02 — Food & Trade',
+    foodH: 'FOOD & TRADE',
+    foodSub: 'From tradition to the modern world.',
+    foodList: ['Spices', 'Pickles &amp; Natural', 'Sherbets &amp; Lemonade', 'Confectionery'],
+    foodBody: 'Traditional tastes carried from local heritage to modern markets — natural products and selected brands across the Türkiye–Azerbaijan corridor.',
+    fCap1Title: 'SPICES', fCap1Sub: 'Sun-dried · stone-ground',
+    fCap2Title: 'NATURAL PICKLES', fCap2Sub: 'Barrel-fermented',
+    fCap3Title: 'SHERBETS &amp; LEMONADE', fCap3Sub: 'Bottled heritage',
+    storyLabel: '03 — The Brand',
+    storyCap: 'CASPIORA � where the Caspian meets vision. The name echoes our geographic foundation and our forward movement. Every structure we build is a commitment to durability, precision, and the future of this region.',
+    p1Title: 'CONSTRUCTION',
+    p1Desc: 'Concept-to-completion development — residential, commercial and mixed-use landmarks built for the next decades.',
+    p2Title: 'FOOD & TRADE',
+    p2Desc: 'Heritage tastes, natural products and selected brands — carried from tradition into modern retail.',
+    p3Title: 'STRATEGIC CORRIDOR',
+    p3Desc: 'Baku-Istanbul: regional development and international trade bridge.',
+    netTitle: 'BUILT TOGETHER',
+    netInfoDefault: 'Hover a partner to learn more — the network keeps growing.',
+    pnCenter: 'Construction & Development company.',
+    pnRegional: 'Regional development network and partnerships.',
+    pnTrade: 'Strategic partners and regional alliances.',
+    pnInfra: 'Engineering and infrastructure consortium.',
+    pnGhost1: 'New strategic partnership — announcing soon.',
+    pnGhost2: 'Expanding alliances across Azerbaijan, Türkiye and Eurasia.',
+    pnTradeText: 'GLOBAL TRADE',
+    pnInfraText: 'INFRASTRUCTURE',
+    pnGhost1Text: '+ Strategic Partner',
+    pnGhost2Text: '+ Regional Network',
+    statsLabel: '04 — Scale & Impact',
+    statTitle: 'MEASURED IN DECADES.',
+    statSub: 'BUILT FOR GENERATIONS.',
+    stName0: 'Years of<br>Experience', stDesc0: 'Rooted in sustainable execution & regional presence',
+    stName1: 'Completed<br>Projects', stDesc1: 'Landmark residential, commercial & trade assets',
+    stName2: 'Strategic<br>Alliances', stDesc2: 'Cross-border network connecting the region',
+    stName3: 'Active<br>Markets', stDesc3: 'Expanding operational footprint across Eurasia',
+    statNote: '* Demo values — official holding figures will replace these upon formal release.',
+    ldLabel: '05 — Leadership',
+    ldName: 'İDRIS ALISHOV',
+    ldRole: 'Chief Executive Officer',
+    ldBio: 'UNEC-educated economist with long-standing public-sector experience at the Ministry of Economy. He leads the holding\'s strategic growth across construction, trade and education under a single vision.',
+    ldN1T: 'UNEC — State University of Economics', ldN1S: 'Degree in Economics',
+    ldN2T: 'Ministry of Economy', ldN2S: 'Leadership roles in monitoring & execution',
+    ldN4T: 'Sumgait Tikinti-2 CJSC', ldN4S: 'Chairman of the Board',
+    mvLabel: '06 — About',
+    mvTitle: 'ONE VISION. MANY DIRECTIONS.',
+    mv1Badge: 'MISSION',
+    mv1Text: 'Connect traditional and natural products to broader markets — building a trusted bridge between local producers and global opportunity.',
+    mv2Badge: 'VISION',
+    mv2Text: 'Become a recognized regional holding ecosystem — connecting long-term partnerships and sustainable businesses from Azerbaijan and Türkiye outward.',
+    mvIdxM: '01 MISSION', mvIdxV: '02 VISION',
+    futLabel: '07 — The Future',
+    futTitle: 'THE NEXT CHAPTER.',
+    futSub: 'IS ALREADY UNDER CONSTRUCTION.',
+    futBody: 'A new generation of projects is taking shape on the horizon — designed to carry the ecosystem into its next decade.',
+    cTitle: 'LET\'S BUILD WHAT\'S NEXT.',
+    cSubLoc: 'Baku, Azerbaijan',
+    cLabelPhone: 'Contact us',
+    cLabelMail: 'Email',
+    cLabelFollow: 'Follow',
+    footCopy: '© 2026 CASPIORA — Construction • Development',
+    menuFootCity: 'CASPIORA — Baku, Azerbaijan',
+    menuLinks: ['HOME', 'CONSTRUCTION', 'FOOD & TRADE', 'THE BRAND', 'PORTFOLIO', 'PARTNERS', 'SCALE & IMPACT', 'LEADERSHIP', 'CONTACT'],
+    soundOn: 'SOUND ON',
+    soundOff: 'SOUND OFF',
+    pmBtnNet: 'PARTNERSHIP NETWORK',
+    pmBtnCorr: 'STRATEGIC CORRIDOR (BAKU — ISTANBUL)',
+    cnBakuRole: 'HQ & Caspian Gateway',
+    cnBakuInfo: 'BAKU — Holding Headquarters, Energy, Logistics & Caspian Gateway. (40.4093° N, 49.8671° E)',
+    cnIstRole: 'Commercial & Build Bridge',
+    cnIstInfo: 'ISTANBUL — Hub of Europe & Asia, Construction & Commerce Bridge. (41.0082° N, 28.9784° E)',
+    cnAsiaRole: 'Trade & Commodity Hub',
+    cnAsiaInfo: 'CENTRAL ASIA — Agrarian Trade, Natural Commodities & Silk Road Corridor.',
+    cnGlobalRole: 'Export & Capital Markets',
+    cnGlobalInfo: 'WESTERN EUROPE & GLOBAL MARKETS — International Export & Investment Alliances.'
+  }
+};
+
+function applyLang(lang){
+  curLang = lang;
+  document.documentElement.lang = lang;
+  localStorage.setItem('islimi_lang', lang);
+  const d = DICT[lang] || DICT.az;
+
+  $$('.lang-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.setLang === lang);
+  });
+
+  $('#heroSub').textContent = d.heroSub;
+  $('#heroTagP').innerHTML = d.heroTag;
+  $('#dLab').textContent = d.discover;
+  $('#dSmall').textContent = d.discoverSmall;
+  $('#metaScr').textContent = d.metaScr;
+
+  $('#tw1').textContent = d.tw1;
+  $('#tw2').textContent = d.tw2;
+  $('#tw3').textContent = d.tw3;
+
+  $('#ecoLabel').textContent = d.ecoLabel;
+  $('#ecoTitle').innerHTML = d.ecoTitle;
+  $('#ecoDesc').textContent = d.ecoDesc;
+  $('#ecoNodeStrategy').textContent = d.ecoNodeStrategy; $('#ecoSubStrategy').textContent = d.ecoSubStrategy;
+  $('#ecoNodeCon').textContent = d.ecoNodeCon; $('#ecoSubCon').textContent = d.ecoSubCon;
+  $('#ecoNodeFood').textContent = d.ecoNodeFood; $('#ecoSubFood').textContent = d.ecoSubFood;
+  $('#ecoNodeNet').textContent = d.ecoNodeNet; $('#ecoSubNet').textContent = d.ecoSubNet;
+
+  $('#conLabel').textContent = d.conLabel;
+  $('#conSub').textContent = d.conSub;
+  $('#conBody').textContent = d.conBody;
+  $('#conChips').innerHTML = d.conChips.map(c=>`<li>${c}</li>`).join('');
+
+  $('#foodLabel').textContent = d.foodLabel;
+  $('#foodSub').textContent = d.foodSub;
+  $('#foodList').innerHTML = d.foodList.map(item=>`<li>${item}</li>`).join('');
+  $('#foodBody').textContent = d.foodBody;
+  $('#fCap1Title').textContent = d.fCap1Title; $('#fCap1Sub').textContent = d.fCap1Sub;
+  $('#fCap2Title').textContent = d.fCap2Title; $('#fCap2Sub').textContent = d.fCap2Sub;
+  $('#fCap3Title').textContent = d.fCap3Title; $('#fCap3Sub').textContent = d.fCap3Sub;
+
+  $('#storyLabel').textContent = d.storyLabel;
+  $('#storyCap').textContent = d.storyCap;
+
+  $('#p1Title').textContent = d.p1Title; $('#p1Desc').textContent = d.p1Desc;
+  $('#p2Title').textContent = d.p2Title; $('#p2Desc').textContent = d.p2Desc;
+  $('#p3Title').textContent = d.p3Title; $('#p3Desc').textContent = d.p3Desc;
+
+  $('#pnCenter').dataset.info = d.pnCenter;
+  $('#pnRegional').dataset.info = d.pnRegional;
+  $('#pnTrade').dataset.info = d.pnTrade;
+  $('#pnInfra').dataset.info = d.pnInfra;
+  $('#pnGhost1').dataset.info = d.pnGhost1;
+  $('#pnGhost2').dataset.info = d.pnGhost2;
+  $('#pnTrade').textContent = d.pnTradeText;
+  $('#pnInfra').textContent = d.pnInfraText;
+  $('#pnGhost1').textContent = d.pnGhost1Text;
+  $('#pnGhost2').textContent = d.pnGhost2Text;
+  $('#netInfo').textContent = d.netInfoDefault;
+
+  $('#statsLabel').textContent = d.statsLabel;
+  $('#statSub').textContent = d.statSub;
+
+  $('#ldLabel').textContent = d.ldLabel;
+  $('#ldName').textContent = d.ldName;
+  $('#ldRole').textContent = d.ldRole;
+  $('#ldBio').textContent = d.ldBio;
+  $('#ldN1T').textContent = d.ldN1T; $('#ldN1S').textContent = d.ldN1S;
+  $('#ldN2T').textContent = d.ldN2T; $('#ldN2S').textContent = d.ldN2S;
+  $('#ldN4T').textContent = d.ldN4T; $('#ldN4S').textContent = d.ldN4S;
+
+  $('#stName0').innerHTML = d.stName0; $('#stDesc0').textContent = d.stDesc0;
+  $('#stName1').innerHTML = d.stName1; $('#stDesc1').textContent = d.stDesc1;
+  $('#stName2').innerHTML = d.stName2; $('#stDesc2').textContent = d.stDesc2;
+  $('#stName3').innerHTML = d.stName3; $('#stDesc3').textContent = d.stDesc3;
+  $('#statNote').textContent = d.statNote;
+
+  $('#mvLabel').textContent = d.mvLabel;
+  $('#mv1Badge').textContent = d.mv1Badge; $('#mv1Text').textContent = d.mv1Text;
+  $('#mv2Badge').textContent = d.mv2Badge; $('#mv2Text').textContent = d.mv2Text;
+  $('#mvIdxM').textContent = d.mvIdxM; $('#mvIdxV').textContent = d.mvIdxV;
+
+  $('#futLabel').textContent = d.futLabel;
+  $('#futSub').textContent = d.futSub;
+  $('#futBody').textContent = d.futBody;
+
+  $('#cSubLoc').textContent = d.cSubLoc;
+  $('#cLabelPhone').textContent = d.cLabelPhone;
+  $('#cLabelMail').textContent = d.cLabelMail;
+  $('#cLabelFollow').textContent = d.cLabelFollow;
+  $('#footCopy').textContent = d.footCopy;
+  $('#menuFootCity').textContent = d.menuFootCity;
+
+  // Menu items
+  d.menuLinks.forEach((txt, idx)=>{
+    const el = $(`#mLink${idx}`);
+    if(el){ el.innerHTML = txt; el.setAttribute('data-t', txt.replace('&amp;', '&')); }
+  });
+
+  // Re-split animated titles
+  split('#conH', d.conH);
+  split('#foodH', d.foodH);
+  split('#netTitle', d.netTitle);
+  split('#statTitle', d.statTitle);
+  split('#mvTitle', d.mvTitle);
+  split('#futTitle', d.futTitle);
+  split('#cTitle', d.cTitle);
+
+  // Sound toggle label
+  if($('#soundLabel')) {
+    $('#soundLabel').textContent = isSoundActive ? d.soundOn : d.soundOff;
+  }
+  if($('#pmBtnNet')) $('#pmBtnNet').textContent = d.pmBtnNet;
+  if($('#pmBtnCorr')) $('#pmBtnCorr').textContent = d.pmBtnCorr;
+  if($('#cnBakuRole')) $('#cnBakuRole').textContent = d.cnBakuRole;
+  if($('#cnIstRole')) $('#cnIstRole').textContent = d.cnIstRole;
+  if($('#cnAsiaRole')) $('#cnAsiaRole').textContent = d.cnAsiaRole;
+  if($('#cnGlobalRole')) $('#cnGlobalRole').textContent = d.cnGlobalRole;
+  if($('#cnBaku')) $('#cnBaku').dataset.info = d.cnBakuInfo;
+  if($('#cnIst')) $('#cnIst').dataset.info = d.cnIstInfo;
+  if($('#cnAsia')) $('#cnAsia').dataset.info = d.cnAsiaInfo;
+  if($('#cnGlobal')) $('#cnGlobal').dataset.info = d.cnGlobalInfo;
+  if($('#netInfo')) {
+    $('#netInfo').textContent = activePartnerMode === 'corr' ? d.cnBakuInfo : d.netInfoDefault;
+  }
+}
+
+/* ---------- brand mark (İ as skyline) ---------- */
+function markSVG(uid){return `<svg viewBox="0 0 64 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="mg-${uid}" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#eef9fd"/><stop offset=".5" stop-color="#9fd7e8"/><stop offset="1" stop-color="#4e9cbd"/>
+</linearGradient></defs>
+<path fill="url(#mg-${uid})" d="M30 4h8v10h-8z"/>
+<path fill="url(#mg-${uid})" d="M22 18h10v74h-10z"/>
+<path fill="url(#mg-${uid})" d="M36 26h8v66h-8z"/>
+<path fill="url(#mg-${uid})" d="M6 46h10v46H6z"/>
+<path fill="url(#mg-${uid})" d="M48 38h10v46H48z"/>
+</svg>`;}
+
+// Preloader logo uses authentic logo4k.png
+// $('#plMark').outerHTML=markSVG('pl')... removed to preserve logo4k.png image
+$('#brandHome').innerHTML='<img class="brand-logo" src="assets/logo4k.png" alt="CASPIORA"/><b>CASPIORA</b>';
+$('#heroTitle').innerHTML='<img class="mark" src="assets/logo4k.png" alt="CASPIORA"/>'
+ +'<div class="ht-name" id="htName"></div><div class="ht-hold">CONSTRUCTION • DEVELOPMENT</div>';
+$('#ecoCore').insertAdjacentHTML('afterbegin',markSVG('eco'));
+
+/* letters for İSLİMİ */
+function letters(container,txt,cls){container.innerHTML=[...txt].map(c=>`<span class="${cls}">${c}</span>`).join('');}
+letters($('#plName'),NAME,'pl-i');
+letters($('#htName'),NAME,'l');
+$('#swName').innerHTML=[...NAME].map(c=>`<span class="sw">${c}</span>`).join('');
+
+/* split big titles into chars */
+function split(sel, txt){
+  const el = typeof sel === 'string' ? $(sel) : sel;
+  if(!el) return;
+  const t = txt || el.textContent;
+  el.setAttribute('aria-label', t);
+  el.textContent = '';
+  [...t].forEach(c=>{
+    const s = document.createElement('span');
+    s.className = 'ch';
+    s.innerHTML = c === ' ' ? '&nbsp;' : c;
+    el.appendChild(s);
+  });
+}
+
+/* stars */
+(function(){
+  const el=$('#stars');
+  let sh=[];
+  for(let i=0;i<96;i++){
+    sh.push(`${(Math.random()*100).toFixed(1)}vw ${(Math.random()*46).toFixed(1)}vh 0 rgba(255,255,255,${(0.15+Math.random()*0.5).toFixed(2)})`);
+  }
+  el.style.boxShadow=sh.join(',');
+})();
+
+/* hero buildings */
+function buildCity(){
+ const stage=$('#cityStage');
+ const defs=[
+  {w:132,h:38,x:32,ry:-16,d:40,z:2},
+  {w:196,h:56,x:50,ry:-11,d:54,z:3},
+  {w:150,h:43,x:67,ry:-18,d:44,z:2}
+ ];
+ defs.forEach(c=>{
+  const b=document.createElement('div');b.className='bld';
+  b.style.cssText=`left:${c.x}%;width:${c.w}px;height:${c.h}vh;--ry:${c.ry}deg;--d:${c.d}px;z-index:${c.z}`;
+  b.innerHTML=`<div class="b-base"></div><div class="b-core"><div class="b-front"></div><div class="b-side"></div><div class="b-lights"></div><div class="b-crown"></div></div>`;
+  stage.appendChild(b);
+  const L=b.querySelector('.b-lights');
+  const n=Math.round(c.w*(c.h*innerHeight/100)/1400);
+  for(let i=0;i<n;i++){
+    const w=document.createElement('i');
+    const warm=Math.random()>.4;
+    w.style.cssText=`left:${3+Math.random()*90}%;top:${2+Math.random()*90}%;--o:${(0.35+Math.random()*0.55).toFixed(2)};--fd:${(2.6+Math.random()*4.4).toFixed(1)}s;--fdl:${(-Math.random()*6).toFixed(1)}s;background:${warm?'#ffd9a1':'#aee6ff'}`;
+    L.appendChild(w);
+  }
+ });
+}
+buildCity();
+
+/* construction lights */
+(function(){
+  const L=$('#pLights');
+  for(let i=0;i<46;i++){
+    const w=document.createElement('i');
+    w.style.cssText=`left:${(4+Math.random()*90).toFixed(1)}%;top:${(3+Math.random()*92).toFixed(1)}%;--fd:${(2.4+Math.random()*4).toFixed(1)}s;--fdl:${(-Math.random()*5).toFixed(1)}s;background:${Math.random()>.3?'#ffd9a1':'#aee6ff'}`;
+    L.appendChild(w);
+  }
+})();
+
+/* ---------- global particle canvas ---------- */
+const fx=$('#fx'),fctx=fx.getContext('2d');
+let W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+let dust=[],spice=[],spiceOn=false;
+function sizeFX(){W=innerWidth;H=innerHeight;fx.width=W*DPR;fx.height=H*DPR;fctx.setTransform(DPR,0,0,DPR,0,0);}
+sizeFX();addEventListener('resize',sizeFX);
+const DUST_MAX=innerWidth<860?36:80;
+function loopFX(t){
+ fctx.clearRect(0,0,W,H);
+ if(dust.length<DUST_MAX&&Math.random()<.4)dust.push({x:Math.random()*W,y:H+12,r:.5+Math.random()*1.5,s:.12+Math.random()*.35,tw:Math.random()*6.28,o:.10+Math.random()*.28});
+ fctx.save();
+ for(let i=dust.length-1;i>=0;i--){const p=dust[i];p.y-=p.s;p.x+=Math.sin(t*.0006+p.tw)*.15;
+  if(p.y<-14){dust.splice(i,1);continue;}
+  const a=p.o*(0.55+0.45*Math.sin(t*.0016+p.tw));
+  fctx.globalAlpha=Math.max(a,0);fctx.fillStyle='#bfe4f2';fctx.beginPath();fctx.arc(p.x,p.y,p.r,0,6.283);fctx.fill();}
+ fctx.restore();
+ if(spiceOn&&spice.length<130&&Math.random()<.75){
+  spice.push({x:W*(0.16+Math.random()*0.3),y:H*(0.55+Math.random()*0.35),vx:(Math.random()-.5)*.5,vy:-(.35+Math.random()*.9),r:1+Math.random()*2.4,l:1,tw:Math.random()*6.28});}
+ for(let i=spice.length-1;i>=0;i--){const p=spice[i];p.x+=p.vx+Math.sin(t*.002+p.tw)*.3;p.y+=p.vy;p.l-=.008;
+  if(p.l<=0){spice.splice(i,1);continue;}
+  fctx.globalAlpha=Math.max(p.l*.8,0);fctx.fillStyle=p.tw>3.14?'#e8a44c':'#d07f2f';fctx.beginPath();fctx.arc(p.x,p.y,p.r*p.l,0,6.283);fctx.fill();}
+ fctx.globalAlpha=1;
+ requestAnimationFrame(loopFX);
+}
+requestAnimationFrame(loopFX);
+
+/* preloader particles */
+let plRun=true;
+(function(){
+ const c=$('#plFx'),x=c.getContext('2d');
+ const ps=[];for(let i=0;i<110;i++){const a=Math.random()*6.283;ps.push({a,r:280*(0.7+Math.random()*0.55),tr:26+Math.random()*70,sp:.004+Math.random()*.01,s:0.6+Math.random()*1.6});}
+ (function draw(){
+  if(!plRun)return;
+  x.clearRect(0,0,560,560);x.save();x.translate(280,280);
+  for(const p of ps){p.r+=(p.tr-p.r)*.022;p.a+=p.sp*(p.r<120?1.6:1);
+   x.globalAlpha=.14+.5*Math.abs(Math.sin(p.a*2.4));
+   x.fillStyle='#9fd7e8';x.beginPath();x.arc(Math.cos(p.a)*p.r,Math.sin(p.a)*p.r*.9,p.s,0,6.283);x.fill();}
+  x.restore();requestAnimationFrame(draw);
+ })();
+})();
+
+if(!hasLib){
+ document.body.classList.add('no-lib');document.body.classList.remove('locked');
+ const pl=$('#preloader');if(pl)pl.remove();plRun=false;
+ applyLang(curLang);
+ return;
+}
+
+/* ---------- libraries present: cinematic engine ---------- */
+gsap.registerPlugin(ScrollTrigger);
+history.scrollRestoration='manual';scrollTo(0,0);
+
+const lenis=window.Lenis?new Lenis({duration:1.25,smoothWheel:true}):null;
+if(lenis){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);lenis.stop();}
+const scrollToY=(target,opts={})=>{if(lenis)lenis.scrollTo(target,Object.assign({duration:1.8},opts));else if(typeof target==='number')scrollTo(0,target);else target.scrollIntoView({behavior:'smooth'});};
+
+/* ================= PRELOADER TIMELINE ================= */
+const plTl=gsap.timeline({onComplete:finishPreload});
+plTl.fromTo('#plCenter',{opacity:0},{opacity:1,duration:.4},.15)
+ .fromTo('#plMark',{opacity:0,scale:.72,filter:'blur(16px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:1.4,ease:'power2.out'},.4)
+ .to('#plMark',{filter:'drop-shadow(0 0 34px rgba(94,198,230,.75))',duration:1.1,yoyo:true,repeat:1,ease:'sine.inOut'},1.1)
+ .fromTo('.pl-i',{opacity:0,y:30,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.08,duration:.9,ease:'power3.out'},1.25)
+ .to('#plBar',{scaleX:1,duration:.8,ease:'power2.inOut'},1.95)
+ .fromTo('#plHold',{opacity:0,letterSpacing:'.9em'},{opacity:1,letterSpacing:'.42em',duration:.9,ease:'power2.out'},2.1)
+ .to({},{duration:reduced?0:.7})
+ .to('#plCenter',{scale:.6,opacity:0,filter:'blur(12px)',duration:.75,ease:'power2.in'},'>-.05');
+
+/* Preloader skip on click / keydown */
+$('#preloader').addEventListener('click', finishPreload);
+addEventListener('keydown', e=>{ if(!plDone) finishPreload(); });
+
+/* ================= CITY INTRO (time-based) ================= */
+const cityTl=gsap.timeline({paused:true});
+cityTl.fromTo('.sil-far',{opacity:0,y:34},{opacity:.5,y:0,duration:1.5,ease:'power1.out'},.15)
+ .fromTo('.sil-mid',{opacity:0,y:26},{opacity:.75,y:0,duration:1.5,ease:'power1.out'},.3)
+ .fromTo('.horizon',{opacity:0},{opacity:1,duration:1.7},.25)
+ .fromTo('.bld',{opacity:0,y:'7%'},{opacity:1,y:'0%',duration:1.15,ease:'power2.out',stagger:.32},.4)
+ .fromTo('.b-lights',{opacity:0},{opacity:1,duration:1.1,stagger:.32},1.05)
+ .fromTo('.island',{opacity:0},{opacity:1,duration:1},1.15)
+ .fromTo('.sea-shimmer',{opacity:0},{opacity:1,duration:1.2},1.3)
+ .fromTo('#nav',{y:-26,opacity:0},{y:0,opacity:1,duration:.9,ease:'power2.out'},1.7)
+ .fromTo('#htName .l',{opacity:0,y:34,filter:'blur(12px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.06,duration:1,ease:'power3.out'},1.55)
+ .fromTo('#heroTitle .ht-hold',{opacity:0,y:16},{opacity:1,y:0,duration:.8},2.15)
+ .fromTo('#heroTitle .mark',{opacity:0,scale:.8,filter:'blur(8px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:.9},2.05)
+ .fromTo('#heroSub',{opacity:0,letterSpacing:'.9em'},{opacity:1,letterSpacing:'.5em',duration:1.2,ease:'power2.out'},2.4)
+ .fromTo('#heroTag',{opacity:0,x:-30},{opacity:1,x:0,duration:1,ease:'power2.out'},2.6)
+ .fromTo('#discover',{opacity:0,y:24},{opacity:1,y:0,duration:1,ease:'power2.out'},2.75)
+ .fromTo('#heroMeta',{opacity:0},{opacity:1,duration:.9},2.9);
+
+let plDone=false;
+function finishPreload(){
+ if(plDone)return;plDone=true;plRun=false;
+ const pl=$('#preloader');gsap.to(pl,{opacity:0,duration:.6,ease:'power1.inOut',onComplete:()=>pl.remove()});
+ applyCam();
+ cityTl.play();
+ gsap.delayedCall(reduced?0:1.3,()=>{document.body.classList.remove('locked');if(lenis)lenis.start();ScrollTrigger.refresh();applyCam();});
+}
+
+/* ================= MASTER CAMERA (sole owner of #world & #cityStage) ================= */
+const worldEl=$('#world'),cityEl=$('#cityStage');
+let camKeys=null;
+function buildCamKeys(){
+ const k=[];const add=(y,w,s,ty,ry,bl)=>k.push({y,w,s,ty,ry,bl});
+ const L=(st,f)=>st.start+(st.end-st.start)*f;
+ const st1=tl1.scrollTrigger,st2=tl2.scrollTrigger,st3=tl3.scrollTrigger,st4=tl4.scrollTrigger,stStats=tlStats.scrollTrigger,st8=tl8.scrollTrigger;
+ add(st1.start,1,1,0,0,0);
+ add(L(st1,.26),1,1.42,-5,-7,0);
+ add(L(st1,.34),1,1.95,-10,-7,9);
+ add(L(st1,.55),1,1.95,-10,-7,9);
+ add(L(st1,.63),.3,2.1,-10,-7,9);
+ add(L(st1,.80),.3,2.1,-10,-7,9);
+ add(L(st1,.92),.95,.72,7,6,0);
+ add(st2.start,.95,.72,7,6,0);
+ add(L(st2,.22),.55,.64,9,10,0);
+ add(st2.end,.45,.64,9,10,0);
+ add(L(st3,.15),.1,.58,11,14,0);
+ add(L(st4,.12),0,.58,11,14,0);
+ add(stStats.start,0,.58,11,14,0);
+ add(stStats.end,0,.58,11,14,0);
+ add(st8.start,0,.58,11,14,0);
+ add(L(st8,.27),.9,.58,11,14,0);
+ add(L(st8,.68),1,.3,50,0,0);
+ add(st8.end+innerHeight,1,.3,50,0,0);
+ return k;
+}
+function applyCam(){
+ if(!camKeys)return;
+ const y=Math.max(window.scrollY||0,0),k=camKeys;
+ let a=k[0],b=k[k.length-1];
+ for(let i=0;i<k.length-1;i++){if(y>=k[i].y&&y<=k[i+1].y){a=k[i];b=k[i+1];break;}}
+ const span=b.y-a.y,t=span>0?Math.min(Math.max((y-a.y)/span,0),1):0;
+ const e=t*t*(3-2*t);
+ const w=a.w+(b.w-a.w)*e,s=a.s+(b.s-a.s)*e,ty=a.ty+(b.ty-a.ty)*e,ry=a.ry+(b.ry-a.ry)*e,bl=a.bl+(b.bl-a.bl)*e;
+ worldEl.style.opacity=w.toFixed(3);
+ cityEl.style.transform=`scale(${s.toFixed(3)}) translateY(${ty.toFixed(2)}%) rotateY(${ry.toFixed(2)}deg)`;
+ cityEl.style.filter=bl>.05?`blur(${bl.toFixed(2)}px)`:'none';
+}
+
+/* ================= ACT 1 ================= */
+const tl1=gsap.timeline({defaults:{ease:'power1.inOut'},scrollTrigger:{trigger:'#act1',start:'top top',end:'+=520%',pin:true,scrub:1,anticipatePin:1}});
+tl1
+ .to('#heroUI',{opacity:0,y:-46,filter:'blur(9px)',duration:1.3},.35)
+ .set('#aTypo',{visibility:'visible'},3.3)
+ .fromTo('.a-typo .tw:nth-child(1)',{opacity:0,filter:'blur(18px)',y:20},{opacity:1,filter:'blur(0px)',y:0,duration:.8},3.35)
+ .fromTo('.a-typo .tw:nth-child(2)',{opacity:0,filter:'blur(18px)',y:20},{opacity:1,filter:'blur(0px)',y:0,duration:.8},4.05)
+ .fromTo('.a-typo .tw:nth-child(3)',{opacity:0,filter:'blur(18px)',y:20},{opacity:1,filter:'blur(0px)',y:0,duration:.8},4.75)
+ .to('#aTypo',{scale:1.02,duration:1.2},4.75)
+ .to('.a-typo .tw',{scale:.85,opacity:0,filter:'blur(10px)',y:-16,stagger:.06,duration:.7},5.65)
+ .set('#aEco',{visibility:'visible'},6.2)
+ .fromTo('#ecoCore',{opacity:0,scale:.4},{opacity:1,scale:1,duration:.9,ease:'back.out(1.6)'},6.25)
+ .fromTo('#ecoHead',{opacity:0,x:-30},{opacity:1,x:0,duration:.8},6.5)
+ .fromTo('.eco-node',{opacity:0,scale:.6,filter:'blur(8px)'},{opacity:1,scale:1,filter:'blur(0px)',stagger:.28,duration:.75,ease:'back.out(1.4)'},6.9)
+ .fromTo('.eco-lines .ln',{strokeDashoffset:1},{strokeDashoffset:0,stagger:.15,duration:1.4,ease:'none'},7.0)
+ .fromTo('.pk1',{attr:{cx:500,cy:310},opacity:0},{attr:{cx:500,cy:66},opacity:1,duration:1.2,ease:'none'},8.3)
+ .fromTo('.pk2',{attr:{cx:500,cy:310},opacity:0},{attr:{cx:150,cy:182},opacity:1,duration:1.2,ease:'none'},8.55)
+ .fromTo('.pk3',{attr:{cx:500,cy:310},opacity:0},{attr:{cx:850,cy:182},opacity:1,duration:1.2,ease:'none'},8.8)
+ .to('.pk',{opacity:0,duration:.3},9.6)
+ .to('.a-eco',{opacity:0,scale:1.45,y:'8%',filter:'blur(9px)',duration:1.3},9.9);
+
+/* ================= CONSTRUCTION ================= */
+const tl2=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#construction',start:'top top',end:'+=210%',pin:true,scrub:1,anticipatePin:1}});
+tl2
+ .fromTo('.c-label',{opacity:0,x:-24},{opacity:1,x:0,duration:.5},.15)
+ .fromTo('.c-h .ch',{opacity:0,y:30,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.045,duration:.6},.2)
+ .fromTo('.c-sub',{opacity:0,y:22},{opacity:1,y:0,duration:.55},.75)
+ .fromTo('.c-body',{opacity:0,y:22},{opacity:1,y:0,duration:.55},.95)
+ .fromTo('.c-chips li',{opacity:0,y:16},{opacity:1,y:0,stagger:.1,duration:.45},1.15)
+ .fromTo('.p-base',{y:110,opacity:0},{y:0,opacity:1,duration:.8},.3)
+ .fromTo('.p-col',{y:150,opacity:0},{y:0,opacity:1,stagger:.08,duration:.7},.55)
+ .fromTo('.p-floor',{y:-110,opacity:0},{y:0,opacity:1,stagger:.07,duration:.6},.85)
+ .fromTo('.p-glass',{opacity:0,scaleX:.86},{opacity:1,scaleX:1,duration:.9},1.25)
+ .fromTo('#pLights',{opacity:0,clipPath:'inset(100% 0 0 0)'},{opacity:1,clipPath:'inset(0% 0 0 0)',duration:.9},1.55)
+ .fromTo('.p-crown',{opacity:0},{opacity:1,duration:.4},2.0)
+ .fromTo('.con-bld',{rotateY:-30},{rotateY:24,duration:3.6,ease:'none'},2.3)
+ .to('.con-copy',{opacity:.35,y:-20,duration:1.2},4.4);
+
+/* ================= FOOD & TRADE ================= */
+const tl3=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#food',start:'top top',end:'+=220%',pin:true,scrub:1,anticipatePin:1,
+ onUpdate:self=>{spiceOn=self.isActive&&self.progress>.04&&self.progress<.97;}}});
+tl3
+ .fromTo('.f-label',{opacity:0,x:-24},{opacity:1,x:0,duration:.5},.1)
+ .fromTo('.f-h .ch',{opacity:0,y:30,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.04,duration:.6},.15)
+ .fromTo('.f-sub',{opacity:0,y:22},{opacity:1,y:0,duration:.55},.6)
+ .fromTo('.f-list li',{opacity:0,x:28},{opacity:1,x:0,stagger:.11,duration:.5},.8)
+ .fromTo('.f-body',{opacity:0,y:20},{opacity:1,y:0,duration:.55},1.25)
+ .fromTo('#fSpin',{rotateY:-7},{rotateY:9,duration:8.6,ease:'none'},0)
+ .fromTo('.s1',{opacity:0,y:56,rotateY:-12,filter:'blur(12px)'},{opacity:1,y:0,rotateY:0,filter:'blur(0px)',duration:.85},.25)
+ .to('.s1',{opacity:0,y:-46,filter:'blur(9px)',duration:.6},2.75)
+ .fromTo('.s2',{opacity:0,y:56,rotateY:-12,filter:'blur(12px)'},{opacity:1,y:0,rotateY:0,filter:'blur(0px)',duration:.85},2.95)
+ .to('.s2',{opacity:0,y:-46,filter:'blur(9px)',duration:.6},5.45)
+ .fromTo('.s3',{opacity:0,y:56,rotateY:-12,filter:'blur(12px)'},{opacity:1,y:0,rotateY:0,filter:'blur(0px)',duration:.85},5.65)
+ .to('.s3',{scale:1.06,duration:1.4,ease:'none'},6.7);
+
+/* ================= STORY (USER AUTHENTIC MOTIF) ================= */
+const tl4=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#story',start:'top top',end:'+=210%',pin:true,scrub:1,anticipatePin:1}});
+tl4
+ .fromTo('.story-black',{opacity:0},{opacity:1,duration:1},0)
+ .fromTo('.story-label',{opacity:0,x:-24},{opacity:1,x:0,duration:.5},.3)
+ .fromTo('#motifWrap',{opacity:0,scale:.38,rotate:-14,filter:'blur(16px)'},{opacity:1,scale:1,rotate:0,filter:'blur(0px)',duration:2.0,ease:'power2.out'},.5)
+ .fromTo('.sw',{opacity:0,filter:'blur(12px)',y:26},{opacity:1,filter:'blur(0px)',y:0,stagger:.1,duration:.8},3.6)
+ .to('#motifWrap',{opacity:.25,scale:1.45,y:'-14vh',rotate:6,duration:2.0,ease:'power1.inOut'},3.8)
+ .to('#storyBar',{scaleX:1,duration:.7},4.8)
+ .to('#storyHold',{opacity:1,duration:.6},5.0)
+ .fromTo('#storyCap',{opacity:0,y:26},{opacity:1,y:0,duration:.9},5.4)
+ .to('#motifWrap',{rotate:10,duration:2.6,ease:'none'},6.0);
+
+/* ================= PORTFOLIO ================= */
+gsap.set('#ps2,#ps3',{y:'-102%'});
+gsap.set('#ps2 .p-inner,#ps3 .p-inner',{scale:.94});
+const tl5=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#portfolio',start:'top top',end:'+=330%',pin:true,scrub:1,anticipatePin:1}});
+tl5
+ .set('.pslide',{visibility:'visible'},0)
+ .fromTo('.pi1',{opacity:0,y:40},{opacity:1,y:0,duration:.7,ease:'power2.out'},.05)
+ .fromTo('.pi2',{opacity:0,y:40},{opacity:1,y:0,duration:.7,ease:'power2.out'},2.3)
+ .fromTo('.pi3',{opacity:0,y:40},{opacity:1,y:0,duration:.7,ease:'power2.out'},4.6)
+ .fromTo('#ps1 .p-inner',{scale:1,y:'0%'},{scale:1.17,y:'4%',duration:2.5},0)
+ .to('#ps1',{y:'22%',duration:1.15,ease:'power1.in'},1.25)
+ .fromTo('#ps2',{y:'-102%'},{y:'0%',duration:1.15,ease:'power1.inOut'},1.25)
+ .fromTo('#ps2 .p-inner',{scale:.94},{scale:1.17,y:'4%',duration:2.5,immediateRender:false},2.4)
+ .to('#ps2',{y:'22%',duration:1.15,ease:'power1.in'},3.55)
+ .fromTo('#ps3',{y:'-102%'},{y:'0%',duration:1.15,ease:'power1.inOut'},3.55)
+ .fromTo('#ps3 .p-inner',{scale:.94},{scale:1.12,y:'2%',duration:2.7,immediateRender:false},4.7)
+ .to('.pi3',{y:-14,duration:1},5.6);
+
+/* ================= PARTNERS ================= */
+const tl6=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#partners',start:'top top',end:'+=170%',pin:true,scrub:1,anticipatePin:1}});
+tl6
+ .fromTo('#netTitle .ch',{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.05,duration:.7},.1)
+ .fromTo('.net-svg .nl',{strokeDashoffset:1},{strokeDashoffset:0,stagger:.14,duration:1.6,ease:'none'},.5)
+ .fromTo('.net-svg .nd',{opacity:0,scale:0},{opacity:1,scale:1,stagger:.12,duration:.5,transformOrigin:'center'},1.2)
+ .fromTo('.pnode',{opacity:0,scale:.7,filter:'blur(8px)'},{opacity:1,scale:1,filter:'blur(0px)',stagger:.16,duration:.8},1.8)
+ .fromTo('#netInfo',{opacity:0,y:16},{opacity:1,y:0,duration:.6},3.0)
+ .fromTo('.net-svg',{rotate:0},{rotate:1.6,transformOrigin:'50% 50%',duration:2.4,ease:'sine.inOut'},3.4)
+ .to('.net-svg',{rotate:-1.2,duration:2.2,ease:'sine.inOut'},5.8);
+
+const netStage=$('#netStage'),netInfo=$('#netInfo');
+$$('.pnode').forEach(n=>{
+ n.addEventListener('mouseenter',()=>{
+   netStage.classList.add('hovering');
+   n.classList.add('hot');
+   netInfo.textContent=n.dataset.info || '';
+   netInfo.style.color='#cfeffb';
+ });
+ n.addEventListener('mouseleave',()=>{
+   netStage.classList.remove('hovering');
+   n.classList.remove('hot');
+   netInfo.textContent=DICT[curLang]?.netInfoDefault || 'Hover a partner to learn more — the network keeps growing.';
+   netInfo.style.color='';
+ });
+});
+
+/* ================= STATS (SCALE & IMPACT - PINNED SCENE) ================= */
+let statsCounted=false;
+function runCounters(){
+ if(statsCounted) return;
+ statsCounted=true;
+ $$('.stat-num').forEach(b=>{
+   const end=+b.dataset.n,o={v:0};
+   gsap.to(o,{v:end,duration:2.0,ease:'power2.out',onUpdate:()=>{
+     b.innerHTML=Math.round(o.v)+`<em>${end===4?'':'+'}</em>`;
+   }});
+ });
+}
+
+const tlStats=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{
+ trigger:'#stats',start:'top top',end:'+=180%',pin:true,scrub:1,anticipatePin:1,
+ onEnter:()=>runCounters(),
+ onUpdate:self=>{ if(self.progress>.08) runCounters(); }
+}});
+
+tlStats
+ .fromTo('#statsHead',{opacity:0,y:40,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:1.0},.1)
+ .fromTo('#statTitle .ch',{opacity:0,y:28,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.03,duration:.8},.2)
+ .fromTo('#statGrid',{opacity:0,y:50,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:1.2},.5)
+ .fromTo('.stat',{opacity:0,scale:.92,y:30},{opacity:1,scale:1,y:0,stagger:.12,duration:.9,onStart:()=>{
+   $$('.stat').forEach(st=>st.classList.add('lit'));
+ }},.7)
+ .fromTo('#statNote',{opacity:0,y:16},{opacity:1,y:0,duration:.7},1.6);
+
+/* ================= LEADERSHIP (CEO) ================= */
+const tlLeader=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#leader',start:'top top',end:'+=190%',pin:true,scrub:1,anticipatePin:1}});
+tlLeader
+ .fromTo('.ld-visual',{opacity:0,x:-60,filter:'blur(12px)'},{opacity:1,x:0,filter:'blur(0px)',duration:1.1},.15)
+ .fromTo('.ld-aura',{opacity:0,scale:.7},{opacity:1,scale:1,duration:1.6},.3)
+ .fromTo('#ldFrame',{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',duration:1.4,ease:'power2.inOut'},.25)
+ .fromTo('#ldLabel',{opacity:0,x:-24},{opacity:1,x:0,duration:.5},.4)
+ .fromTo('#ldName',{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.9},.55)
+ .fromTo('#ldRole',{opacity:0,y:22},{opacity:1,y:0,duration:.6},.85)
+ .fromTo('#ldBio',{opacity:0,y:22},{opacity:1,y:0,duration:.6},1.05)
+ .fromTo('.ld-frame-line',{opacity:0,scale:0},{opacity:1,scale:1,stagger:.1,duration:.5},1.1)
+ .fromTo('#ldBadge',{opacity:0,y:16},{opacity:1,y:0,duration:.6},1.4)
+ .fromTo('.ld-node',{opacity:0,x:34,filter:'blur(6px)'},{opacity:1,x:0,filter:'blur(0px)',stagger:.22,duration:.7},1.25)
+ .to('.ld-visual',{y:-20,duration:1.4,ease:'none'},2.3)
+ .to('.ld-copy',{y:-12,duration:1.4,ease:'none'},2.3);
+
+/* ================= MISSION / VISION ================= */
+gsap.set('#mv2',{opacity:0});
+const tl7=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#mv',start:'top top',end:'+=190%',pin:true,scrub:1,anticipatePin:1,
+ onUpdate:self=>{$('#idxM').classList.toggle('on',self.progress<.55);$('#idxV').classList.toggle('on',self.progress>=.55);}}});
+tl7
+ .fromTo('#mv .sec-label',{opacity:0,x:-24},{opacity:1,x:0,duration:.5},.1)
+ .fromTo('#mvTitle .ch',{opacity:0,y:30,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.03,duration:.7},.2)
+ .fromTo('#mv1',{opacity:0,scale:.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:1},1.1)
+ .to('#mv1',{opacity:.1,scale:.84,filter:'blur(5px)',y:'-3%',duration:1.1},3.4)
+ .fromTo('#mv2',{opacity:0,y:90,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:1.1},3.6)
+ .to('#mv2',{scale:1.04,duration:1.4,ease:'none'},5.2)
+ .to('#mv .pin-wrap > *:not(.mv-stage)',{opacity:0,duration:.8},6.2)
+ .to('#mv2',{opacity:0,y:-50,duration:.8},6.3);
+
+/* ================= FUTURE ================= */
+const tl8=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#future',start:'top top',end:'+=220%',pin:true,scrub:1,anticipatePin:1}});
+tl8
+ .fromTo('.fog',{opacity:.55},{opacity:.95,duration:1.6},.8)
+ .fromTo('#newBld',{opacity:0,clipPath:'inset(100% 0 0 0)'},{opacity:1,clipPath:'inset(0% 0 0 0)',duration:1.5,ease:'power2.inOut'},1.8)
+ .fromTo('.nb-core',{filter:'brightness(.4)'},{filter:'brightness(1.25)',duration:1.2},2.6)
+ .fromTo('.fut-line',{scaleX:0},{scaleX:1,duration:.7},3.1)
+ .fromTo('#futTitle .ch',{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.05,duration:.7},3.2)
+ .fromTo('#future .h-sub',{opacity:0,letterSpacing:'.8em'},{opacity:1,letterSpacing:'.34em',duration:.9},4.1)
+ .fromTo('#future .body',{opacity:0,y:20},{opacity:1,y:0,duration:.7},4.5)
+ .fromTo('#future .sec-label',{opacity:0,x:-20},{opacity:1,x:0,duration:.5},4.3);
+
+/* ================= CONTACT reveals ================= */
+gsap.set('.c-wrap .rv',{opacity:0,y:34,filter:'blur(8px)'});
+ScrollTrigger.create({trigger:'#contact',start:'top 70%',once:true,onEnter:()=>{
+ gsap.to('.c-wrap .rv',{opacity:1,y:0,filter:'blur(0px)',stagger:.14,duration:1,ease:'power2.out'});
+}});
+
+/* ================= MENU ================= */
+const menu=$('#menu'),menuLinks=$$('.menu-link');
+let menuOpen=false;
+function openMenu(){menuOpen=true;menu.style.visibility='visible';
+ gsap.to(menu,{opacity:1,duration:.45,ease:'power1.out'});
+ gsap.fromTo(menuLinks,{opacity:0,y:54,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.06,duration:.7,ease:'power3.out',delay:.1});
+ gsap.fromTo('.menu-close, .menu-foot',{opacity:0},{opacity:1,duration:.5,delay:.4});
+ if(lenis)lenis.stop();}
+function closeMenu(){menuOpen=false;
+ gsap.to(menu,{opacity:0,duration:.35,ease:'power1.in',onComplete:()=>{menu.style.visibility='hidden';}});
+ if(lenis)lenis.start();}
+$('#menuBtn').addEventListener('click',openMenu);
+$('#menuClose').addEventListener('click',closeMenu);
+addEventListener('keydown',e=>{if(e.key==='Escape'&&menuOpen)closeMenu();});
+
+/* navigation targets */
+const GO={
+  top:'#top',
+  construction:'#construction',
+  food:'#food',
+  story:'#story',
+  portfolio:'#portfolio',
+  partners:'#partners',
+  stats:'#stats',
+  leader:'#leader',
+  contact:'#contact'
+};
+
+$$('[data-go]').forEach(el=>el.addEventListener('click',e=>{
+ e.preventDefault();
+ const t=GO[el.dataset.go];
+ const wasOpen=menuOpen;
+ if(menuOpen)closeMenu();
+ gsap.delayedCall(wasOpen?.3:0,()=>{
+  if(el.dataset.go==='top')scrollToY(0);
+  else {
+    const targetEl=$(t);
+    if(targetEl){
+      const st=ScrollTrigger.getAll().find(s=>s.trigger===targetEl);
+      if(st) scrollToY(st.start);
+      else scrollToY(targetEl);
+    }
+  }
+ });
+}));
+
+$('#discover').addEventListener('click',()=>scrollToY(innerHeight*1.15));
+$('#toTop').addEventListener('click',()=>scrollToY(0));
+
+/* Language switch click handlers */
+$$('[data-set-lang]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    applyLang(btn.dataset.setLang);
+  });
+});
+
+addEventListener('resize',()=>ScrollTrigger.refresh());
+ScrollTrigger.addEventListener('refresh',()=>{camKeys=buildCamKeys();applyCam();});
+addEventListener('scroll',applyCam,{passive:true});
+
+// Initialize active language
+applyLang(curLang);
+
+
+/* =========================================================
+   FEATURE 1 & 2: CUSTOM MAGNETIC CURSOR & 2.5D MOUSE TILT
+   ========================================================= */
+const cursorDot = $('#cursorDot'), cursorRing = $('#cursorRing');
+let mouseX = -200, mouseY = -200, ringX = -200, ringY = -200;
+let cursorVisible = false;
+let targetTiltX = 0, targetTiltY = 0, curTiltX = 0, curTiltY = 0;
+
+const silFar = $('.sil-far'), silMid = $('.sil-mid'), islandEl = $('.island');
+const conBld = $('#conBld'), motifWrap = $('#motifWrap');
+
+window.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  if (!cursorVisible) {
+    cursorVisible = true;
+    if (cursorDot) cursorDot.classList.add('cursor-visible');
+    if (cursorRing) cursorRing.classList.add('cursor-visible');
+  }
+  if (cursorDot) {
+    cursorDot.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
+  }
+  // Minimal 2.5D tilt target coordinates (-1 to 1)
+  targetTiltX = (e.clientX / innerWidth - 0.5) * 2;
+  targetTiltY = (e.clientY / innerHeight - 0.5) * 2;
+});
+
+document.addEventListener('mouseleave', () => {
+  cursorVisible = false;
+  if (cursorDot) cursorDot.classList.remove('cursor-visible');
+  if (cursorRing) cursorRing.classList.remove('cursor-visible');
+  targetTiltX = 0;
+  targetTiltY = 0;
+});
+
+// Subtle mobile gyroscope support
+window.addEventListener('deviceorientation', e => {
+  if (e.gamma != null && e.beta != null) {
+    targetTiltX = Math.max(-1, Math.min(1, e.gamma / 25));
+    targetTiltY = Math.max(-1, Math.min(1, (e.beta - 40) / 25));
+  }
+});
+
+// Magnetic hover targets
+const interactiveSelector = 'button, a, [data-go], .pnode, .cnode, .stat, .chips li, .lang-btn, .pm-btn, #discover, #toTop';
+document.addEventListener('mouseover', e => {
+  if (e.target.closest(interactiveSelector)) {
+    if (cursorRing) cursorRing.classList.add('active');
+    if (cursorDot) cursorDot.classList.add('active');
+    playChime(1200, 0.04);
+  }
+});
+document.addEventListener('mouseout', e => {
+  if (e.target.closest(interactiveSelector)) {
+    if (cursorRing) cursorRing.classList.remove('active');
+    if (cursorDot) cursorDot.classList.remove('active');
+  }
+});
+
+// Cursor lerp & 2.5D Tilt animation loop
+function renderCursorAndTilt() {
+  // Cursor lerp
+  ringX += (mouseX - ringX) * 0.18;
+  ringY += (mouseY - ringY) * 0.18;
+  if (cursorRing && cursorVisible) {
+    const rw = cursorRing.offsetWidth || 32;
+    const rh = cursorRing.offsetHeight || 32;
+    cursorRing.style.transform = `translate3d(${ringX - rw / 2}px, ${ringY - rh / 2}px, 0)`;
+  }
+
+  // Minimal 2.5D Tilt lerp
+  curTiltX += (targetTiltX - curTiltX) * 0.05;
+  curTiltY += (targetTiltY - curTiltY) * 0.05;
+
+  // Hero subtle 2.5D float
+  const heroUI = $('#heroUI');
+  if (heroUI) heroUI.style.transform = `translate3d(${curTiltX * 8}px, ${curTiltY * 6}px, 0)`;
+
+  // Background layers 2.5D parallax
+  if (silFar) silFar.style.transform = `translate3d(${-curTiltX * 10}px, ${-curTiltY * 6}px, 0)`;
+  if (silMid) silMid.style.transform = `translate3d(${-curTiltX * 20}px, ${-curTiltY * 11}px, 0)`;
+  if (islandEl) islandEl.style.transform = `translate3d(${-curTiltX * 14}px, ${-curTiltY * 8}px, 0)`;
+
+  // 3D Construction Stage tilt
+  const conStage = $('.con-stage');
+  if (conStage) conStage.style.transform = `perspective(900px) rotateX(${-curTiltY * 4.5}deg) rotateY(${curTiltX * 5}deg)`;
+
+  // Authentic Motif 2.5D orbit tilt
+  const motifImg = $('#motifImg');
+  if (motifImg) motifImg.style.transform = `perspective(900px) rotateX(${-curTiltY * 5}deg) rotateY(${curTiltX * 5}deg) translate3d(${curTiltX * 12}px, ${curTiltY * 8}px, 0)`;
+
+  // CEO portrait 2.5D tilt (frame rotates, photo drifts slightly deeper)
+  const ldFrame = $('#ldFrame'), ldPhoto = $('#ldPhoto');
+  if (ldFrame) ldFrame.style.transform = `perspective(900px) rotateX(${-curTiltY * 4}deg) rotateY(${curTiltX * 5}deg)`;
+  if (ldPhoto) ldPhoto.style.transform = `scale(1.08) translate3d(${-curTiltX * 10}px, ${-curTiltY * 7}px, 0)`;
+
+  requestAnimationFrame(renderCursorAndTilt);
+}
+requestAnimationFrame(renderCursorAndTilt);
+
+/* =========================================================
+   FEATURE 3: STRATEGIC CORRIDOR MAP & MODE TOGGLE
+   ========================================================= */
+const corridorStage = $('#corridorStage');
+const pmBtnNet = $('#pmBtnNet'), pmBtnCorr = $('#pmBtnCorr');
+// activePartnerMode declared at top
+
+function setPartnerMode(mode) {
+  if (activePartnerMode === mode) return;
+  activePartnerMode = mode;
+  playChime(1500, 0.06);
+
+  if (mode === 'net') {
+    pmBtnNet.classList.add('active');
+    pmBtnCorr.classList.remove('active');
+    gsap.to(corridorStage, {
+      opacity: 0, duration: 0.35, ease: 'power2.in', onComplete: () => {
+        corridorStage.style.display = 'none';
+        netStage.style.display = 'block';
+        gsap.fromTo(netStage, { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power2.out' });
+        netInfo.textContent = DICT[curLang]?.netInfoDefault || '';
+      }
+    });
+  } else {
+    pmBtnCorr.classList.add('active');
+    pmBtnNet.classList.remove('active');
+    gsap.to(netStage, {
+      opacity: 0, duration: 0.35, ease: 'power2.in', onComplete: () => {
+        netStage.style.display = 'none';
+        corridorStage.style.display = 'block';
+        gsap.fromTo(corridorStage, { opacity: 0 }, { opacity: 1, duration: 0.45, ease: 'power2.out' });
+        netInfo.textContent = DICT[curLang]?.cnBakuInfo || '';
+      }
+    });
+  }
+}
+
+if (pmBtnNet) pmBtnNet.addEventListener('click', () => setPartnerMode('net'));
+if (pmBtnCorr) pmBtnCorr.addEventListener('click', () => setPartnerMode('corr'));
+
+// Laser pulse travel animation along Baku-Istanbul arc
+const pulse1 = $('#laserPulse1'), pulse2 = $('#laserPulse2');
+let pulseProg1 = 0, pulseProg2 = 0.5;
+function loopLaserPulses() {
+  if (activePartnerMode === 'corr') {
+    pulseProg1 = (pulseProg1 + 0.005) % 1;
+    pulseProg2 = (pulseProg2 + 0.004) % 1;
+    const getArcPoint = t => {
+      const u = 1 - t;
+      const x = u*u*u*360 + 3*u*u*t*440 + 3*u*t*t*600 + t*t*t*680;
+      const y = u*u*u*250 + 3*u*u*t*130 + 3*u*t*t*130 + t*t*t*250;
+      return { x, y };
+    };
+    if (pulse1) {
+      const p1 = getArcPoint(pulseProg1);
+      pulse1.setAttribute('cx', p1.x);
+      pulse1.setAttribute('cy', p1.y);
+    }
+    if (pulse2) {
+      const p2 = getArcPoint(pulseProg2);
+      pulse2.setAttribute('cx', p2.x);
+      pulse2.setAttribute('cy', p2.y);
+    }
+  }
+  requestAnimationFrame(loopLaserPulses);
+}
+requestAnimationFrame(loopLaserPulses);
+
+// Interactive hover on corridor nodes
+$$('.cnode').forEach(node => {
+  node.addEventListener('mouseenter', () => {
+    corridorStage.classList.add('hovering');
+    node.classList.add('hot');
+    netInfo.textContent = node.dataset.info || '';
+    netInfo.style.color = '#cfeffb';
+    playChime(1400, 0.05);
+  });
+  node.addEventListener('mouseleave', () => {
+    corridorStage.classList.remove('hovering');
+    node.classList.remove('hot');
+    netInfo.textContent = DICT[curLang]?.cnBakuInfo || '';
+    netInfo.style.color = '';
+  });
+});
+
+/* =========================================================
+   FEATURE 4: CINEMATIC AMBIENT MUSIC & SOUND ENGINE
+   User song with muffled (low-pass) distant background feel
+   ========================================================= */
+let audioCtx = null;
+let masterGain = null;
+let musicFilter = null;
+let musicGain = null;
+let bgMusic = null;
+let musicSource = null;
+let audioInitialized = false;
+
+function initAudio() {
+  if (audioInitialized) return;
+  const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtxClass) return;
+
+  try {
+    audioCtx = new AudioCtxClass();
+
+    masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+    masterGain.connect(audioCtx.destination);
+
+    // Muffled / Distant Low-Pass Filter (850Hz cuts harsh highs for that deep atmospheric background)
+    musicFilter = audioCtx.createBiquadFilter();
+    musicFilter.type = 'lowpass';
+    musicFilter.frequency.setValueAtTime(850, audioCtx.currentTime);
+    musicFilter.Q.setValueAtTime(1.2, audioCtx.currentTime);
+    musicFilter.connect(masterGain);
+
+    // Background music element
+    bgMusic = new Audio('assets/ambient.mp3');
+    bgMusic.loop = true;
+    bgMusic.preload = 'auto';
+
+    try {
+      musicSource = audioCtx.createMediaElementSource(bgMusic);
+      musicSource.connect(musicFilter);
+    } catch (e) {
+      // Fallback if media element source restricted
+      bgMusic.volume = 0.18;
+    }
+
+    audioInitialized = true;
+  } catch (err) {
+    console.warn('Audio init note:', err);
+  }
+}
+
+function startAmbientSound() {
+  if (isSoundActive) return;
+  initAudio();
+  if (!audioCtx) return;
+
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+
+  isSoundActive = true;
+  const btn = $('#soundToggle');
+  const label = $('#soundLabel');
+  const d = DICT[curLang] || DICT.az;
+  if (btn) btn.classList.add('playing');
+  if (label) label.textContent = d.soundOn;
+
+  if (bgMusic) {
+    bgMusic.play().catch(() => {});
+  }
+
+  // Smooth fade in to a gentle background level (0.18 = subtle background, not loud)
+  const now = audioCtx.currentTime;
+  masterGain.gain.cancelScheduledValues(now);
+  masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+  masterGain.gain.linearRampToValueAtTime(0.18, now + 2.5);
+}
+
+function stopAmbientSound() {
+  if (!isSoundActive) return;
+  isSoundActive = false;
+  const btn = $('#soundToggle');
+  const label = $('#soundLabel');
+  const d = DICT[curLang] || DICT.az;
+  if (btn) btn.classList.remove('playing');
+  if (label) label.textContent = d.soundOff;
+
+  if (audioCtx && masterGain) {
+    const now = audioCtx.currentTime;
+    masterGain.gain.cancelScheduledValues(now);
+    masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+    masterGain.gain.linearRampToValueAtTime(0, now + 0.8);
+    setTimeout(() => {
+      if (!isSoundActive && bgMusic) bgMusic.pause();
+    }, 850);
+  } else if (bgMusic) {
+    bgMusic.pause();
+  }
+}
+
+function toggleSound() {
+  if (isSoundActive) {
+    stopAmbientSound();
+  } else {
+    startAmbientSound();
+    playChime(1760, 0.08);
+  }
+}
+
+// Auto-start ambient music on first user interaction (click anywhere, preloader skip, scroll, or keydown)
+function tryAutoPlayAmbient() {
+  const onUserGesture = () => {
+    startAmbientSound();
+    window.removeEventListener('click', onUserGesture);
+    window.removeEventListener('scroll', onUserGesture);
+    window.removeEventListener('keydown', onUserGesture);
+    window.removeEventListener('touchstart', onUserGesture);
+  };
+  window.addEventListener('click', onUserGesture, { once: true });
+  window.addEventListener('scroll', onUserGesture, { once: true });
+  window.addEventListener('keydown', onUserGesture, { once: true });
+  window.addEventListener('touchstart', onUserGesture, { once: true });
+
+  // Also try direct autoplay immediately if browser allows it
+  setTimeout(() => {
+    initAudio();
+    if (bgMusic) {
+      bgMusic.play().then(() => {
+        startAmbientSound();
+      }).catch(() => {
+        // Autoplay policy prevented immediate start, user gesture handler above will activate it smoothly
+      });
+    }
+  }, 600);
+}
+tryAutoPlayAmbient();
+
+function playChime(freq = 1200, vol = 0.05) {
+  if (!isSoundActive || !audioCtx) return;
+  try {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    g.gain.setValueAtTime(vol, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.35);
+    osc.connect(g);
+    g.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.36);
+  } catch (err) {}
+}
+
+const soundToggleBtn = $('#soundToggle');
+if (soundToggleBtn) {
+  soundToggleBtn.addEventListener('click', toggleSound);
+}
+
+
+ScrollTrigger.refresh();
+applyCam();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "islimi-holding-corporate-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Standalone premium corporate website for ISLIMI HOLDING",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build.js"
+  }
+}
