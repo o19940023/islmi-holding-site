@@ -10,7 +10,7 @@
 <title>CASPIORA — Construction • Development</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 /* ============ ALMAZ font ============ */
 @font-face {
@@ -28,10 +28,14 @@
   --acc:#5ec6e6;--acc2:#a5e1f2;--acc-dim:rgba(94,198,230,.35);
   --warm:#d99a55;
   --line:rgba(140,210,235,.14);
-  --sans:'DM Sans',system-ui,sans-serif;
+  --sans:'DM Sans','Noto Sans','Noto Sans SC','Noto Sans JP',system-ui,sans-serif;
   --serif:'Marcellus',serif;
   --riccione:'ALMAZ',serif;
 }
+/* per-language font stacks (Cyrillic & CJK coverage) */
+html[lang="ru"] body{--sans:'DM Sans','Noto Sans',system-ui,sans-serif}
+html[lang="zh"] body{--sans:'DM Sans','Noto Sans SC','Noto Sans',system-ui,sans-serif}
+html[lang="ja"] body{--sans:'DM Sans','Noto Sans JP','Noto Sans',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scrollbar-width:thin;scrollbar-color:#12354a #02060b}
 ::-webkit-scrollbar{width:9px}::-webkit-scrollbar-thumb{background:#12354a;border-radius:9px}::-webkit-scrollbar-track{background:#02060b}
@@ -133,10 +137,30 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
 .brand:hover .brand-logo{transform:scale(1.08);filter:drop-shadow(0 0 16px rgba(94,198,230,.65))}
 .brand b{font-family:var(--riccione);font-weight:400;font-size:15px;letter-spacing:.3em;text-transform:uppercase}
 .nav-actions{display:flex;align-items:center;gap:22px}
-.lang-toggle{display:inline-flex;align-items:center;background:rgba(7,24,38,.65);border:1px solid rgba(140,210,235,.22);border-radius:24px;padding:3px;backdrop-filter:blur(8px);transition:.3s}
-.lang-toggle:hover{border-color:rgba(165,225,242,.45);box-shadow:0 0 16px rgba(94,198,230,.18)}
-.lang-btn{font-size:10px;font-weight:500;letter-spacing:.16em;padding:5px 11px;border-radius:18px;color:var(--mut);transition:color .25s,background .25s,box-shadow .25s}
-.lang-btn.active{color:#fff;background:rgba(94,198,230,.22);box-shadow:0 0 12px rgba(94,198,230,.4);font-weight:600}
+/* language switcher (dropdown) */
+.lang-switch{position:relative;display:inline-flex}
+.lang-current{display:inline-flex;align-items:center;gap:8px;background:rgba(7,24,38,.65);border:1px solid rgba(140,210,235,.22);border-radius:24px;padding:8px 14px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--mut);font-size:10px;font-weight:500;letter-spacing:.18em;transition:border-color .3s,box-shadow .3s,color .3s}
+.lang-current:hover{border-color:rgba(165,225,242,.45);color:var(--tx);box-shadow:0 0 16px rgba(94,198,230,.18)}
+.lang-current .globe{width:13px;height:13px;color:var(--acc);flex:none}
+.lang-current .chev{width:8px;height:5px;color:rgba(143,169,182,.9);transition:transform .3s ease;flex:none}
+.lang-switch.open .chev{transform:rotate(180deg)}
+.lang-switch.open .lang-current{border-color:rgba(165,225,242,.5);color:var(--tx);box-shadow:0 0 18px rgba(94,198,230,.25)}
+.lang-cur-code{min-width:20px;text-align:center;color:var(--acc2)}
+.lang-menu{position:absolute;top:calc(100% + 10px);right:0;min-width:200px;padding:6px;display:grid;gap:2px;
+  background:rgba(4,16,26,.96);border:1px solid rgba(140,210,235,.28);border-radius:14px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 30px rgba(94,198,230,.12);
+  opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .28s ease,transform .28s ease,visibility .28s;z-index:99}
+.lang-switch.open .lang-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-switch.drop-up .lang-menu{top:auto;bottom:calc(100% + 10px);transform:translateY(8px)}
+.lang-switch.drop-up.open .lang-menu{transform:translateY(0)}
+.lang-opt{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 13px;border-radius:9px;text-align:left;
+  color:var(--mut);transition:background .25s,color .25s}
+.lang-opt .native{font-size:11.5px;letter-spacing:.06em}
+.lang-opt .code{font-size:9px;letter-spacing:.22em;color:rgba(143,169,182,.65);border:1px solid rgba(140,210,235,.18);border-radius:6px;padding:3px 7px;transition:color .25s,border-color .25s,background .25s}
+.lang-opt:hover{background:rgba(94,198,230,.1);color:#fff}
+.lang-opt:hover .code{color:var(--acc2);border-color:rgba(140,210,235,.35)}
+.lang-opt.active{background:rgba(94,198,230,.14);color:#fff}
+.lang-opt.active .code{color:var(--acc);border-color:rgba(94,198,230,.5);background:rgba(94,198,230,.12)}
 #menuBtn{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--tx);padding:10px 2px;position:relative}
 #menuBtn::after{content:'';position:absolute;left:0;bottom:4px;width:100%;height:1px;background:linear-gradient(90deg,var(--acc2),transparent);transform:scaleX(.35);transform-origin:left;transition:.4s}
 #menuBtn:hover::after{transform:scaleX(1)}
@@ -174,6 +198,17 @@ section,#act1{position:relative;height:100vh;min-height:100vh;overflow:hidden}
 #discover .d-ring svg{width:14px;animation:dip 2s ease-in-out infinite}
 #discover:hover .d-ring{background:rgba(94,198,230,.14);box-shadow:0 0 30px rgba(94,198,230,.3)}
 #discover small{font-size:8px;letter-spacing:.3em;color:var(--mut)}
+/* ---- launch notice (pre-opening band) ---- */
+#launch{position:absolute;left:0;right:0;bottom:clamp(52px,10.5vh,116px);text-align:center;z-index:7;pointer-events:none;transform-origin:50% 100%;will-change:transform,opacity,filter}
+.lx-inner{display:grid;justify-items:center;gap:clamp(8px,1.4vh,16px);animation:lxFloat 7s ease-in-out infinite}
+@keyframes lxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.lx-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.42em;margin-left:.42em;color:var(--acc2);text-transform:uppercase}
+.lx-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc);animation:lxPulse 2.4s ease-in-out infinite}
+@keyframes lxPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.lx-big{font-family:var(--sans);font-weight:300;font-size:clamp(26px,5.4vw,78px);line-height:1;letter-spacing:.1em;margin-left:.1em;text-transform:uppercase;color:#f2fbfe;white-space:nowrap;text-shadow:0 0 26px rgba(94,198,230,.35),0 0 80px rgba(94,198,230,.15)}
+.lx-big .ch{animation:lxRise .9s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i) * .045s)}
+@keyframes lxRise{from{opacity:0;transform:translateY(26px);filter:blur(10px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.lx-note{font-size:clamp(9px,1.05vw,12px);letter-spacing:.24em;text-transform:uppercase;color:var(--mut);max-width:min(70ch,86vw);line-height:2}
 #heroMeta{position:absolute;left:6vw;right:6vw;bottom:clamp(16px,4vh,34px);display:flex;align-items:center;gap:18px;font-size:9px;letter-spacing:.26em;color:var(--mut);z-index:6}
 #heroMeta .prog{flex:0 0 clamp(80px,10vw,130px);height:1px;background:rgba(165,225,242,.16);position:relative}
 #heroMeta .prog i{position:absolute;left:0;top:0;height:100%;width:26%;background:var(--acc2);animation:progSlide 5s ease-in-out infinite}
@@ -329,27 +364,6 @@ section,#act1{position:relative;height:100vh;min-height:100vh;overflow:hidden}
 .stat-desc{font-size:12px;color:var(--mut);line-height:1.6;font-weight:300}
 .stat-note{font-size:10px;letter-spacing:.22em;color:rgba(143,169,182,.65);text-transform:uppercase;opacity:0}
 
-/* ---- LEADERSHIP (CEO) ---- */
-#leader .pin-wrap{align-items:center;gap:6vw}
-.ld-visual{flex:0 0 clamp(280px,28vw,380px);position:relative;perspective:1000px;display:grid;place-items:center;will-change:transform,opacity,filter}
-.ld-aura{position:absolute;width:78%;height:78%;border-radius:50%;background:radial-gradient(circle,rgba(14,148,170,.30),rgba(7,95,114,.10) 50%,transparent 72%);filter:blur(30px);pointer-events:none}
-.ld-frame{position:relative;width:min(300px,22.5vw);aspect-ratio:2/3.35;overflow:hidden;border:1px solid rgba(140,210,235,.32);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 60px rgba(60,170,210,.14);will-change:transform,clip-path}
-.ld-photo{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;filter:contrast(1.05) saturate(.9);will-change:transform}
-.ld-frame-line{position:absolute;width:26px;height:26px;border-color:var(--acc2);border-style:solid;border-width:0;pointer-events:none}
-.ld-frame-line.tl{left:10px;top:10px;border-left-width:1.5px;border-top-width:1.5px}
-.ld-frame-line.tr{right:10px;top:10px;border-right-width:1.5px;border-top-width:1.5px}
-.ld-frame-line.bl{left:10px;bottom:10px;border-left-width:1.5px;border-bottom-width:1.5px}
-.ld-frame-line.br{right:10px;bottom:10px;border-right-width:1.5px;border-bottom-width:1.5px}
-.ld-badge{position:absolute;bottom:6%;right:calc(50% - min(160px,12vw));font-size:10px;letter-spacing:.4em;padding:10px 12px 10px calc(12px + .4em);background:rgba(7,24,38,.92);border:1px solid rgba(140,210,235,.45);color:var(--acc2);box-shadow:0 0 30px rgba(94,198,230,.25);backdrop-filter:blur(6px);opacity:0}
-.ld-copy{flex:1;max-width:620px}
-.ld-name{font-weight:300;font-size:clamp(38px,4.6vw,66px);letter-spacing:.05em;line-height:1.05;margin:18px 0 12px;text-transform:uppercase}
-.ld-copy .body{margin:24px 0 6px;max-width:48ch}
-.ld-nodes{margin-top:26px;display:grid}
-.ld-node{position:relative;display:grid;gap:4px;padding:14px 0 14px 30px;border-left:1px solid rgba(140,210,235,.16)}
-.ld-node::before{content:'';position:absolute;left:-4.5px;top:19px;width:8px;height:8px;transform:rotate(45deg);background:linear-gradient(135deg,#a5e1f2,#2b8bab);box-shadow:0 0 14px rgba(94,198,230,.7)}
-.ld-node b{font-weight:500;font-size:13.5px;letter-spacing:.14em;color:#eafafd;text-transform:uppercase}
-.ld-node i{font-style:normal;font-size:11.5px;letter-spacing:.08em;color:var(--mut);line-height:1.6;font-weight:300}
-
 /* ---- MISSION / VISION ---- */
 #mv .pin-wrap{flex-direction:column;align-items:center;justify-content:center;gap:5vh}
 .mv-stage{position:relative;width:min(880px,90vw);height:44vh}
@@ -394,12 +408,6 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
 }
 @media(max-width:860px){
   #nav{height:72px;padding:0 20px}
-  #leader .pin-wrap{flex-direction:column;justify-content:center;gap:3.5vh;padding-top:10vh}
-  .ld-visual{flex:none;width:100%}
-  .ld-frame{width:min(230px,52vw)}
-  .ld-badge{right:calc(50% - min(115px,26vw));bottom:2%}
-  .ld-copy{max-width:100%}
-  .ld-node{padding:11px 0 11px 24px}
   #construction .pin-wrap,#food .pin-wrap{flex-direction:column;justify-content:center;gap:4vh;padding-top:12vh}
   .con-copy,.f-copy{flex:none;width:100%}
   .con-stage{width:100%;height:36vh}
@@ -420,6 +428,8 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
   #heroSub{white-space:normal;text-align:center;width:86vw}
   #discover{right:20px;top:auto;bottom:12vh}
   #heroMeta{left:20px;right:20px}
+  .lx-big{white-space:normal;max-width:90vw;letter-spacing:.06em}
+  .lx-note{letter-spacing:.18em;line-height:1.9}
   .story-cap{bottom:10vh}
   .mv p{max-width:92%}
   .mv-stage{height:52vh}
@@ -429,6 +439,13 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
   .stat{padding:16px 14px}
   .stats-head .s-title{font-size:26px}
   .motif-wrap{width:min(220px,50vw)}
+  #nav{padding:0 14px}
+  .nav-actions{gap:10px}
+  .brand b{font-size:12px;letter-spacing:.2em}
+  .sound-toggle{padding:5px 10px}
+  #soundLabel{max-width:62px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .lang-current{padding:7px 11px}
+  .lang-menu{min-width:176px}
 }
 /* reduced motion */
 @media (prefers-reduced-motion:reduce){
@@ -436,8 +453,7 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
 }
 /* lib fallback: static readable page */
 .no-lib #world{opacity:.9}
-.no-lib .rv,.no-lib .eco-core,.no-lib .eco-node,.no-lib .pnode,.no-lib .sw,.no-lib .story-cap,.no-lib .story-label,.no-lib .eco-head,.no-lib .stats-head,.no-lib .stat-grid,.no-lib .stat,.no-lib .stat-note,.no-lib .ld-visual,.no-lib .ld-aura,.no-lib .ld-badge,.no-lib .ld-frame-line{opacity:1!important;filter:none!important}
-.no-lib .ld-frame{clip-path:none}
+.no-lib .rv,.no-lib .eco-core,.no-lib .eco-node,.no-lib .pnode,.no-lib .sw,.no-lib .story-cap,.no-lib .story-label,.no-lib .eco-head,.no-lib .stats-head,.no-lib .stat-grid,.no-lib .stat,.no-lib .stat-note{opacity:1!important;filter:none!important}
 .no-lib .a-typo{display:none}
 .no-lib .motif-wrap{opacity:.9}
 
@@ -492,7 +508,7 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
 /* ============ CUSTOM MAGNETIC CURSOR ============ */
 @media (hover: hover) and (pointer: fine) {
   /* Keep standard sleek pointer on buttons/links so user NEVER loses their mouse */
-  button, a, [data-go], .pnode, .cnode, .stat, .chips li, .lang-btn, .pm-btn, #discover, #toTop {
+  button, a, [data-go], .pnode, .cnode, .stat, .chips li, .lang-current, .lang-opt, .pm-btn, #discover, #toTop {
     cursor: pointer;
   }
   .cursor-dot {
@@ -710,7 +726,7 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
     <div class="pl-name" id="plName"></div>
     <div class="pl-holdwrap"><div class="pl-bar" id="plBar"></div><div class="pl-hold" id="plHold">CONSTRUCTION • DEVELOPMENT</div></div>
   </div>
-  <div class="pl-skip-hint">CLICK TO EXPLORE</div>
+  <div class="pl-skip-hint" id="plSkip">CLICK TO EXPLORE</div>
 </div>
 
 <!-- ================= FIXED WORLD ================= -->
@@ -757,9 +773,20 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
       <span class="sound-wave"><i></i><i></i><i></i></span>
       <span id="soundLabel">SƏS BAĞLI</span>
     </button>
-    <div class="lang-toggle" aria-label="Language switch">
-      <button class="lang-btn active" data-set-lang="az">AZ</button>
-      <button class="lang-btn" data-set-lang="en">EN</button>
+    <div class="lang-switch" id="langSwitchNav" aria-label="Language switch">
+      <button class="lang-current" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <svg class="globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><circle cx="8" cy="8" r="6.4"/><ellipse cx="8" cy="8" rx="2.9" ry="6.4"/><path d="M1.6 8h12.8M2.9 4.6h10.2M2.9 11.4h10.2"/></svg>
+        <span class="lang-cur-code">AZ</span>
+        <svg class="chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+      </button>
+      <div class="lang-menu" role="listbox">
+        <button class="lang-opt active" type="button" role="option" aria-selected="true" data-set-lang="az"><span class="native">Azərbaycanca</span><span class="code">AZ</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="en"><span class="native">English</span><span class="code">EN</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="tr"><span class="native">Türkçe</span><span class="code">TR</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="ru"><span class="native">Русский</span><span class="code">RU</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="zh"><span class="native">中文</span><span class="code">ZH</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="ja"><span class="native">日本語</span><span class="code">JA</span></button>
+      </div>
     </div>
     <button id="menuBtn">MENU</button>
   </div>
@@ -774,14 +801,24 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
     <a class="menu-link" data-go="portfolio"><i>05</i><span id="mLink4" data-t="PORTFOLİO">PORTFOLİO</span></a>
     <a class="menu-link" data-go="partners"><i>06</i><span id="mLink5" data-t="TƏRƏFDAŞLAR">TƏRƏFDAŞLAR</span></a>
     <a class="menu-link" data-go="stats"><i>07</i><span id="mLink6" data-t="MİQYAS &amp; TƏSİR">MİQYAS &amp; TƏSİR</span></a>
-    <a class="menu-link" data-go="leader"><i>08</i><span id="mLink7" data-t="RƏHBƏRLİK">RƏHBƏRLİK</span></a>
-    <a class="menu-link" data-go="contact"><i>09</i><span id="mLink8" data-t="ƏLAQƏ">ƏLAQƏ</span></a>
+    <a class="menu-link" data-go="contact"><i>08</i><span id="mLink7" data-t="ƏLAQƏ">ƏLAQƏ</span></a>
   </nav>
   <div class="menu-foot">
     <span id="menuFootCity">CASPIORA — Bakı, Azərbaycan</span>
-    <div class="lang-toggle in-menu">
-      <button class="lang-btn active" data-set-lang="az">AZ</button>
-      <button class="lang-btn" data-set-lang="en">EN</button>
+    <div class="lang-switch drop-up in-menu" aria-label="Language switch">
+      <button class="lang-current" type="button" aria-haspopup="listbox" aria-expanded="false">
+        <svg class="globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><circle cx="8" cy="8" r="6.4"/><ellipse cx="8" cy="8" rx="2.9" ry="6.4"/><path d="M1.6 8h12.8M2.9 4.6h10.2M2.9 11.4h10.2"/></svg>
+        <span class="lang-cur-code">AZ</span>
+        <svg class="chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+      </button>
+      <div class="lang-menu" role="listbox">
+        <button class="lang-opt active" type="button" role="option" aria-selected="true" data-set-lang="az"><span class="native">Azərbaycanca</span><span class="code">AZ</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="en"><span class="native">English</span><span class="code">EN</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="tr"><span class="native">Türkçe</span><span class="code">TR</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="ru"><span class="native">Русский</span><span class="code">RU</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="zh"><span class="native">中文</span><span class="code">ZH</span></button>
+        <button class="lang-opt" type="button" role="option" aria-selected="false" data-set-lang="ja"><span class="native">日本語</span><span class="code">JA</span></button>
+      </div>
     </div>
   </div>
 </div>
@@ -798,6 +835,13 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
           <span class="d-lab" id="dLab">DISCOVER</span>
           <span class="d-ring"><svg viewBox="0 0 14 16" fill="none"><path d="M7 1v13M2 9.5 7 14.5 12 9.5" stroke="#a5e1f2" stroke-width="1.2"/></svg></span>
           <small id="dSmall">SCROLL TO EXPLORE</small>
+        </div>
+        <div id="launch">
+          <div class="lx-inner">
+            <span class="lx-eyebrow" id="lxEyebrow">HAZIRLIQ MƏRHƏLƏSİ</span>
+            <div class="lx-big sweep" id="lxBig">TEZLİKLƏ XİDMƏTİNİZDƏ</div>
+            <p class="lx-note" id="lxNote">Hal-hazırda xidmət göstərmirik — platformamız hazırlanır və rəsmi açılışa az qalıb.</p>
+          </div>
         </div>
         <div id="heroMeta"><span>01</span><div class="prog"><i></i></div><span>07</span><span class="scr" id="metaScr">SCROLL</span></div>
       </div>
@@ -931,7 +975,7 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
         <div class="story-bar" id="storyBar"></div>
         <div class="story-shold" id="storyHold">HOLDİNG</div>
       </div>
-      <p class="story-cap" id="storyCap">CASPIORA � where the Caspian meets vision. The name echoes our geographic foundation and our forward movement. Every structure we build is a commitment to durability, precision, and the future of this region.</p>
+      <p class="story-cap" id="storyCap">CASPIORA — where the Caspian meets vision. The name echoes our geographic foundation and our forward movement. Every structure we build is a commitment to durability, precision, and the future of this region.</p>
     </div>
   </section>
 
@@ -1077,16 +1121,16 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
 
         <!-- HUB 3: EURASIA -->
         <div class="cnode hub-asia" id="cnAsia" style="--x:87%;--y:40%">
-          <b>EURASIA</b>
+          <b id="cnAsiaName">EURASIA</b>
           <i id="cnAsiaRole">Trade &amp; Commodity Hub</i>
-          <small>SILK ROAD CORRIDOR</small>
+          <small id="cnAsiaSub">SILK ROAD CORRIDOR</small>
         </div>
 
         <!-- HUB 4: GLOBAL REACH -->
         <div class="cnode hub-eu" id="cnGlobal" style="--x:15%;--y:40%">
-          <b>GLOBAL REACH</b>
+          <b id="cnGlobalName">GLOBAL REACH</b>
           <i id="cnGlobalRole">Export &amp; Capital Markets</i>
-          <small>WESTERN EXPANSION</small>
+          <small id="cnGlobalSub">WESTERN EXPANSION</small>
         </div>
       </div>
       <div class="net-info rv" id="netInfo">Hover a partner to learn more — the network keeps growing.</div>
@@ -1131,36 +1175,10 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
     </div>
   </section>
 
-  <!-- ================= LEADERSHIP (CEO) ================= -->
-  <section id="leader">
-    <div class="pin-wrap">
-      <div class="ld-visual">
-        <div class="ld-aura"></div>
-        <div class="ld-frame" id="ldFrame">
-          <img class="ld-photo" id="ldPhoto" src="assets/ceo.png" alt="İdris Alışov"/>
-          <div class="ld-frame-line tl"></div><div class="ld-frame-line tr"></div>
-          <div class="ld-frame-line bl"></div><div class="ld-frame-line br"></div>
-        </div>
-        <div class="ld-badge" id="ldBadge">CEO</div>
-      </div>
-      <div class="ld-copy">
-        <div class="sec-label rv" id="ldLabel">05 — Leadership</div>
-        <h2 class="ld-name rv" id="ldName">İDRİS ALIŞOV</h2>
-        <p class="h-sub rv" id="ldRole">Baş Direktor — Chief Executive Officer</p>
-        <p class="body rv" id="ldBio">UNEC məzunu iqtisadçı; İqtisadiyyat Nazirliyində monitorinq və icra istiqamətində uzunmüddətli dövlət təcrübəsi. Holdinqin strateji inkişafını tikinti, ticarət və təhsil sahələrində vahid vizyonla idarə edir.</p>
-        <div class="ld-nodes" id="ldNodes">
-          <div class="ld-node rv"><b id="ldN1T">UNEC — Dövlət İqtisad Universiteti</b><i id="ldN1S">İqtisadiyyat üzrə ali təhsil</i></div>
-          <div class="ld-node rv"><b id="ldN2T">İqtisadiyyat Nazirliyi</b><i id="ldN2S">Monitorinq və icra istiqamətində rəhbər vəzifələr</i></div>
-          <div class="ld-node rv"><b id="ldN4T">Sumqayıt Tikinti-2 ASC</b><i id="ldN4S">İdarə Heyətinin Sədri</i></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= MISSION / VISION ================= -->
   <section id="mv">
     <div class="pin-wrap">
-      <div class="sec-label rv" id="mvLabel">06 — About</div>
+      <div class="sec-label rv" id="mvLabel">05 — About</div>
       <h2 class="h-big rv" id="mvTitle" style="text-align:center">ONE VISION. MANY DIRECTIONS.</h2>
       <div class="mv-stage">
         <div class="mv m1" id="mv1"><span id="mv1Badge">MISSION</span><p id="mv1Text">Connect traditional and natural products to broader markets — building a trusted bridge between local producers and global opportunity.</p></div>
@@ -1173,7 +1191,7 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
   <!-- ================= FUTURE ================= -->
   <section id="future">
     <div class="pin-wrap">
-      <div class="sec-label rv" id="futLabel">07 — The Future</div>
+      <div class="sec-label rv" id="futLabel">06 — The Future</div>
       <h2 class="h-big rv" id="futTitle">THE NEXT CHAPTER.</h2>
       <p class="h-sub rv glow-w" id="futSub">IS ALREADY UNDER CONSTRUCTION.</p>
       <p class="body rv" id="futBody">A new generation of projects is taking shape on the horizon — designed to carry the ecosystem into its next decade.</p>
@@ -1223,11 +1241,20 @@ let activePartnerMode = 'net';
 
 const DICT = {
   az: {
+    docTitle: 'CASPIORA — Tikinti • İnkişaf',
+    plHold: 'TİKİNTİ • İNKİŞAF',
+    plSkip: 'KƏŞF ETMƏK ÜÇÜN KLIKLƏYİN',
+    menuBtn: 'MENYU',
+    menuClose: 'BAĞLA',
+    heroHold: 'TİKİNTİ • İNKİŞAF',
     heroSub: 'Daha Güclü Gələcəyi Birlikdə Qururuq',
     heroTag: 'İnsanlara, ideyalara<br>və gələcəyə<br>yatırım edirik.',
     discover: 'KƏŞF EDİN',
     discoverSmall: 'KƏŞF ETMƏK ÜÇÜN SÜRÜŞDÜRÜN',
     metaScr: 'SÜRÜŞDÜRÜN',
+    lxEyebrow: 'HAZIRLIQ MƏRHƏLƏSİ',
+    lxBig: 'TEZLİKLƏ XİDMƏTİNİZDƏ',
+    lxNote: 'Hal-hazırda xidmət göstərmirik — platformamız hazırlanır və rəsmi açılışa az qalıb.',
     tw1: 'BİR',
     tw2: 'ŞİRKƏTDƏN',
     tw3: 'DAHA ARTIQ',
@@ -1250,8 +1277,9 @@ const DICT = {
     foodBody: 'Yerli irsdən müasir bazarlara daşınan ənənəvi təamlar — Azərbaycan və Türkiyə xəttində təbii məhsullar və seçilmiş brendlər.',
     fCap1Title: 'ƏDVİYYATLAR', fCap1Sub: 'Təbii günəşdə qurudulmuş',
     fCap2Title: 'TƏBİİ TURŞULAR', fCap2Sub: 'Palıd çəlləkdə fermentasiya',
-    fCap3Title: 'ŞƏRBƏTLƏR &amp; LİMONAD', fCap3Sub: 'Tarixi reseptlər',
+    fCap3Title: 'ŞƏRBƏTLƏR & LİMONAD', fCap3Sub: 'Tarixi reseptlər',
     storyLabel: '03 — Brend',
+    storyHold: 'HOLDİNG',
     storyCap: 'CASPIORA — Xəzər dənizi bölgəsində tikinti və inkişafın simvolu. Ad həm coğrafi mövqeyimizi, həm də gələcəyə doğru böyük addımlarla irəliləməyimizi əks etdirir. Hər layihə dayanıqlığa və keyfiyyətə sadiqlik bəyannaməsidir.',
     p1Title: 'TİKİNTİ',
     p1Desc: 'Konsepsiyadan tam təhvilə qədər — gələcək onilliklər üçün inşa edilən premium yaşayış və kommersiya layihələri.',
@@ -1279,21 +1307,14 @@ const DICT = {
     stName2: 'Strateji<br>Tərəfdaş', stDesc2: 'Regionu birləşdirən beynəlxalq əlaqələr',
     stName3: 'Aktiv<br>Bazar', stDesc3: 'Avrasiya miqyasında genişlənən fəaliyyət',
     statNote: '* Demo göstəricilər — rəsmi hesabatlar dərc edildikdə yenilənəcəkdir.',
-    ldLabel: '05 — Rəhbərlik',
-    ldName: 'İDRİS ALIŞOV',
-    ldRole: 'Baş Direktor — Chief Executive Officer',
-    ldBio: 'UNEC məzunu iqtisadçı; İqtisadiyyat Nazirliyində monitorinq və icra istiqamətində uzunmüddətli dövlət təcrübəsi. Holdinqin strateji inkişafını tikinti, ticarət və təhsil sahələrində vahid vizyonla idarə edir.',
-    ldN1T: 'UNEC — Dövlət İqtisad Universiteti', ldN1S: 'İqtisadiyyat üzrə ali təhsil',
-    ldN2T: 'İqtisadiyyat Nazirliyi', ldN2S: 'Monitorinq və icra istiqamətində rəhbər vəzifələr',
-    ldN4T: 'Sumqayıt Tikinti-2 ASC', ldN4S: 'İdarə Heyətinin Sədri',
-    mvLabel: '06 — Haqqımızda',
+    mvLabel: '05 — Haqqımızda',
     mvTitle: 'TƏK BİR VİZYON. ÇOXŞAXƏLİ İSTİQAMƏT.',
     mv1Badge: 'MİSSİYA',
     mv1Text: 'Ənənəvi və təbii məhsulları qlobal bazarlara çıxarmaq — yerli istehsalçılarla beynəlxalq imkanlar arasında etibarlı körpü qurmaq.',
     mv2Badge: 'VİZYON',
     mv2Text: 'Azərbaycan və Türkiyədən başlayaraq uzunmüddətli tərəfdaşlıqları və dayanıqlı biznesləri birləşdirən aparıcı regional holdinq ekosisteminə çevrilmək.',
     mvIdxM: '01 MİSSİYA', mvIdxV: '02 VİZYON',
-    futLabel: '07 — Gələcək',
+    futLabel: '06 — Gələcək',
     futTitle: 'YENİ MƏRHƏLƏ.',
     futSub: 'ARTIQ İNŞA EDİLİR.',
     futBody: 'Üfüqdə holdinq ekosistemini növbəti onilliyə daşıyacaq yeni nəsil layihələr formalaşır.',
@@ -1304,7 +1325,7 @@ const DICT = {
     cLabelFollow: 'Bizi izləyin',
     footCopy: '© 2026 CASPIORA — Construction • Development',
     menuFootCity: 'CASPIORA — Bakı, Azərbaycan',
-    menuLinks: ['ANA SƏHİFƏ', 'TİKİNTİ', 'QİDA VƏ TİCARƏT', 'BREND', 'PORTFOLİO', 'TƏRƏFDAŞLAR', 'MİQYAS &amp; TƏSİR', 'RƏHBƏRLİK', 'ƏLAQƏ'],
+    menuLinks: ['ANA SƏHİFƏ', 'TİKİNTİ', 'QİDA VƏ TİCARƏT', 'BREND', 'PORTFOLİO', 'TƏRƏFDAŞLAR', 'MİQYAS &amp; TƏSİR', 'ƏLAQƏ'],
     soundOn: 'SƏS AÇIQ',
     soundOff: 'SƏS BAĞLI',
     pmBtnNet: 'TƏRƏFDAŞLIQ ŞƏBƏKƏSİ',
@@ -1316,14 +1337,27 @@ const DICT = {
     cnAsiaRole: 'Ticarət & Əmtəə Dəhlizi',
     cnAsiaInfo: 'MƏRKƏZİ ASİYA — Aqrar Ticarət, Təbii Məhsullar və Tarixi İpək Yolu Dəhlizi.',
     cnGlobalRole: 'İxrac & Qlobal Bazarlar',
-    cnGlobalInfo: 'QƏRBİ AVROPA VƏ QLOBAL BAZARLAR — Beynəlxalq İxrac və İnvestisiya Şəbəkəsi.'
+    cnGlobalInfo: 'QƏRBİ AVROPA VƏ QLOBAL BAZARLAR — Beynəlxalq İxrac və İnvestisiya Şəbəkəsi.',
+    cnAsiaName: 'EURASİYA',
+    cnAsiaSub: 'İPƏK YOLU DƏHLİZİ',
+    cnGlobalName: 'QLOBAL ƏHATƏ',
+    cnGlobalSub: 'QƏRBƏ GENİŞLƏNMƏ'
   },
   en: {
+    docTitle: 'CASPIORA — Construction • Development',
+    plHold: 'CONSTRUCTION • DEVELOPMENT',
+    plSkip: 'CLICK TO EXPLORE',
+    menuBtn: 'MENU',
+    menuClose: 'CLOSE',
+    heroHold: 'CONSTRUCTION • DEVELOPMENT',
     heroSub: 'Building a Stronger Tomorrow',
     heroTag: 'Investing in people,<br>ideas and<br>the future.',
     discover: 'DISCOVER',
     discoverSmall: 'SCROLL TO EXPLORE',
     metaScr: 'SCROLL',
+    lxEyebrow: 'IN PREPARATION',
+    lxBig: 'SOON AT YOUR SERVICE',
+    lxNote: 'We are not open for service yet — our platform is being finalised and the official launch is close.',
     tw1: 'MORE',
     tw2: 'THAN',
     tw3: 'A COMPANY',
@@ -1346,9 +1380,10 @@ const DICT = {
     foodBody: 'Traditional tastes carried from local heritage to modern markets — natural products and selected brands across the Türkiye–Azerbaijan corridor.',
     fCap1Title: 'SPICES', fCap1Sub: 'Sun-dried · stone-ground',
     fCap2Title: 'NATURAL PICKLES', fCap2Sub: 'Barrel-fermented',
-    fCap3Title: 'SHERBETS &amp; LEMONADE', fCap3Sub: 'Bottled heritage',
+    fCap3Title: 'SHERBETS & LEMONADE', fCap3Sub: 'Bottled heritage',
     storyLabel: '03 — The Brand',
-    storyCap: 'CASPIORA � where the Caspian meets vision. The name echoes our geographic foundation and our forward movement. Every structure we build is a commitment to durability, precision, and the future of this region.',
+    storyHold: 'HOLDING',
+    storyCap: 'CASPIORA — where the Caspian meets vision. The name echoes our geographic foundation and our forward movement. Every structure we build is a commitment to durability, precision, and the future of this region.',
     p1Title: 'CONSTRUCTION',
     p1Desc: 'Concept-to-completion development — residential, commercial and mixed-use landmarks built for the next decades.',
     p2Title: 'FOOD & TRADE',
@@ -1375,21 +1410,14 @@ const DICT = {
     stName2: 'Strategic<br>Alliances', stDesc2: 'Cross-border network connecting the region',
     stName3: 'Active<br>Markets', stDesc3: 'Expanding operational footprint across Eurasia',
     statNote: '* Demo values — official holding figures will replace these upon formal release.',
-    ldLabel: '05 — Leadership',
-    ldName: 'İDRIS ALISHOV',
-    ldRole: 'Chief Executive Officer',
-    ldBio: 'UNEC-educated economist with long-standing public-sector experience at the Ministry of Economy. He leads the holding\'s strategic growth across construction, trade and education under a single vision.',
-    ldN1T: 'UNEC — State University of Economics', ldN1S: 'Degree in Economics',
-    ldN2T: 'Ministry of Economy', ldN2S: 'Leadership roles in monitoring & execution',
-    ldN4T: 'Sumgait Tikinti-2 CJSC', ldN4S: 'Chairman of the Board',
-    mvLabel: '06 — About',
+    mvLabel: '05 — About',
     mvTitle: 'ONE VISION. MANY DIRECTIONS.',
     mv1Badge: 'MISSION',
     mv1Text: 'Connect traditional and natural products to broader markets — building a trusted bridge between local producers and global opportunity.',
     mv2Badge: 'VISION',
     mv2Text: 'Become a recognized regional holding ecosystem — connecting long-term partnerships and sustainable businesses from Azerbaijan and Türkiye outward.',
     mvIdxM: '01 MISSION', mvIdxV: '02 VISION',
-    futLabel: '07 — The Future',
+    futLabel: '06 — The Future',
     futTitle: 'THE NEXT CHAPTER.',
     futSub: 'IS ALREADY UNDER CONSTRUCTION.',
     futBody: 'A new generation of projects is taking shape on the horizon — designed to carry the ecosystem into its next decade.',
@@ -1400,7 +1428,7 @@ const DICT = {
     cLabelFollow: 'Follow',
     footCopy: '© 2026 CASPIORA — Construction • Development',
     menuFootCity: 'CASPIORA — Baku, Azerbaijan',
-    menuLinks: ['HOME', 'CONSTRUCTION', 'FOOD & TRADE', 'THE BRAND', 'PORTFOLIO', 'PARTNERS', 'SCALE & IMPACT', 'LEADERSHIP', 'CONTACT'],
+    menuLinks: ['HOME', 'CONSTRUCTION', 'FOOD & TRADE', 'THE BRAND', 'PORTFOLIO', 'PARTNERS', 'SCALE & IMPACT', 'CONTACT'],
     soundOn: 'SOUND ON',
     soundOff: 'SOUND OFF',
     pmBtnNet: 'PARTNERSHIP NETWORK',
@@ -1412,19 +1440,456 @@ const DICT = {
     cnAsiaRole: 'Trade & Commodity Hub',
     cnAsiaInfo: 'CENTRAL ASIA — Agrarian Trade, Natural Commodities & Silk Road Corridor.',
     cnGlobalRole: 'Export & Capital Markets',
-    cnGlobalInfo: 'WESTERN EUROPE & GLOBAL MARKETS — International Export & Investment Alliances.'
+    cnGlobalInfo: 'WESTERN EUROPE & GLOBAL MARKETS — International Export & Investment Alliances.',
+    cnAsiaName: 'EURASIA',
+    cnAsiaSub: 'SILK ROAD CORRIDOR',
+    cnGlobalName: 'GLOBAL REACH',
+    cnGlobalSub: 'WESTERN EXPANSION'
+  },
+  tr: {
+    docTitle: 'CASPIORA — İnşaat • Geliştirme',
+    plHold: 'İNŞAAT • GELİŞTİRME',
+    plSkip: 'KEŞFETMEK İÇİN TIKLAYIN',
+    menuBtn: 'MENÜ',
+    menuClose: 'KAPAT',
+    heroHold: 'İNŞAAT • GELİŞTİRME',
+    heroSub: 'Daha Güçlü Bir Yarını Birlikte İnşa Ediyoruz',
+    heroTag: 'İnsanlara, fikirlere<br>ve geleceğe<br>yatırım yapıyoruz.',
+    discover: 'KEŞFET',
+    discoverSmall: 'KEŞFETMEK İÇİN KAYDIRIN',
+    metaScr: 'KAYDIR',
+    lxEyebrow: 'HAZIRLIK AŞAMASI',
+    lxBig: 'YAKINDA HİZMETİNİZDEYİZ',
+    lxNote: 'Henüz hizmet vermiyoruz — platformumuz tamamlanıyor ve resmi açılış yaklaşıyor.',
+    tw1: 'BİR',
+    tw2: 'ŞİRKETTEN',
+    tw3: 'DAHA FAZLASI',
+    ecoLabel: 'Holdinq Ekosistemi',
+    ecoTitle: 'Farklı yönler.<br>Tek vizyon.',
+    ecoDesc: 'İnşaat, stratejik projeler ve ortaklıklar — mükemmellikle birleşen farklı alanlar.',
+    ecoNodeStrategy: 'STRATEJİK PROJELER', ecoSubStrategy: 'Geliştirme',
+    ecoNodeCon: 'İNŞAAT', ecoSubCon: 'Geliştirme',
+    ecoNodeFood: 'GIDA VE TİCARET', ecoSubFood: 'Geleneksel markalar',
+    ecoNodeNet: 'ORTAKLIKLAR', ecoSubNet: 'Ağ',
+    conLabel: '01 — İnşaat',
+    conH: 'İNŞAAT',
+    conSub: 'Geleceğin mekânlarını inşa ediyoruz.',
+    conBody: 'Konseptten teslime kadar; uzun vadeli değer için tasarlanan, insanların yaşadığı, çalıştığı ve geliştiği konut, ticari ve karma kullanımlı alanlar geliştiriyoruz.',
+    conChips: ['KONUT', 'TİCARİ', 'KARMA KULLANIM'],
+    foodLabel: '02 — Gıda ve Ticaret',
+    foodH: 'GIDA VE TİCARET',
+    foodSub: 'Gelenekten modern dünyaya.',
+    foodList: ['Baharatlar', 'Turşular &amp; Doğal Ürünler', 'Şerbetler &amp; Limonatalar', 'Şekerlemeler'],
+    foodBody: 'Yerel mirastan modern pazarlara taşınan geleneksel tatlar — Türkiye–Azerbaycan hattında doğal ürünler ve seçkin markalar.',
+    fCap1Title: 'BAHARATLAR', fCap1Sub: 'Güneşte kurutulmuş · taşta öğütülmüş',
+    fCap2Title: 'DOĞAL TURŞULAR', fCap2Sub: 'Meşe fıçısında fermente',
+    fCap3Title: 'ŞERBETLER & LİMONATALAR', fCap3Sub: 'Şişelenmiş miras',
+    storyLabel: '03 — Marka',
+    storyHold: 'HOLDİNG',
+    storyCap: 'CASPIORA — Hazar\'ın vizyonla buluştuğu yer. İsim; coğrafi köklerimizi ve ileriye doğru hareketimizi yansıtır. İnşa ettiğimiz her yapı, dayanıklılığa, hassasiyete ve bu bölgenin geleceğine verilen bir taahhüttür.',
+    p1Title: 'İNŞAAT',
+    p1Desc: 'Konseptten teslime — önümüzdeki onyıllar için inşa edilen konut, ticari ve karma kullanımlı simge yapılar.',
+    p2Title: 'GIDA VE TİCARET',
+    p2Desc: 'Miras tatlar, doğal ürünler ve seçkin markalar — gelenekten modern perakendeye taşınır.',
+    p3Title: 'STRATEJİK KORİDOR',
+    p3Desc: 'Bakü–İstanbul: bölgesel kalkınma ve uluslararası ticaret köprüsü.',
+    netTitle: 'BİRLİKTE İNŞA EDİYORUZ',
+    netInfoDefault: 'Daha fazla bilgi için bir ortağın üzerine gelin — ağ büyümeye devam ediyor.',
+    pnCenter: 'İnşaat ve geliştirme şirketi.',
+    pnRegional: 'Bölgesel kalkınma ağı ve ortaklıklar.',
+    pnTrade: 'Stratejik ortaklar ve bölgesel ittifaklar.',
+    pnInfra: 'Mühendislik ve altyapı konsorsiyumu.',
+    pnGhost1: 'Yeni stratejik ortaklık — yakında duyurulacak.',
+    pnGhost2: 'Azerbaycan, Türkiye ve Avrasya genelinde genişleyen ittifaklar.',
+    pnTradeText: 'KÜRESEL TİCARET',
+    pnInfraText: 'ALTYAPI',
+    pnGhost1Text: '+ Stratejik Ortak',
+    pnGhost2Text: '+ Bölgesel Ağ',
+    statsLabel: '04 — Ölçek ve Etki',
+    statTitle: 'ONYILLARLA ÖLÇÜLÜR.',
+    statSub: 'NESİLLER İÇİN İNŞA EDİLİR.',
+    stName0: 'Yıllık<br>Deneyim', stDesc0: 'Sürdürülebilir uygulama ve bölgesel varlığa dayanır',
+    stName1: 'Tamamlanan<br>Proje', stDesc1: 'Simge konut, ticari ve ticaret varlıkları',
+    stName2: 'Stratejik<br>İttifak', stDesc2: 'Bölgeyi birbirine bağlayan sınır ötesi ağ',
+    stName3: 'Aktif<br>Pazar', stDesc3: 'Avrasya genelinde genişleyen operasyon ağı',
+    statNote: '* Demo değerler — resmi açıklamayla birlikte güncellenecektir.',
+    mvLabel: '05 — Hakkımızda',
+    mvTitle: 'TEK VİZYON. ÇOK YÖN.',
+    mv1Badge: 'MİSYON',
+    mv1Text: 'Geleneksel ve doğal ürünleri daha geniş pazarlara bağlamak — yerel üreticiler ile küresel fırsatlar arasında güvenilir bir köprü kurmak.',
+    mv2Badge: 'VİZYON',
+    mv2Text: 'Azerbaycan ve Türkiye\'den başlayarak uzun vadeli ortaklıkları ve sürdürülebilir işletmeleri birbirine bağlayan, tanınan bir bölgesel holdinq ekosistemi olmak.',
+    mvIdxM: '01 MİSYON', mvIdxV: '02 VİZYON',
+    futLabel: '06 — Gelecek',
+    futTitle: 'YENİ BÖLÜM.',
+    futSub: 'ŞİMDİDEN İNŞA EDİLİYOR.',
+    futBody: 'Ufukta, ekosistemi yeni on yılına taşıyacak yeni nesil projeler şekilleniyor.',
+    cTitle: 'GELECEĞİ BİRLİKTE İNŞA EDELİM.',
+    cSubLoc: 'Bakü, Azerbaycan',
+    cLabelPhone: 'Bize ulaşın',
+    cLabelMail: 'E-posta',
+    cLabelFollow: 'Bizi takip edin',
+    footCopy: '© 2026 CASPIORA — İnşaat • Geliştirme',
+    menuFootCity: 'CASPIORA — Bakü, Azerbaycan',
+    menuLinks: ['ANA SAYFA', 'İNŞAAT', 'GIDA &amp; TİCARET', 'MARKA', 'PORTFÖY', 'ORTAKLAR', 'ÖLÇEK &amp; ETKİ', 'İLETİŞİM'],
+    soundOn: 'SES AÇIK',
+    soundOff: 'SES KAPALI',
+    pmBtnNet: 'ORTAKLIK AĞI',
+    pmBtnCorr: 'STRATEJİK KORİDOR (BAKÜ — İSTANBUL)',
+    cnBakuRole: 'Merkez & Hazar Kapısı',
+    cnBakuInfo: 'BAKÜ — Holdinq Merkezi, Enerji, Lojistik ve Hazar Kapısı. (40.4093° N, 49.8671° E)',
+    cnIstRole: 'Ticaret ve İnşaat Köprüsü',
+    cnIstInfo: 'İSTANBUL — Avrupa ve Asya Kavşağı, İnşaat ve Ticaret Köprüsü. (41.0082° N, 28.9784° E)',
+    cnAsiaRole: 'Ticaret ve Emtia Merkezi',
+    cnAsiaInfo: 'ORTA ASYA — Tarım Ticareti, Doğal Ürünler ve İpek Yolu Koridoru.',
+    cnGlobalRole: 'İhracat ve Küresel Pazarlar',
+    cnGlobalInfo: 'BATI AVRUPA VE KÜRESEL PAZARLAR — Uluslararası İhracat ve Yatırım Ağı.',
+    cnAsiaName: 'AVRASYA',
+    cnAsiaSub: 'İPEK YOLU KORİDORU',
+    cnGlobalName: 'KÜRESEL ERİŞİM',
+    cnGlobalSub: 'BATIYA GENİŞLEME'
+  },
+  ru: {
+    docTitle: 'CASPIORA — Строительство • Развитие',
+    plHold: 'СТРОИТЕЛЬСТВО • РАЗВИТИЕ',
+    plSkip: 'НАЖМИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ',
+    menuBtn: 'МЕНЮ',
+    menuClose: 'ЗАКРЫТЬ',
+    heroHold: 'СТРОИТЕЛЬСТВО • РАЗВИТИЕ',
+    heroSub: 'Вместе строим более сильное завтра',
+    heroTag: 'Инвестируем в людей,<br>идеи и<br>будущее.',
+    discover: 'ОТКРЫТЬ',
+    discoverSmall: 'ЛИСТАЙТЕ, ЧТОБЫ ИССЛЕДОВАТЬ',
+    metaScr: 'ЛИСТАЙТЕ',
+    lxEyebrow: 'ЭТАП ПОДГОТОВКИ',
+    lxBig: 'СКОРО К ВАШИМ УСЛУГАМ',
+    lxNote: 'Мы ещё не открыты — платформа находится на стадии финализации, и до официального запуска осталось недолго.',
+    tw1: 'БОЛЬШЕ',
+    tw2: 'ЧЕМ',
+    tw3: 'КОМПАНИЯ',
+    ecoLabel: 'Экосистема холдинга',
+    ecoTitle: 'Разные направления.<br>Одно видение.',
+    ecoDesc: 'Строительство, стратегические проекты и партнёрства — разные сферы, объединённые стремлением к совершенству.',
+    ecoNodeStrategy: 'СТРАТЕГИЧЕСКИЕ ПРОЕКТЫ', ecoSubStrategy: 'Развитие',
+    ecoNodeCon: 'СТРОИТЕЛЬСТВО', ecoSubCon: 'Развитие',
+    ecoNodeFood: 'ПРОДУКТЫ И ТОРГОВЛЯ', ecoSubFood: 'Традиционные бренды',
+    ecoNodeNet: 'ПАРТНЁРСТВО', ecoSubNet: 'Сеть',
+    conLabel: '01 — Строительство',
+    conH: 'СТРОИТЕЛЬСТВО',
+    conSub: 'Создаём пространства для будущего.',
+    conBody: 'От концепции до сдачи мы создаём жилые, коммерческие и многофункциональные пространства, рассчитанные на долгосрочную ценность, — места, где люди живут, работают и растут.',
+    conChips: ['ЖИЛЬЁ', 'КОММЕРЦИЯ', 'МНОГОФУНКЦИОНАЛЬНЫЕ'],
+    foodLabel: '02 — Продукты и торговля',
+    foodH: 'ПРОДУКТЫ И ТОРГОВЛЯ',
+    foodSub: 'От традиций к современному миру.',
+    foodList: ['Специи', 'Соленья &amp; натуральные продукты', 'Щербеты &amp; лимонады', 'Кондитерские изделия'],
+    foodBody: 'Традиционные вкусы, идущие от локального наследия к современным рынкам, — натуральные продукты и избранные бренды на коридоре Турция–Азербайджан.',
+    fCap1Title: 'СПЕЦИИ', fCap1Sub: 'Высушены на солнце · молоты на камне',
+    fCap2Title: 'НАТУРАЛЬНЫЕ СОЛЕНЬЯ', fCap2Sub: 'Ферментация в дубовой бочке',
+    fCap3Title: 'ЩЕРБЕТЫ И ЛИМОНАДЫ', fCap3Sub: 'Наследие в бутылке',
+    storyLabel: '03 — Бренд',
+    storyHold: 'ХОЛДИНГ',
+    storyCap: 'CASPIORA — там, где Каспий встречается с видением. Имя отражает нашу географическую основу и движение вперёд. Каждое построенное нами сооружение — это приверженность прочности, точности и будущему региона.',
+    p1Title: 'СТРОИТЕЛЬСТВО',
+    p1Desc: 'Застройка от концепции до сдачи — знаковые жилые, коммерческие и многофункциональные объекты, построенные на десятилетия вперёд.',
+    p2Title: 'ПРОДУКТЫ И ТОРГОВЛЯ',
+    p2Desc: 'Наследственные вкусы, натуральные продукты и избранные бренды — от традиций к современной рознице.',
+    p3Title: 'СТРАТЕГИЧЕСКИЙ КОРИДОР',
+    p3Desc: 'Баку–Стамбул: региональное развитие и мост международной торговли.',
+    netTitle: 'СТРОИМ ВМЕСТЕ',
+    netInfoDefault: 'Наведите курсор на партнёра, чтобы узнать больше, — сеть продолжает расти.',
+    pnCenter: 'Строительно-девелоперская компания.',
+    pnRegional: 'Региональная сеть развития и партнёрства.',
+    pnTrade: 'Стратегические партнёры и региональные союзы.',
+    pnInfra: 'Инженерный и инфраструктурный консорциум.',
+    pnGhost1: 'Новое стратегическое партнёрство — анонс скоро.',
+    pnGhost2: 'Расширяющиеся союзы в Азербайджане, Турции и Евразии.',
+    pnTradeText: 'ГЛОБАЛЬНАЯ ТОРГОВЛЯ',
+    pnInfraText: 'ИНФРАСТРУКТУРА',
+    pnGhost1Text: '+ Стратегический партнёр',
+    pnGhost2Text: '+ Региональная сеть',
+    statsLabel: '04 — Масштаб и влияние',
+    statTitle: 'ИЗМЕРЯЕТСЯ ДЕСЯТИЛЕТИЯМИ.',
+    statSub: 'СОЗДАНО ДЛЯ ПОКОЛЕНИЙ.',
+    stName0: 'Лет<br>опыта', stDesc0: 'Основано на устойчивой реализации и присутствии в регионе',
+    stName1: 'Завершённых<br>проектов', stDesc1: 'Знаковые жилые, коммерческие и торговые объекты',
+    stName2: 'Стратегических<br>альянсов', stDesc2: 'Трансграничная сеть, объединяющая регион',
+    stName3: 'Активных<br>рынков', stDesc3: 'Расширяющееся присутствие по всей Евразии',
+    statNote: '* Демо-значения — будут заменены официальными показателями после официального релиза.',
+    mvLabel: '05 — О нас',
+    mvTitle: 'ОДНО ВИДЕНИЕ. МНОГО НАПРАВЛЕНИЙ.',
+    mv1Badge: 'МИССИЯ',
+    mv1Text: 'Выводить традиционные и натуральные продукты на более широкие рынки — выстраивать надёжный мост между местными производителями и глобальными возможностями.',
+    mv2Badge: 'ВИДЕНИЕ',
+    mv2Text: 'Стать признанной региональной экосистемой холдинга — соединяя долгосрочные партнёрства и устойчивый бизнес из Азербайджана и Турции и далее.',
+    mvIdxM: '01 МИССИЯ', mvIdxV: '02 ВИДЕНИЕ',
+    futLabel: '06 — Будущее',
+    futTitle: 'НОВАЯ ГЛАВА.',
+    futSub: 'УЖЕ СТРОИТСЯ.',
+    futBody: 'На горизонте формируется новое поколение проектов, призванное вывести экосистему на следующее десятилетие.',
+    cTitle: 'ПОСТРОИМ БУДУЩЕЕ ВМЕСТЕ.',
+    cSubLoc: 'Баку, Азербайджан',
+    cLabelPhone: 'Свяжитесь с нами',
+    cLabelMail: 'Эл. почта',
+    cLabelFollow: 'Подписывайтесь',
+    footCopy: '© 2026 CASPIORA — Строительство • Развитие',
+    menuFootCity: 'CASPIORA — Баку, Азербайджан',
+    menuLinks: ['ГЛАВНАЯ', 'СТРОИТЕЛЬСТВО', 'ПРОДУКТЫ &amp; ТОРГОВЛЯ', 'БРЕНД', 'ПОРТФОЛИО', 'ПАРТНЁРЫ', 'МАСШТАБ &amp; ВЛИЯНИЕ', 'КОНТАКТЫ'],
+    soundOn: 'ЗВУК ВКЛ',
+    soundOff: 'ЗВУК ВЫКЛ',
+    pmBtnNet: 'СЕТЬ ПАРТНЁРСТВА',
+    pmBtnCorr: 'СТРАТЕГИЧЕСКИЙ КОРИДОР (БАКУ — СТАМБУЛ)',
+    cnBakuRole: 'Штаб-квартира и каспийские ворота',
+    cnBakuInfo: 'БАКУ — Штаб-квартира холдинга, энергетика, логистика и каспийские ворота. (40.4093° N, 49.8671° E)',
+    cnIstRole: 'Торговый и строительный мост',
+    cnIstInfo: 'СТАМБУЛ — Узел Европы и Азии, мост строительства и коммерции. (41.0082° N, 28.9784° E)',
+    cnAsiaRole: 'Торговый и сырьевой хаб',
+    cnAsiaInfo: 'ЦЕНТРАЛЬНАЯ АЗИЯ — Аграрная торговля, натуральные товары и коридор Великого шёлкового пути.',
+    cnGlobalRole: 'Экспорт и глобальные рынки',
+    cnGlobalInfo: 'ЗАПАДНАЯ ЕВРОПА И ГЛОБАЛЬНЫЕ РЫНКИ — Международная экспортная и инвестиционная сеть.',
+    cnAsiaName: 'ЕВРАЗИЯ',
+    cnAsiaSub: 'КОРИДОР ШЁЛКОВОГО ПУТИ',
+    cnGlobalName: 'ГЛОБАЛЬНЫЙ ОХВАТ',
+    cnGlobalSub: 'ЗАПАДНАЯ ЭКСПАНСИЯ'
+  },
+  zh: {
+    docTitle: 'CASPIORA — 建筑 • 开发',
+    plHold: '建筑 • 开发',
+    plSkip: '点击进入',
+    menuBtn: '菜单',
+    menuClose: '关闭',
+    heroHold: '建筑 • 开发',
+    heroSub: '共建更强盛的明天',
+    heroTag: '投资于人才、<br>创意<br>与未来。',
+    discover: '探索',
+    discoverSmall: '滚动以探索',
+    metaScr: '滚动',
+    lxEyebrow: '筹备阶段',
+    lxBig: '即将为您服务',
+    lxNote: '我们尚未正式开放 —— 平台正在最后完善,官方上线已近在咫尺。',
+    tw1: '不止',
+    tw2: '是一家',
+    tw3: '企业',
+    ecoLabel: '控股生态体系',
+    ecoTitle: '多元方向。<br>同一愿景。',
+    ecoDesc: '建筑施工、战略项目与合作伙伴关系 —— 因卓越而相连的不同领域。',
+    ecoNodeStrategy: '战略项目', ecoSubStrategy: '开发',
+    ecoNodeCon: '建筑施工', ecoSubCon: '开发',
+    ecoNodeFood: '食品与贸易', ecoSubFood: '传统品牌',
+    ecoNodeNet: '合作伙伴', ecoSubNet: '网络',
+    conLabel: '01 — 建筑施工',
+    conH: '建筑施工',
+    conSub: '打造面向未来的空间。',
+    conBody: '从概念到交付,我们开发面向长期价值的住宅、商业及混合用途空间 —— 人们在此生活、工作与成长。',
+    conChips: ['住宅', '商业', '混合用途'],
+    foodLabel: '02 — 食品与贸易',
+    foodH: '食品与贸易',
+    foodSub: '从传统走向现代世界。',
+    foodList: ['香料', '腌制品与天然产品', '谢尔贝特与柠檬水', '糖果糕点'],
+    foodBody: '将传统风味从本土传承带向现代市场 —— 在土耳其—阿塞拜疆走廊上的天然产品与精选品牌。',
+    fCap1Title: '香料', fCap1Sub: '日光晾晒 · 石磨研磨',
+    fCap2Title: '天然腌制品', fCap2Sub: '橡木桶发酵',
+    fCap3Title: '谢尔贝特与柠檬水', fCap3Sub: '瓶装传承',
+    storyLabel: '03 — 品牌',
+    storyHold: '控股集团',
+    storyCap: 'CASPIORA —— 里海与愿景交汇之地。这个名字映照我们的地理根基与前行步伐。我们建造的每一座建筑,都是对耐久、精准以及这片地区未来的承诺。',
+    p1Title: '建筑施工',
+    p1Desc: '从概念到交付的开发 —— 为未来数十年打造的住宅、商业与混合用途地标。',
+    p2Title: '食品与贸易',
+    p2Desc: '传承风味、天然产品与精选品牌 —— 从传统走向现代零售。',
+    p3Title: '战略走廊',
+    p3Desc: '巴库—伊斯坦布尔:区域发展与国际贸易之桥。',
+    netTitle: '携手共建',
+    netInfoDefault: '将鼠标悬停在合作伙伴上以了解更多 —— 网络持续壮大。',
+    pnCenter: '建筑与开发公司。',
+    pnRegional: '区域发展网络与合作伙伴关系。',
+    pnTrade: '战略伙伴与区域联盟。',
+    pnInfra: '工程与基础设施联合体。',
+    pnGhost1: '全新战略伙伴关系 —— 即将公布。',
+    pnGhost2: '覆盖阿塞拜疆、土耳其与欧亚的联盟不断扩展。',
+    pnTradeText: '全球贸易',
+    pnInfraText: '基础设施',
+    pnGhost1Text: '+ 战略伙伴',
+    pnGhost2Text: '+ 区域网络',
+    statsLabel: '04 — 规模与影响',
+    statTitle: '以数十年衡量。',
+    statSub: '为世代而建。',
+    stName0: '年<br>经验', stDesc0: '立足可持续执行与区域布局',
+    stName1: '竣工<br>项目', stDesc1: '地标级住宅、商业与贸易资产',
+    stName2: '战略<br>联盟', stDesc2: '连接区域的跨境网络',
+    stName3: '活跃<br>市场', stDesc3: '业务版图遍布欧亚并持续扩张',
+    statNote: '* 演示数据 —— 正式发布后将替换为官方数据。',
+    mvLabel: '05 — 关于我们',
+    mvTitle: '同一愿景。多元方向。',
+    mv1Badge: '使命',
+    mv1Text: '让传统与天然产品走向更广阔的市场 —— 在本地生产者与全球机遇之间搭建可信赖的桥梁。',
+    mv2Badge: '愿景',
+    mv2Text: '成为备受认可的区域控股生态体系 —— 从阿塞拜疆与土耳其出发,连接长期伙伴关系与可持续业务。',
+    mvIdxM: '01 使命', mvIdxV: '02 愿景',
+    futLabel: '06 — 未来',
+    futTitle: '崭新篇章。',
+    futSub: '已然在建。',
+    futBody: '新一代项目正在地平线上成形 —— 旨在将生态体系带入下一个十年。',
+    cTitle: '共筑未来。',
+    cSubLoc: '阿塞拜疆,巴库',
+    cLabelPhone: '联系我们',
+    cLabelMail: '电子邮件',
+    cLabelFollow: '关注我们',
+    footCopy: '© 2026 CASPIORA — 建筑 • 开发',
+    menuFootCity: 'CASPIORA — 阿塞拜疆,巴库',
+    menuLinks: ['首页', '建筑施工', '食品与贸易', '品牌', '项目组合', '合作伙伴', '规模与影响', '联系我们'],
+    soundOn: '开启声音',
+    soundOff: '关闭声音',
+    pmBtnNet: '伙伴网络',
+    pmBtnCorr: '战略走廊(巴库 — 伊斯坦布尔)',
+    cnBakuRole: '总部与里海门户',
+    cnBakuInfo: '巴库 —— 控股总部、能源、物流与里海门户。(40.4093° N, 49.8671° E)',
+    cnIstRole: '贸易与建设之桥',
+    cnIstInfo: '伊斯坦布尔 —— 欧亚枢纽,建设与商业之桥。(41.0082° N, 28.9784° E)',
+    cnAsiaRole: '贸易与大宗商品枢纽',
+    cnAsiaInfo: '中亚 —— 农业贸易、天然商品与丝绸之路走廊。',
+    cnGlobalRole: '出口与全球市场',
+    cnGlobalInfo: '西欧与全球市场 —— 国际出口与投资网络。',
+    cnAsiaName: '欧亚大陆',
+    cnAsiaSub: '丝绸之路走廊',
+    cnGlobalName: '全球布局',
+    cnGlobalSub: '西方拓展'
+  },
+  ja: {
+    docTitle: 'CASPIORA — 建設 • 開発',
+    plHold: '建設 • 開発',
+    plSkip: 'クリックして開始',
+    menuBtn: 'メニュー',
+    menuClose: '閉じる',
+    heroHold: '建設 • 開発',
+    heroSub: 'より強い明日を、ともに建てる',
+    heroTag: '人、アイデア、<br>そして未来への<br>投資。',
+    discover: '探索する',
+    discoverSmall: 'スクロールして探索',
+    metaScr: 'スクロール',
+    lxEyebrow: '準備中',
+    lxBig: 'まもなくサービス開始',
+    lxNote: '現在はまだサービス提供前です —— プラットフォームは最終調整中で、正式ローンチが間近に迫っています。',
+    tw1: '会社の',
+    tw2: '枠を',
+    tw3: '超えて',
+    ecoLabel: 'ホールディングスのエコシステム',
+    ecoTitle: '異なる方向。<br>ひとつのビジョン。',
+    ecoDesc: '建設、戦略プロジェクト、パートナーシップ —— 卓越した品質で結ばれるそれぞれの分野。',
+    ecoNodeStrategy: '戦略プロジェクト', ecoSubStrategy: '開発',
+    ecoNodeCon: '建設', ecoSubCon: '開発',
+    ecoNodeFood: '食品と貿易', ecoSubFood: '伝統ブランド',
+    ecoNodeNet: 'パートナーシップ', ecoSubNet: 'ネットワーク',
+    conLabel: '01 — 建設',
+    conH: '建設',
+    conSub: '未来の空間を創る。',
+    conBody: '構想から完成まで、長期的な価値のために設計された住宅・商業・複合施設を開発します —— 人々が暮らし、働き、成長する場所です。',
+    conChips: ['住宅', '商業', '複合用途'],
+    foodLabel: '02 — 食品と貿易',
+    foodH: '食品と貿易',
+    foodSub: '伝統から現代の世界へ。',
+    foodList: ['スパイス', '漬物・天然製品', 'シャーベットとレモネード', '菓子類'],
+    foodBody: '地域の伝統から現代の市場へ届けられる伝統の味 —— トルコ・アゼルバイジャン回廊の天然製品と厳選ブランド。',
+    fCap1Title: 'スパイス', fCap1Sub: '天日干し · 石臼挽き',
+    fCap2Title: '天然漬物', fCap2Sub: '樽発酵',
+    fCap3Title: 'シャーベットとレモネード', fCap3Sub: '瓶詰めの伝統',
+    storyLabel: '03 — ブランド',
+    storyHold: 'ホールディングス',
+    storyCap: 'CASPIORA —— カスピ海がビジョンと出会う場所。その名は私たちの地理的基盤と前進する意志を映し出します。私たちが建てるすべての建造物は、耐久性、精度、そしてこの地域の未来への誓いです。',
+    p1Title: '建設',
+    p1Desc: '構想から完成まで —— 次の数十年に向けた住宅・商業・複合のランドマーク開発。',
+    p2Title: '食品と貿易',
+    p2Desc: '受け継がれた味、天然製品、厳選ブランド —— 伝統から現代の小売へ。',
+    p3Title: '戦略回廊',
+    p3Desc: 'バクー—イスタンブール:地域開発と国際貿易の架け橋。',
+    netTitle: 'ともに築く',
+    netInfoDefault: 'パートナーにカーソルを合わせると詳細が表示されます —— ネットワークは拡大し続けています。',
+    pnCenter: '建設・開発企業。',
+    pnRegional: '地域開発ネットワークとパートナーシップ。',
+    pnTrade: '戦略パートナーと地域アライアンス。',
+    pnInfra: 'エンジニアリングおよびインフラコンソーシアム。',
+    pnGhost1: '新しい戦略パートナーシップ —— 近く発表予定。',
+    pnGhost2: 'アゼルバイジャン、トルコ、ユーラシアへ広がるアライアンス。',
+    pnTradeText: 'グローバル貿易',
+    pnInfraText: 'インフラ',
+    pnGhost1Text: '+ 戦略パートナー',
+    pnGhost2Text: '+ 地域ネットワーク',
+    statsLabel: '04 — 規模と影響',
+    statTitle: '数十年で測る。',
+    statSub: '世代のために建つ。',
+    stName0: '年の<br>経験', stDesc0: '持続可能な実行と地域での存在感',
+    stName1: '完成した<br>プロジェクト', stDesc1: 'ランドマークとなる住宅・商業・貿易資産',
+    stName2: '戦略的<br>アライアンス', stDesc2: '地域をつなぐ国境を越えるネットワーク',
+    stName3: 'アクティブな<br>市場', stDesc3: 'ユーラシア全域へ拡大する事業基盤',
+    statNote: '* デモ値 —— 正式発表後に公式数値へ置き換えられます。',
+    mvLabel: '05 — 私たちについて',
+    mvTitle: 'ひとつのビジョン。多彩な方向性。',
+    mv1Badge: 'ミッション',
+    mv1Text: '伝統的で自然な製品をより広い市場へつなぐ —— 地元の生産者と世界的な機会の間に信頼の架け橋を築く。',
+    mv2Badge: 'ビジョン',
+    mv2Text: 'アゼルバイジャンとトルコを起点に、長期的なパートナーシップと持続可能なビジネスをつなぐ、認知された地域ホールディングスのエコシステムとなる。',
+    mvIdxM: '01 ミッション', mvIdxV: '02 ビジョン',
+    futLabel: '06 — 未来',
+    futTitle: '新たな章。',
+    futSub: 'すでに建設中。',
+    futBody: 'エコシステムを次の10年へ導く新世代のプロジェクトが地平線で形になりつつあります。',
+    cTitle: '次の未来を、ともに。',
+    cSubLoc: 'アゼルバイジャン・バクー',
+    cLabelPhone: 'お問い合わせ',
+    cLabelMail: 'メール',
+    cLabelFollow: 'フォロー',
+    footCopy: '© 2026 CASPIORA — 建設 • 開発',
+    menuFootCity: 'CASPIORA — バクー、アゼルバイジャン',
+    menuLinks: ['ホーム', '建設', '食品と貿易', 'ブランド', 'ポートフォリオ', 'パートナー', '規模と影響', 'お問い合わせ'],
+    soundOn: 'サウンド オン',
+    soundOff: 'サウンド オフ',
+    pmBtnNet: 'パートナーシップネットワーク',
+    pmBtnCorr: '戦略回廊(バクー — イスタンブール)',
+    cnBakuRole: '本社とカスピの玄関口',
+    cnBakuInfo: 'バクー —— ホールディングス本社、エネルギー、物流、カスピ海の玄関口。(40.4093° N, 49.8671° E)',
+    cnIstRole: '貿易と建設の架け橋',
+    cnIstInfo: 'イスタンブール —— 欧州とアジアの結節点、建設と商業の橋。(41.0082° N, 28.9784° E)',
+    cnAsiaRole: '貿易と商品のハブ',
+    cnAsiaInfo: '中央アジア —— 農業貿易、天然資源、シルクロード回廊。',
+    cnGlobalRole: '輸出とグローバル市場',
+    cnGlobalInfo: '西欧およびグローバル市場 —— 国際輸出と投資ネットワーク。',
+    cnAsiaName: 'ユーラシア',
+    cnAsiaSub: 'シルクロード回廊',
+    cnGlobalName: 'グローバル展開',
+    cnGlobalSub: '西欧への展開'
   }
 };
+
+const LANGS=[
+  {code:'az',short:'AZ'},{code:'en',short:'EN'},{code:'tr',short:'TR'},
+  {code:'ru',short:'RU'},{code:'zh',short:'ZH'},{code:'ja',short:'JA'}
+];
 
 function applyLang(lang){
   curLang = lang;
   document.documentElement.lang = lang;
   localStorage.setItem('islimi_lang', lang);
   const d = DICT[lang] || DICT.az;
+  const L = LANGS.find(l=>l.code===lang) || LANGS[0];
 
-  $$('.lang-btn').forEach(btn=>{
-    btn.classList.toggle('active', btn.dataset.setLang === lang);
+  $$('.lang-opt').forEach(btn=>{
+    const on = btn.dataset.setLang === lang;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-selected', String(on));
   });
+  $$('.lang-cur-code').forEach(el=>{ el.textContent = L.short; });
+
+  document.title = d.docTitle || document.title;
+  if($('#htHold')) $('#htHold').textContent = d.heroHold;
+  if($('#plHold')) $('#plHold').textContent = d.plHold;
+  if($('#plSkip')) $('#plSkip').textContent = d.plSkip;
+  if($('#menuBtn')) $('#menuBtn').textContent = d.menuBtn;
+  if($('#menuClose')) $('#menuClose').textContent = d.menuClose;
+  if($('#storyHold')) $('#storyHold').textContent = d.storyHold;
+  if($('#cnAsiaName')) $('#cnAsiaName').textContent = d.cnAsiaName;
+  if($('#cnAsiaSub')) $('#cnAsiaSub').textContent = d.cnAsiaSub;
+  if($('#cnGlobalName')) $('#cnGlobalName').textContent = d.cnGlobalName;
+  if($('#cnGlobalSub')) $('#cnGlobalSub').textContent = d.cnGlobalSub;
 
   $('#heroSub').textContent = d.heroSub;
   $('#heroTagP').innerHTML = d.heroTag;
@@ -1479,14 +1944,6 @@ function applyLang(lang){
   $('#statsLabel').textContent = d.statsLabel;
   $('#statSub').textContent = d.statSub;
 
-  $('#ldLabel').textContent = d.ldLabel;
-  $('#ldName').textContent = d.ldName;
-  $('#ldRole').textContent = d.ldRole;
-  $('#ldBio').textContent = d.ldBio;
-  $('#ldN1T').textContent = d.ldN1T; $('#ldN1S').textContent = d.ldN1S;
-  $('#ldN2T').textContent = d.ldN2T; $('#ldN2S').textContent = d.ldN2S;
-  $('#ldN4T').textContent = d.ldN4T; $('#ldN4S').textContent = d.ldN4S;
-
   $('#stName0').innerHTML = d.stName0; $('#stDesc0').textContent = d.stDesc0;
   $('#stName1').innerHTML = d.stName1; $('#stDesc1').textContent = d.stDesc1;
   $('#stName2').innerHTML = d.stName2; $('#stDesc2').textContent = d.stDesc2;
@@ -1509,6 +1966,9 @@ function applyLang(lang){
   $('#footCopy').textContent = d.footCopy;
   $('#menuFootCity').textContent = d.menuFootCity;
 
+  $('#lxEyebrow').textContent = d.lxEyebrow;
+  $('#lxNote').textContent = d.lxNote;
+
   // Menu items
   d.menuLinks.forEach((txt, idx)=>{
     const el = $(`#mLink${idx}`);
@@ -1523,6 +1983,7 @@ function applyLang(lang){
   split('#mvTitle', d.mvTitle);
   split('#futTitle', d.futTitle);
   split('#cTitle', d.cTitle);
+  split('#lxBig', d.lxBig);
 
   // Sound toggle label
   if($('#soundLabel')) {
@@ -1543,6 +2004,33 @@ function applyLang(lang){
   }
 }
 
+/* ---------- language switcher dropdown (works with & without libs) ---------- */
+function closeAllLangMenus(){
+  $$('.lang-switch.open').forEach(sw=>{
+    sw.classList.remove('open');
+    const c=sw.querySelector('.lang-current');
+    if(c)c.setAttribute('aria-expanded','false');
+  });
+}
+$$('.lang-current').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const sw=btn.closest('.lang-switch');
+    const wasOpen=sw.classList.contains('open');
+    closeAllLangMenus();
+    if(!wasOpen){sw.classList.add('open');btn.setAttribute('aria-expanded','true');}
+  });
+});
+$$('[data-set-lang]').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    applyLang(btn.dataset.setLang);
+    closeAllLangMenus();
+  });
+});
+document.addEventListener('click',closeAllLangMenus);
+addEventListener('keydown',e=>{if(e.key==='Escape')closeAllLangMenus();});
+
 /* ---------- brand mark (İ as skyline) ---------- */
 function markSVG(uid){return `<svg viewBox="0 0 64 92" fill="none" xmlns="http://www.w3.org/2000/svg">
 <defs><linearGradient id="mg-${uid}" x1="0" y1="0" x2="1" y2="1">
@@ -1559,7 +2047,7 @@ function markSVG(uid){return `<svg viewBox="0 0 64 92" fill="none" xmlns="http:/
 // $('#plMark').outerHTML=markSVG('pl')... removed to preserve logo4k.png image
 $('#brandHome').innerHTML='<img class="brand-logo" src="assets/logo4k.png" alt="CASPIORA"/><b>CASPIORA</b>';
 $('#heroTitle').innerHTML='<img class="mark" src="assets/logo4k.png" alt="CASPIORA"/>'
- +'<div class="ht-name" id="htName"></div><div class="ht-hold">CONSTRUCTION • DEVELOPMENT</div>';
+ +'<div class="ht-name" id="htName"></div><div class="ht-hold" id="htHold">CONSTRUCTION • DEVELOPMENT</div>';
 $('#ecoCore').insertAdjacentHTML('afterbegin',markSVG('eco'));
 
 /* letters for İSLİMİ */
@@ -1575,9 +2063,10 @@ function split(sel, txt){
   const t = txt || el.textContent;
   el.setAttribute('aria-label', t);
   el.textContent = '';
-  [...t].forEach(c=>{
+  [...t].forEach((c, i)=>{
     const s = document.createElement('span');
     s.className = 'ch';
+    s.style.setProperty('--i', i);
     s.innerHTML = c === ' ' ? '&nbsp;' : c;
     el.appendChild(s);
   });
@@ -1769,6 +2258,8 @@ function applyCam(){
 /* ================= ACT 1 ================= */
 const tl1=gsap.timeline({defaults:{ease:'power1.inOut'},scrollTrigger:{trigger:'#act1',start:'top top',end:'+=520%',pin:true,scrub:1,anticipatePin:1}});
 tl1
+ .to('#launch',{scale:1.22,y:-26,duration:1.35,ease:'none'},0)
+ .to('#launch',{opacity:0,filter:'blur(8px)',duration:.75},.75)
  .to('#heroUI',{opacity:0,y:-46,filter:'blur(9px)',duration:1.3},.35)
  .set('#aTypo',{visibility:'visible'},3.3)
  .fromTo('.a-typo .tw:nth-child(1)',{opacity:0,filter:'blur(18px)',y:20},{opacity:1,filter:'blur(0px)',y:0,duration:.8},3.35)
@@ -1907,22 +2398,6 @@ tlStats
  }},.7)
  .fromTo('#statNote',{opacity:0,y:16},{opacity:1,y:0,duration:.7},1.6);
 
-/* ================= LEADERSHIP (CEO) ================= */
-const tlLeader=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#leader',start:'top top',end:'+=190%',pin:true,scrub:1,anticipatePin:1}});
-tlLeader
- .fromTo('.ld-visual',{opacity:0,x:-60,filter:'blur(12px)'},{opacity:1,x:0,filter:'blur(0px)',duration:1.1},.15)
- .fromTo('.ld-aura',{opacity:0,scale:.7},{opacity:1,scale:1,duration:1.6},.3)
- .fromTo('#ldFrame',{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',duration:1.4,ease:'power2.inOut'},.25)
- .fromTo('#ldLabel',{opacity:0,x:-24},{opacity:1,x:0,duration:.5},.4)
- .fromTo('#ldName',{opacity:0,y:34,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.9},.55)
- .fromTo('#ldRole',{opacity:0,y:22},{opacity:1,y:0,duration:.6},.85)
- .fromTo('#ldBio',{opacity:0,y:22},{opacity:1,y:0,duration:.6},1.05)
- .fromTo('.ld-frame-line',{opacity:0,scale:0},{opacity:1,scale:1,stagger:.1,duration:.5},1.1)
- .fromTo('#ldBadge',{opacity:0,y:16},{opacity:1,y:0,duration:.6},1.4)
- .fromTo('.ld-node',{opacity:0,x:34,filter:'blur(6px)'},{opacity:1,x:0,filter:'blur(0px)',stagger:.22,duration:.7},1.25)
- .to('.ld-visual',{y:-20,duration:1.4,ease:'none'},2.3)
- .to('.ld-copy',{y:-12,duration:1.4,ease:'none'},2.3);
-
 /* ================= MISSION / VISION ================= */
 gsap.set('#mv2',{opacity:0});
 const tl7=gsap.timeline({defaults:{ease:'power2.out'},scrollTrigger:{trigger:'#mv',start:'top top',end:'+=190%',pin:true,scrub:1,anticipatePin:1,
@@ -1979,7 +2454,6 @@ const GO={
   portfolio:'#portfolio',
   partners:'#partners',
   stats:'#stats',
-  leader:'#leader',
   contact:'#contact'
 };
 
@@ -2003,13 +2477,6 @@ $$('[data-go]').forEach(el=>el.addEventListener('click',e=>{
 
 $('#discover').addEventListener('click',()=>scrollToY(innerHeight*1.15));
 $('#toTop').addEventListener('click',()=>scrollToY(0));
-
-/* Language switch click handlers */
-$$('[data-set-lang]').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    applyLang(btn.dataset.setLang);
-  });
-});
 
 addEventListener('resize',()=>ScrollTrigger.refresh());
 ScrollTrigger.addEventListener('refresh',()=>{camKeys=buildCamKeys();applyCam();});
@@ -2063,7 +2530,7 @@ window.addEventListener('deviceorientation', e => {
 });
 
 // Magnetic hover targets
-const interactiveSelector = 'button, a, [data-go], .pnode, .cnode, .stat, .chips li, .lang-btn, .pm-btn, #discover, #toTop';
+const interactiveSelector = 'button, a, [data-go], .pnode, .cnode, .stat, .chips li, .lang-current, .lang-opt, .pm-btn, #discover, #toTop';
 document.addEventListener('mouseover', e => {
   if (e.target.closest(interactiveSelector)) {
     if (cursorRing) cursorRing.classList.add('active');
@@ -2109,11 +2576,6 @@ function renderCursorAndTilt() {
   // Authentic Motif 2.5D orbit tilt
   const motifImg = $('#motifImg');
   if (motifImg) motifImg.style.transform = `perspective(900px) rotateX(${-curTiltY * 5}deg) rotateY(${curTiltX * 5}deg) translate3d(${curTiltX * 12}px, ${curTiltY * 8}px, 0)`;
-
-  // CEO portrait 2.5D tilt (frame rotates, photo drifts slightly deeper)
-  const ldFrame = $('#ldFrame'), ldPhoto = $('#ldPhoto');
-  if (ldFrame) ldFrame.style.transform = `perspective(900px) rotateX(${-curTiltY * 4}deg) rotateY(${curTiltX * 5}deg)`;
-  if (ldPhoto) ldPhoto.style.transform = `scale(1.08) translate3d(${-curTiltX * 10}px, ${-curTiltY * 7}px, 0)`;
 
   requestAnimationFrame(renderCursorAndTilt);
 }
