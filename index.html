@@ -200,15 +200,37 @@ section,#act1{position:relative;height:100vh;min-height:100vh;overflow:hidden}
 #discover small{font-size:8px;letter-spacing:.3em;color:var(--mut)}
 /* ---- launch notice (pre-opening band) ---- */
 #launch{position:absolute;left:0;right:0;bottom:clamp(52px,10.5vh,116px);text-align:center;z-index:7;pointer-events:none;transform-origin:50% 100%;will-change:transform,opacity,filter}
-.lx-inner{display:grid;justify-items:center;gap:clamp(8px,1.4vh,16px);animation:lxFloat 7s ease-in-out infinite}
-@keyframes lxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.lx-inner{display:flex;align-items:flex-end;justify-content:center;gap:clamp(22px,3.2vw,52px)}
+.lx-text{display:grid;justify-items:center;gap:clamp(8px,1.4vh,16px);animation:lxFloat 7s ease-in-out infinite}
+@keyframes lxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .lx-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.42em;margin-left:.42em;color:var(--acc2);text-transform:uppercase}
 .lx-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc);animation:lxPulse 2.4s ease-in-out infinite}
 @keyframes lxPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
-.lx-big{font-family:var(--sans);font-weight:300;font-size:clamp(26px,5.4vw,78px);line-height:1;letter-spacing:.1em;margin-left:.1em;text-transform:uppercase;color:#f2fbfe;white-space:nowrap;text-shadow:0 0 26px rgba(94,198,230,.35),0 0 80px rgba(94,198,230,.15)}
+.lx-big{font-family:var(--sans);font-weight:300;font-size:clamp(21px,4vw,56px);line-height:1.05;letter-spacing:.12em;margin-left:.12em;text-transform:uppercase;color:#f2fbfe;white-space:nowrap;text-shadow:0 0 22px rgba(94,198,230,.4),0 0 70px rgba(94,198,230,.18)}
 .lx-big .ch{animation:lxRise .9s cubic-bezier(.22,.61,.36,1) both;animation-delay:calc(var(--i) * .045s)}
-@keyframes lxRise{from{opacity:0;transform:translateY(26px);filter:blur(10px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
-.lx-note{font-size:clamp(9px,1.05vw,12px);letter-spacing:.24em;text-transform:uppercase;color:var(--mut);max-width:min(70ch,86vw);line-height:2}
+@keyframes lxRise{from{opacity:0;transform:translateY(22px);filter:blur(9px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.lx-note{font-size:clamp(8.5px,.95vw,11px);letter-spacing:.24em;text-transform:uppercase;color:var(--mut);max-width:min(64ch,78vw);line-height:2}
+/* scene widths kept equal so the text stays page-centered */
+.lx-scene,.lx-side{flex:none;pointer-events:none}
+.lx-scene{width:clamp(104px,12vw,186px);margin-bottom:4px}
+.lx-side{width:clamp(104px,12vw,186px);display:grid;justify-items:center;margin-bottom:10px}
+.lx-scene svg,.lx-side svg{width:100%;height:auto;display:block;overflow:visible}
+.lx-side svg{width:clamp(62px,6.8vw,104px)}
+/* excavator rig — joints pivot at drawn coordinates (view-box space) */
+.lx-boom{transform-box:view-box;transform-origin:96px 86px;animation:lxA 7s ease-in-out infinite}
+@keyframes lxA{0%,100%{transform:rotate(0deg)}16%{transform:rotate(9deg)}36%{transform:rotate(13deg)}56%{transform:rotate(-7deg)}78%{transform:rotate(-2deg)}}
+.lx-stick{transform-box:view-box;transform-origin:156px 50px;animation:lxB 7s ease-in-out infinite}
+@keyframes lxB{0%,100%{transform:rotate(-6deg)}16%{transform:rotate(18deg)}38%{transform:rotate(34deg)}58%{transform:rotate(-26deg)}80%{transform:rotate(-12deg)}}
+.lx-bucket{transform-box:view-box;transform-origin:196px 108px;animation:lxC 7s ease-in-out infinite}
+@keyframes lxC{0%,100%{transform:rotate(-8deg)}18%{transform:rotate(22deg)}40%{transform:rotate(48deg)}62%{transform:rotate(-30deg)}82%{transform:rotate(-16deg)}}
+.lx-beacon{transform-box:fill-box;transform-origin:center;animation:lxPulse 2.4s ease-in-out infinite}
+.lx-smoke{opacity:0;animation:lxSmoke 3.5s ease-out infinite}
+@keyframes lxSmoke{0%{opacity:0;transform:translate(0,0)}12%{opacity:.45}100%{opacity:0;transform:translate(4px,-18px)}}
+.lx-dust{opacity:0;animation:lxDust 7s linear infinite}
+@keyframes lxDust{0%,34%{opacity:0;transform:translate(0,0)}38%{opacity:.85}47%{opacity:.45;transform:translate(5px,9px)}56%,100%{opacity:0;transform:translate(11px,15px)}}
+.lx-dust.d2{animation-delay:.18s}
+.lx-dust.d3{animation-delay:-.22s}
+.lx-blink{transform-box:fill-box;transform-origin:center;animation:lxPulse 2.4s ease-in-out infinite}
 #heroMeta{position:absolute;left:6vw;right:6vw;bottom:clamp(16px,4vh,34px);display:flex;align-items:center;gap:18px;font-size:9px;letter-spacing:.26em;color:var(--mut);z-index:6}
 #heroMeta .prog{flex:0 0 clamp(80px,10vw,130px);height:1px;background:rgba(165,225,242,.16);position:relative}
 #heroMeta .prog i{position:absolute;left:0;top:0;height:100%;width:26%;background:var(--acc2);animation:progSlide 5s ease-in-out infinite}
@@ -430,6 +452,9 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
   #heroMeta{left:20px;right:20px}
   .lx-big{white-space:normal;max-width:90vw;letter-spacing:.06em}
   .lx-note{letter-spacing:.18em;line-height:1.9}
+  .lx-side{display:none}
+  .lx-scene{width:clamp(78px,15vw,116px);margin-bottom:8px}
+  .lx-inner{gap:16px}
   .story-cap{bottom:10vh}
   .mv p{max-width:92%}
   .mv-stage{height:52vh}
@@ -446,10 +471,12 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
   #soundLabel{max-width:62px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .lang-current{padding:7px 11px}
   .lang-menu{min-width:176px}
+  .lx-scene{display:none}
 }
 /* reduced motion */
 @media (prefers-reduced-motion:reduce){
   .grain,.sky-stars,.b-lights i,.p-lights i,.b-front::after,.p-glass::after,.sweep::after{animation:none!important}
+  .lx-boom,.lx-stick,.lx-bucket,.lx-dust,.lx-smoke,.lx-beacon,.lx-blink,.lx-text{animation:none!important}
 }
 /* lib fallback: static readable page */
 .no-lib #world{opacity:.9}
@@ -838,9 +865,82 @@ footer span{font-size:9px;letter-spacing:.2em;color:var(--mut);text-transform:up
         </div>
         <div id="launch">
           <div class="lx-inner">
-            <span class="lx-eyebrow" id="lxEyebrow">HAZIRLIQ MƏRHƏLƏSİ</span>
-            <div class="lx-big sweep" id="lxBig">TEZLİKLƏ XİDMƏTİNİZDƏ</div>
-            <p class="lx-note" id="lxNote">Hal-hazırda xidmət göstərmirik — platformamız hazırlanır və rəsmi açılışa az qalıb.</p>
+            <div class="lx-scene" aria-hidden="true">
+              <svg viewBox="0 0 250 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="lxBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12394e"/><stop offset="1" stop-color="#081c29"/></linearGradient>
+                  <linearGradient id="lxGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a5e1f2" stop-opacity=".85"/><stop offset="1" stop-color="#2b8bab" stop-opacity=".45"/></linearGradient>
+                  <linearGradient id="lxDirt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a28"/><stop offset="1" stop-color="#3a2410"/></linearGradient>
+                </defs>
+                <!-- ground -->
+                <line x1="4" y1="139" x2="246" y2="139" stroke="rgba(140,210,235,.28)" stroke-width="1"/>
+                <line x1="16" y1="144" x2="118" y2="144" stroke="rgba(140,210,235,.10)" stroke-width="1" stroke-dasharray="6 8"/>
+                <!-- dirt mound under the bucket -->
+                <path d="M148 139 Q172 121 198 129 Q221 135 240 139 Z" fill="url(#lxDirt)" opacity=".92"/>
+                <path d="M166 139 Q184 127 204 131 Q220 135 231 139 Z" fill="#241608" opacity=".85"/>
+                <!-- flying dust at the dig moment -->
+                <circle class="lx-dust d1" cx="197" cy="125" r="2.4" fill="#c98a3e"/>
+                <circle class="lx-dust d2" cx="205" cy="129" r="1.8" fill="#a86f30"/>
+                <circle class="lx-dust d3" cx="191" cy="130" r="1.5" fill="#e0a455"/>
+                <!-- excavator -->
+                <g class="lx-machine">
+                  <rect x="28" y="116" width="104" height="22" rx="11" fill="#0a1e2b" stroke="rgba(140,220,245,.35)" stroke-width="1.2"/>
+                  <g fill="#071620" stroke="rgba(140,220,245,.28)" stroke-width="1">
+                    <circle cx="43" cy="127" r="6.5"/><circle cx="62" cy="127" r="6.5"/><circle cx="80" cy="127" r="6.5"/><circle cx="98" cy="127" r="6.5"/><circle cx="116" cy="127" r="6.5"/>
+                  </g>
+                  <rect x="38" y="109" width="84" height="9" rx="3" fill="url(#lxBody)" stroke="rgba(140,220,245,.25)" stroke-width="1"/>
+                  <path d="M44 109 L44 84 Q44 78 50 78 L98 78 Q104 78 104 84 L104 109 Z" fill="url(#lxBody)" stroke="rgba(140,220,245,.4)" stroke-width="1.2"/>
+                  <rect x="76" y="56" width="30" height="24" rx="3" fill="url(#lxBody)" stroke="rgba(140,220,245,.4)" stroke-width="1.2"/>
+                  <rect x="80" y="60" width="21" height="14" rx="1.5" fill="url(#lxGlass)" stroke="rgba(165,225,242,.6)" stroke-width="1"/>
+                  <path d="M44 96 L33 101 L33 109 L44 109 Z" fill="#0a2434" stroke="rgba(140,220,245,.3)" stroke-width="1"/>
+                  <rect x="58" y="64" width="5" height="14" rx="1.5" fill="#0a2434" stroke="rgba(140,220,245,.3)" stroke-width="1"/>
+                  <circle class="lx-smoke" cx="60.5" cy="58" r="3" fill="rgba(190,215,225,.4)"/>
+                  <line x1="91" y1="56" x2="91" y2="50" stroke="rgba(140,220,245,.5)" stroke-width="1.5"/>
+                  <circle class="lx-beacon" cx="91" cy="47" r="3.2" fill="#ffb75e"/>
+                  <g class="lx-boom">
+                    <path d="M96 86 L156 50" stroke="#0f2c3d" stroke-width="11" stroke-linecap="round"/>
+                    <path d="M96 86 L156 50" stroke="rgba(140,220,245,.35)" stroke-width="1.4"/>
+                    <path d="M79 92 L137 60" stroke="#092331" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+                    <g class="lx-stick">
+                      <path d="M156 50 L196 108" stroke="#0f2c3d" stroke-width="9" stroke-linecap="round"/>
+                      <path d="M156 50 L196 108" stroke="rgba(140,220,245,.3)" stroke-width="1.2"/>
+                      <g class="lx-bucket">
+                        <path d="M196 108 L207 127 L193 136 L184 121 Z" fill="url(#lxBody)" stroke="rgba(165,225,242,.55)" stroke-width="1.2"/>
+                        <path d="M207 127 L211 132 M193 136 L189 141 M184 121 L180 126" stroke="rgba(217,154,85,.85)" stroke-width="2" stroke-linecap="round"/>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="lx-text">
+              <span class="lx-eyebrow" id="lxEyebrow">HAZIRLIQ MƏRHƏLƏSİ</span>
+              <div class="lx-big sweep" id="lxBig">TEZLİKLƏ XİDMƏTİNİZDƏ</div>
+              <p class="lx-note" id="lxNote">Hal-hazırda xidmət göstərmirik — platformamız hazırlanır və rəsmi açılışa az qalıb.</p>
+            </div>
+            <div class="lx-side" aria-hidden="true">
+              <svg viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="lxCone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a44c"/><stop offset="1" stop-color="#a3642a"/></linearGradient>
+                </defs>
+                <line x1="4" y1="139" x2="116" y2="139" stroke="rgba(140,210,235,.28)" stroke-width="1"/>
+                <!-- barrier with blinking work light -->
+                <line x1="26" y1="82" x2="20" y2="139" stroke="rgba(140,220,245,.4)" stroke-width="2"/>
+                <line x1="94" y1="82" x2="100" y2="139" stroke="rgba(140,220,245,.4)" stroke-width="2"/>
+                <rect x="12" y="64" width="96" height="16" rx="3" fill="#0a2434" stroke="rgba(140,220,245,.35)" stroke-width="1.2"/>
+                <path d="M22 64 L34 80 M46 64 L58 80 M70 64 L82 80 M94 64 L106 80" stroke="#d99a55" stroke-width="6"/>
+                <rect x="12" y="64" width="96" height="16" rx="3" stroke="rgba(165,225,242,.45)" stroke-width="1" fill="none"/>
+                <line x1="60" y1="64" x2="60" y2="56" stroke="rgba(140,220,245,.5)" stroke-width="1.5"/>
+                <circle class="lx-blink" cx="60" cy="52" r="3.2" fill="#ffb75e"/>
+                <!-- cones -->
+                <path d="M34 104 L41 136 L27 136 Z" fill="url(#lxCone)" stroke="rgba(217,154,85,.6)" stroke-width="1"/>
+                <rect x="24" y="136" width="20" height="3" rx="1.5" fill="#8a5222"/>
+                <path d="M35.5 114 L39.5 114 L40.8 121 L34.2 121 Z" fill="rgba(244,232,210,.85)"/>
+                <path d="M86 112 L92 136 L80 136 Z" fill="url(#lxCone)" stroke="rgba(217,154,85,.6)" stroke-width="1"/>
+                <rect x="77" y="136" width="18" height="3" rx="1.5" fill="#8a5222"/>
+                <path d="M87.3 121 L90.7 121 L91.8 127 L82.2 127 Z" fill="rgba(244,232,210,.85)"/>
+              </svg>
+            </div>
           </div>
         </div>
         <div id="heroMeta"><span>01</span><div class="prog"><i></i></div><span>07</span><span class="scr" id="metaScr">SCROLL</span></div>
