@@ -121,7 +121,8 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
 .pl-center{position:relative;display:grid;justify-items:center;gap:26px;opacity:0}
 #plFx{position:absolute;width:560px;height:560px;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
 .pl-mark{width:68px;height:auto;max-height:130px;object-fit:contain;filter:drop-shadow(0 0 28px rgba(94,198,230,.6))}
-.pl-name{display:flex;font-family:var(--riccione);font-size:clamp(38px,6vw,58px);letter-spacing:.28em;margin-left:.28em;color:#f2fafc}
+.pl-name{display:flex;align-items:center;justify-content:center;gap:clamp(8px,1.4vw,18px);height:clamp(40px,5.8vw,62px)}
+.pl-name .pl-i{height:100%;width:auto;object-fit:contain;display:block;filter:drop-shadow(0 0 16px rgba(255,255,255,.4)) drop-shadow(0 0 32px rgba(94,198,230,.25));will-change:transform,opacity,filter}
 .pl-holdwrap{width:min(320px,70vw)}
 .pl-bar{height:1px;background:linear-gradient(90deg,transparent,rgba(165,225,242,.75),transparent);transform:scaleX(0)}
 .pl-hold{margin-top:14px;text-align:center;font-size:11px;letter-spacing:.42em;margin-left:.42em;color:rgba(234,244,248,.75);text-transform:uppercase;opacity:0}
@@ -317,7 +318,8 @@ section,#act1{position:relative;height:100vh;min-height:100vh;overflow:hidden}
 @keyframes motifShine{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
 .motif-img{position:relative;width:100%;height:auto;max-height:54vh;object-fit:contain;filter:drop-shadow(0 0 32px rgba(94,198,230,.6)) drop-shadow(0 0 80px rgba(12,117,135,.45)) drop-shadow(0 0 4px rgba(94,198,230,.3));display:block}
 .story-word{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:20px;z-index:4;pointer-events:none}
-.sw{font-family:var(--riccione);font-size:clamp(44px,6vw,74px);letter-spacing:.3em;margin-left:.3em;color:#f4fbfd;opacity:0;filter:blur(10px)}
+#swName{display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.6vw,22px);height:clamp(48px,6.8vw,80px)}
+.sw{height:100%;width:auto;object-fit:contain;display:block;opacity:0;filter:drop-shadow(0 0 20px rgba(255,255,255,.45)) drop-shadow(0 0 45px rgba(94,198,230,.35));will-change:transform,opacity,filter}
 .story-bar{width:min(300px,60vw);height:1px;background:linear-gradient(90deg,transparent,rgba(165,225,242,.75),transparent);transform:scaleX(0)}
 .story-shold{font-size:10px;letter-spacing:.5em;margin-left:.5em;color:var(--acc2);text-transform:uppercase;opacity:0}
 .story-cap{position:absolute;left:50%;bottom:16vh;transform:translateX(-50%);width:min(600px,86vw);text-align:center;font-size:13px;letter-spacing:.14em;line-height:2;color:var(--mut);font-weight:300;opacity:0}
@@ -2184,9 +2186,19 @@ $('#ecoCore').insertAdjacentHTML('afterbegin',markSVG('eco'));
 
 /* letters for İSLİMİ */
 function letters(container,txt,cls){if(!container)return;container.innerHTML=[...txt].map(c=>`<span class="${cls}">${c}</span>`).join('');}
-letters($('#plName'),NAME,'pl-i');
+const plNameEl=$('#plName');
+if(plNameEl){
+  plNameEl.innerHTML=['I','S','L','I','M','I'].map(l=>
+    `<img class="pl-i" src="assets/letter-${l}.png" alt="${l}" draggable="false"/>`
+  ).join('');
+}
 letters($('#htName'),NAME,'l');
-$('#swName').innerHTML=[...NAME].map(c=>`<span class="sw">${c}</span>`).join('');
+const swNameEl=$('#swName');
+if(swNameEl){
+  swNameEl.innerHTML=['I','S','L','I','M','I'].map(l=>
+    `<img class="sw" src="assets/letter-${l}.png" alt="${l}" draggable="false"/>`
+  ).join('');
+}
 
 /* split big titles into chars */
 function split(sel, txt){
